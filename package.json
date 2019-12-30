@@ -1,0 +1,25 @@
+{
+  "name": "factionbot",
+  "version": "0.0.1",
+  "description": "Faction bot for discord",
+  "main": "bin/main/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Satsaa/FactionBot.git"
+  },
+  "keywords": [
+    "Bot",
+    "Discord",
+    "Factions",
+    "Questions"
+  ],
+  "author": "Satsaa",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Satsaa/FactionBot/issues"
+  },
+  "homepage": "https://github.com/Satsaa/FactionBot#readme"
+}

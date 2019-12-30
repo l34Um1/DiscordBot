@@ -1,0 +1,55 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Current",
+      "internalConsoleOptions": "openOnSessionStart",
+      "protocol": "inspector",
+      "args": ["./${relativeFile}"],
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "sourceMaps": true,
+      "smartStep": true,
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": [
+          "${workspaceFolder}/bin/**/*.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Unmanaged",
+      // "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}\\bin\\main\\index.js", "-gp", "-c", "61365582"],
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "sourceMaps": true,
+      "smartStep": true,
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "tsc",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "autoAttachChildProcesses": true,
+      "name": "Managed",
+      // "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "protocol": "inspector",
+      "args": ["${workspaceRoot}\\bin\\main\\index.js", "-gpmi", "-c", "61365582"],
+      "cwd": "${workspaceRoot}",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "sourceMaps": true,
+      "smartStep": true,
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "tsc",
+    },
+  ]
+}
