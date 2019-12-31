@@ -1,0 +1,7 @@
+node_modules
+.vscode/
+cfg/
+data/
+bin/
+tempCodeRunnerFile.js
+tsconfig.tsbuildinfo
