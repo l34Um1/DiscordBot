@@ -1,6 +1,3 @@
-
-import TwitchClient from './client/client'
-import Commander, { PluginInstance, Handlers } from './commander'
 import { addArticle, commaPunctuate, plural, deduplicate } from './lib/util'
 import logger from './logger'
 
@@ -33,20 +30,36 @@ type ValidateResult = {
   message: string
 }
 
+export interface Handlers {
+  call: {
+    default: Array<{
+      params: string
+      handler: (channelId: number, userId: number, params: any) => Promise<string | void>
+    }>
+    [group: string]: Array<{
+      params: string
+      handler: (channelId: number, userId: number, params: any) => Promise<string | void>
+    }>
+  }
+  cd: {
+    default: Array<{
+      handler?: (channelId: number, userId: number, params: any) => Promise<string | void>
+    }>
+    [group: string]: Array<{
+      handler?: (channelId: number, userId: number, params: any) => Promise<string | void>
+    }>
+  }
+}
 // WORST PIECE OF TRASH CODE BUT IT WORKS SO EAT IT
 
 /**
  * Validates parameter and handles parameter checking for command plugins
  */
 export default class ParamValidator {
-  private commander: Commander
-  private client: TwitchClient
   private cmdParams: { [pluginId: string]: { [group: string]: Bundle } }
   private checkables: string[]
 
-  constructor(commander: Commander, client: TwitchClient) {
-    this.commander = commander
-    this.client = client
+  constructor() {
     this.cmdParams = {}
 
     this.checkables = ['USER', 'CHANNEL', 'COMMAND', '!COMMAND', 'PLUGIN', '!PLUGIN']
@@ -75,8 +88,6 @@ export default class ParamValidator {
       checks.push(check)
       if (check.pass) {
         let values: any[] = []
-        const users: { [user: string]: number } = {}
-        const dupUserIndexes = []
         for (let i = 0; i < params.length; i++) {
           const pure = params[i].pure
           if (params[i].multi) values[i] = []
@@ -89,38 +100,6 @@ export default class ParamValidator {
               if (!word) continue
 
               const lc = word.toLowerCase()
-              switch (pure) {
-                case 'USER':
-                case 'CHANNEL':
-                  if (users[lc] === undefined) users[lc] = i + ii
-                  else dupUserIndexes.push(i + ii)
-                  break
-                case 'COMMAND':
-                  if (!this.commander.getAlias(channelId, word)) {
-                    return { pass: false, message: `No command with that name (param ${i + ii + 1})` }
-                  }
-                  if (params[i].multi) values[i].push(lc)
-                  else values[i] = lc
-                  break
-                case '!COMMAND':
-                  if (this.commander.getAlias(channelId, word)) {
-                    return { pass: false, message: `There is already a command with that name (param ${i + ii + 1})` }
-                  }
-                  if (params[i].multi) values[i].push(lc)
-                  else values[i] = lc
-                  break
-                case 'PLUGIN':
-                  if (!this.commander.plugins[lc]) return { pass: false, message: `No plugin with that id (param ${i + ii + 1})` }
-                  if (params[i].multi) values[i].push(lc)
-                  else values[i] = lc
-                  break
-                case '!PLUGIN':
-                  if (this.commander.plugins[lc]) return { pass: false, message: `There is already a plugin with that id (param ${i + ii + 1}` }
-                  if (params[i].multi) values[i].push(lc)
-                  else values[i] = lc
-                  break
-                default:
-              }
             }
           } else if (typeof check.rep[i] === 'undefined') {
             if (params[i].multi) {
@@ -136,26 +115,6 @@ export default class ParamValidator {
         }
 
         const userRep: Array<number | undefined> = []
-        // >add <COMMAND> <message>,edit <COMMAND> <message>,del <COMMAND>
-        if (Object.keys(users).length) {
-          const res = await this.client.api.getIds(Object.keys(users))
-
-          const notFound: number[] = []
-
-          for (const user in users) {
-            if (res[user]) userRep[users[user]] = res[user] // Change login to id
-            else notFound.push(users[user])
-          }
-
-          const allNotFound = deduplicate([...notFound, ...dupUserIndexes.filter(i => !res[words[i]])], true).map(v => v + 1)
-          if (notFound.length) return { pass: false, message: `Cannot find that ${plural(allNotFound.length, 'user', true)} (param ${allNotFound.join('|')})` }
-
-          for (const index of dupUserIndexes) {
-            const user = words[index]
-            if (res[user]) userRep[index] = res[user]
-            else return { pass: false, message: `Unexpectedly no user id returned (param ${index + 1})` }
-          }
-        }
 
         // Ending multi parameter
         let multiArray
@@ -300,14 +259,14 @@ export default class ParamValidator {
     for (let i = 0; i < cmdParams.length; i++) {
       const field = cmdParams[i]
 
-      const res = main(field, words[i], this.commander, channelId)
+      const res = main(field, words[i], channelId)
       rep.push(res.rep)
 
       let fail = !res.pass
 
       if (field.multi) {
         for (const word of words.slice(i + 1)) {
-          const res = main(field, word, this.commander, channelId)
+          const res = main(field, word, channelId)
           rep.push(res.rep)
           fail = !res.pass || fail // Only set fail if error found
         }
@@ -319,7 +278,7 @@ export default class ParamValidator {
 
     return { pass, fields, rep }
 
-    function main(field: Bit, word: string, commander?: Commander, channelId?: number): { pass: boolean, rep?: any } {
+    function main(field: Bit, word: string, channelId?: number): { pass: boolean, rep?: any } {
       if (field.raw === '<NOTHING>') return { pass: !word }
       if (typeof field.pure === 'object') { // Tuple
         if (!word) {
@@ -533,14 +492,14 @@ export default class ParamValidator {
   private parse(input: string): AdvancedResult<Params> {
     const output: Params = []
     for (const raw of input.split(' ')) {
-      const _var = Boolean(raw.match(/^[\[\].]*\<.*\>[\[\].]*$/)) // Has <>
-      const opt = Boolean(raw.match(/^[<>.]*\[.*\][<>.]*$/)) // Has []
-      const multi = Boolean(raw.match(/\.{3}[\]>]*$/)) // Has ...
+      const _var = Boolean(raw.match(/^[.[\]]*<.*>[.[\]]*$/)) // Has <>
+      const opt = Boolean(raw.match(/^[.<>]*\[.*][.<>]*$/)) // Has []
+      const multi = Boolean(raw.match(/\.{3}[>\]]*$/)) // Has ...
       const _case = raw.toLowerCase() !== raw
       let regex: RegExp | RegExp[] | undefined
       // Edge tokens only: /^[[\]<>]+|(\.{3}|[[\]<>])+$/g
       // All tokens: /[\[\]<>.]+/g
-      let pure: Bit['pure'] = raw.replace(/^[\[\]<>]+|(\.{3}|[\[\]<>])+$/g, '') // Remove edge tokens
+      let pure: Bit['pure'] = raw.replace(/^[<>[\]]+|(\.{3}|[<>[\]])+$/g, '') // Remove edge tokens
       if (raw.includes('|')) {
         pure = pure.split('|') // Tuple
 

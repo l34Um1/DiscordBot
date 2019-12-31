@@ -2,29 +2,10 @@ import parse from './lib/args'
 
 export const rules = {
   rules: {
-    'join-message': {
-      aliases: ['j'],
-      usage: [
-        '--join-message <channelId:message>...',
-        'Send messages to channels when joining it for the first time.',
-        'Underscores are replaced with spaces unless they are escaped with "\\".',
-      ],
-      type: (v: string) => v.match(/^\d+:/) ? v : undefined,
-      typeError: 'Values for --join-message must be like <channelId:message>.',
-      value: 'required',
-      multi: true,
-    },
     'manager': {
       aliases: ['m'],
       usage: ['--manager', 'Run bot with manager. Manager handles autorestarting etc.'],
       value: 'never',
-    },
-    'join-channel': {
-      aliases: ['c'],
-      usage: ['--join-channel <channelId>...', 'Join channels on bot launch.'],
-      value: 'required',
-      type: 'integer',
-      multi: true,
     },
     'inspect-child': {
       aliases: ['i'],

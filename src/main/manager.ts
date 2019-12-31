@@ -106,6 +106,7 @@ export class Manager {
 
   private gracedBirth(this: Manager) {
     console.log('Manager birthing')
+    // @ts-ignore // false positive
     if (this.child.once) birth.bind(this)()
     else this.child.once('close', birth.bind(this))
 

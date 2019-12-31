@@ -2,7 +2,6 @@ import { EventEmitter } from 'events'
 import * as fs from 'fs'
 
 import * as afs from './lib/atomicFS'
-import TwitchClient from './client/client'
 import defaultKeys from './lib/defaultKeys'
 import logger from './logger'
 
@@ -13,12 +12,11 @@ export default class Data extends EventEmitter {
   public dataPath: string
   /** Reserved data names. No data can be loaded or autoloaded with one of these names */
   private reserved: readonly string[]
-  private client: TwitchClient
   /** Loading data to these files are blocked and throws */
   private blocks: { [group: string]: { [name: string]: true } }
   private autoLoads: Array<{ name: string, defaultData?: object, setDefaults?: boolean }>
 
-  constructor(client: TwitchClient, dataRoot: string, reserved = ['']) {
+  constructor(dataRoot: string, reserved = ['']) {
     super()
     this.data = {}
 
@@ -26,10 +24,6 @@ export default class Data extends EventEmitter {
     if (!fs.existsSync(dataRoot)) fs.mkdirSync(dataRoot)
 
     this.reserved = reserved
-
-    this.client = client
-    this.client.on('join', this.onJoin.bind(this))
-    this.client.on('part', this.onPart.bind(this))
 
     this.blocks = {}
     this.autoLoads = []
@@ -178,44 +172,6 @@ export default class Data extends EventEmitter {
     return result
   }
 
-  /**
-   * Loads or unloads specified data for each channel when the bot joins or parts one  
-   * Also loads for each channel that the bot has already joined
-   * @param name File name
-   * @param defaultData If the file doesn't exist, create it with this data
-   * @param setDefaults Define all keys of the loaded data that exist in `defaultData` with the default value
-   */
-  public autoLoad(name: string, defaultData: object, setDefaults = false) {
-    if (this.reserved.includes(name)) throw new Error(`${name} is reserved for internal functions`)
-    for (const autoLoad of this.autoLoads) {
-      if (autoLoad.name === name) throw new Error('Duplicate autoLoad for the same data')
-    }
-    for (const channel in this.client.clientData.channels) { // Load for present channels
-      this.load(channel, name, defaultData, setDefaults)
-    }
-    this.autoLoads.push({ name, defaultData, setDefaults })
-  }
-  /**
-   * Disables the autoLoading of specified data and unloads it  
-   * Return the removed autoLoad object
-   * @param name File name
-   * @param noUnload Whether or not the data is left in memory
-   */
-  public async unautoLoad(name: string, noUnload = false): Promise<Data['autoLoads']> {
-    for (let i = 0; i < this.autoLoads.length; i++) {
-      if (this.autoLoads[i].name === name) {
-        const returnVal = this.autoLoads.splice(i, 1)
-        const savePromises = []
-        for (const channelId in this.client.clientData.channels) { // Load for present channels
-          savePromises.push(this.save(channelId, name, true))
-        }
-        await Promise.all(savePromises)
-        return returnVal
-      }
-    }
-    throw new Error('Data is not loaded')
-  }
-
   /** Delete the data */
   private delData(group: string | number, name: string) {
     this.blockLoad(group, name, true)
@@ -230,26 +186,6 @@ export default class Data extends EventEmitter {
     } else {
       if (!this.blocks[group]) this.blocks[group] = {}
       this.blocks[group][name] = true
-    }
-  }
-
-  private onJoin(channelId: number) {
-    for (const autoLoad of this.autoLoads) {
-      if (!this.data[channelId] || typeof this.data[channelId][autoLoad.name] !== 'object') {
-        this.load(channelId, autoLoad.name, autoLoad.defaultData, autoLoad.setDefaults)
-      }
-    }
-  }
-
-  private onPart(channelId: number) {
-    for (const autoLoad of this.autoLoads) {
-      if (this.data[channelId] && typeof this.data[channelId][autoLoad.name] === 'object') {
-        this.save(channelId, autoLoad.name, true).catch((err) => {
-          logger.error(`[Data.autoLoad] Error unloading ${channelId}`, err)
-        })
-      } else {
-        logger.warn(`Data already unloaded: ${channelId}/${autoLoad.name}`)
-      }
     }
   }
 }

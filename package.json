@@ -11,15 +11,33 @@
     "url": "git+https://github.com/Satsaa/FactionBot.git"
   },
   "keywords": [
-    "Bot",
-    "Discord",
-    "Factions",
-    "Questions"
+    "bot",
+    "discord",
+    "factions",
+    "questions"
   ],
   "author": "Satsaa",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/Satsaa/FactionBot/issues"
   },
-  "homepage": "https://github.com/Satsaa/FactionBot#readme"
+  "homepage": "https://github.com/Satsaa/FactionBot#readme",
+  "devDependencies": {
+    "@types/node": "^13.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-only-warn": "^1.0.2",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-unicorn": "^15.0.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "strict-event-emitter-types": "^2.0.0"
+  }
 }
