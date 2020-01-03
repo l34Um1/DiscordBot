@@ -66,18 +66,26 @@ export default class EverythingHandler {
     const data = this.data.getData(guild, 'GuildData') as GuildData | undefined
     if (data?.ready) {
       const quest = data.userData[member].quests[0]
-      quest.question = this.getRandomValue(answer.target)
       if (answer.points) {
         if (!quest.points) quest.points = {}
         for (const faction in answer.points) {
           quest.points[faction] = quest.points[faction] ?? 0 + this.getRandomValue(answer.points[faction])
         }
       }
+
       if (answer.message) this.message(this.getRandomValue(answer.message), member)
-      if (answer.target === 'start') this.start(member, guild)
-      else if (answer.target === 'skip') this.skip(member, guild)
-      else if (answer.target === 'good') this.good(member, guild)
-      else if (answer.target === 'bad') this.bad(member, guild)
+      if (answer.target === 'start') {
+        this.start(member, guild)
+      } else if (answer.target === 'skip') {
+        this.skip(member, guild)
+      } else if (answer.target === 'good') {
+        this.good(member, guild)
+      } else if (answer.target === 'bad') {
+        this.bad(member, guild)
+      } else {
+        quest.question = this.getRandomValue(answer.target)
+        this.displayQuestion(data.quest.questions[quest.question], member)
+      }
     }
   }
 
@@ -108,10 +116,9 @@ export default class EverythingHandler {
       }
     }
     return res
-    type Extractor<T> = T extends any[] ? T[number] : T
   }
 
-  private async message(msg: string, user: MemberId) {
+  private async message(msg: string, user: UserId) {
     await (await this.client.fetchUser(user, true)).send(msg)
   }
 
@@ -217,6 +224,7 @@ type Randomizable<T> = T | T[]
 type RoleId = Discord.Role['id']
 type GuildId = Discord.Guild['id']
 type MemberId = Discord.GuildMember['id']
+type UserId = Discord.User['id']
 type ChannelID = Discord.Channel['id']
 
 // !!! Use types in GuildData instead (this looks aids in hints)
