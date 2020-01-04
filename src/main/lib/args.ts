@@ -167,7 +167,7 @@ export default function parse<T extends ArgsOptions>(options: T | ArgsOptions): 
           switch (typeof rule.type) {
             case 'function': {
               const res = rule.type(value)
-              if (res === undefined) errors.push(rule.typeError || `Value "${value}" is invalid for ${getSuffix(main)}${main}`)
+              if (res === undefined) errors.push(rule.typeError || `Value "${value as string}" is invalid for ${getSuffix(main)}${main}`)
               vals.push(res)
               break
             }

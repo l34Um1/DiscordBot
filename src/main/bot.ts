@@ -7,6 +7,7 @@ import { onExit } from './lib/util'
 import ParamValidator from './paramValidator'
 import { getArgs } from './argRules'
 import logger, { options as logOpts } from './logger'
+import EverythingHandler from './everythingHandler'
 
 export interface BotOptions {
   masters: readonly number[]
@@ -18,6 +19,7 @@ export default class Bot {
   private client: Discord.Client
   private validator?: ParamValidator
   private args: ReturnType<typeof getArgs>
+  private handler: EverythingHandler
 
   constructor(options: BotOptions) {
     onExit(this.onExit.bind(this))
@@ -58,6 +60,8 @@ export default class Bot {
     this.client.login(token)
 
     this.data = new Data('./data/', ['apiCache', 'apiUsers', 'clientData'])
+
+    this.handler = new EverythingHandler(this.client, this.data)
 
     // Debug parameter validation
     // this.validator = new ParamValidator(this.commander, this.client)

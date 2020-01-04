@@ -37,11 +37,11 @@ if (args.args.manager && !process.send) {
 function logError(error: any) {
   if (typeof error !== 'object' || error === null) return fs.appendFileSync(`${errorPath}${errorFile}`, error)
 
-  let data = `${new Date()}`
-  if (!error.stack) data += `\n${error.code}`
-  if (error.code) data += `\n${error.code}`
-  if (error.message && !error.stack) data += `\n${error.message}`
-  if (error.stack) data += `\n${error.stack}`
+  let data = `${new Date().toString()}`
+  if (!error.stack) data += `\n${error.code as string}`
+  if (error.code) data += `\n${error.code as string}`
+  if (error.message && !error.stack) data += `\n${error.message as string}`
+  if (error.stack) data += `\n${error.stack as string}`
   data += '\n\n'
   fs.appendFileSync(`${errorPath}${errorFile}`, data)
 }

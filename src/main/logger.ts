@@ -133,10 +133,10 @@ function makeLogger<T extends { [cat: string]: Category }>(cats: T, path: string
   }
 
   function save(path: string, messages: any[]) {
-    const final = `${messages.reduce((acc, cur) => {
+    const final = `${messages.reduce((acc: string, cur: string) => {
       if (typeof cur === 'object') return `${acc}\n${JSON.stringify(cur)}` // Null works too
       return `${acc}\n${cur}`
-    })}\n`
+    }) as string}\n`
 
     const stream = streams[path]
     if (stream) {

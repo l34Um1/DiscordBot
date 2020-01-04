@@ -64,7 +64,3 @@ export default class PromiseQueue {
     }
   }
 }
-console.log(1)
-console.log(undefined)
-console.log('')
-console.log(1)

@@ -70,7 +70,7 @@ export class Manager {
           this.extraArgs = removeOption(val, this.extraArgs, rules)
           break
         case 'PUSH_ARGS':
-          if (Array.isArray(val)) this.extraArgs.push(...val.map(v => `${v}`))
+          if (Array.isArray(val)) this.extraArgs.push(...val.map((v: string) => `${v}`))
           break
         default:
           console.log('Invalid message')

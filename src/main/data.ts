@@ -161,7 +161,7 @@ export default class Data extends EventEmitter {
     try {
       data = JSON.parse(await afs.readFile(file, 'utf8'))
     } catch (err) {
-      throw new Error(`${file} is corrupted: ${err.name}`)
+      throw new Error(`${file} is corrupted: ${err.name as string}`)
     }
     if (typeof data !== 'object') throw new Error(`Wrong data type in file: ${typeof data}`)
     if (setDefaults) defaultKeys(data, defaultData || {})
