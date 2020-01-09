@@ -2,7 +2,7 @@
   "name": "factionbot",
   "version": "0.0.1",
   "description": "Faction bot for discord",
-  "main": "bin/main/index",
+  "main": "bin\\main\\index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Satsaa/FactionBot#readme",
   "devDependencies": {
-    "@types/node": "^13.1.2",
+    "@types/node": "^13.1.4",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
     "eslint": "^6.8.0",

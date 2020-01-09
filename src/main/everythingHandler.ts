@@ -1,4 +1,4 @@
-import Discord, { ChannelData } from 'discord.js'
+import Discord from 'discord.js'
 
 import prand from './lib/pseudoRandom'
 import Data from './data'
@@ -100,10 +100,8 @@ export default class EverythingHandler {
         this.start(memberId, guildId)
       } else if (answer.target === 'skip') {
         this.skip(memberId, guildId)
-      } else if (answer.target === 'good') {
-        this.good(memberId, guildId)
-      } else if (answer.target === 'bad') {
-        this.bad(memberId, guildId)
+      } else if (answer.target === 'finish') {
+        this.finish(memberId, guildId)
       } else {
         if (!answer.target) return
         quest.question = this.getRandomValue(answer.target)
@@ -261,19 +259,18 @@ export default class EverythingHandler {
 
       this.removeRoles(member, [...data.questingRoles, ...data.joinRoles])
 
-      this.addRoles(member, data.badRoles)
       if (userData.quests.every(v => !v.result || v.result === 'skip')) this.addRoles(member, data.skipRoles)
     }
   }
 
-  private async bad(memberId: MemberId, guildId: GuildId) {
-    logger.botInfo(`Badly ended quest for: ${memberId} in guild ${guildId}`)
+  private async finish(memberId: MemberId, guildId: GuildId) {
+    logger.botInfo(`Finished quest for: ${memberId} in guild ${guildId}`)
 
     const data = this.getDataBasic(guildId)
     if (data?.ready) {
       const userData = data.userData[memberId]
       const quest = userData.quests[0]
-      quest.result = 'bad'
+      quest.result = 'finish'
       quest.endTime = Date.now()
       this.setFactionFromPoints(quest)
       delete this.globalData[memberId]
@@ -284,179 +281,7 @@ export default class EverythingHandler {
       this.removeRoles(member, [...factionRoles, ...data.questingRoles, ...data.skipRoles, ...data.joinRoles])
 
       if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
-      this.addRoles(member, data.badRoles)
+      this.addRoles(member, data.finishRoles)
     }
   }
-
-  private async good(memberId: MemberId, guildId: GuildId) {
-    logger.botInfo(`Goodly ended quest for: ${memberId} in guild ${guildId}`)
-
-    const data = this.getDataBasic(guildId)
-    if (data?.ready) {
-      const userData = data.userData[memberId]
-      const quest = userData.quests[0]
-      quest.result = 'good'
-      quest.endTime = Date.now()
-      this.setFactionFromPoints(quest)
-      delete this.globalData[memberId]
-
-      const member = this.client.guilds.get(guildId)?.member(memberId)
-      const factionRoles = this.getFactionRoles(data.factions)
-
-      this.removeRoles(member, [...factionRoles, ...data.questingRoles, ...data.skipRoles, ...data.joinRoles])
-
-      if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
-      this.addRoles(member, data.goodRoles)
-    }
-  }
-}
-
-/** If an array is passed, a random value is used */
-type Randomizable<T> = T | T[]
-
-type RoleId = Discord.Role['id']
-type GuildId = Discord.Guild['id']
-type MemberId = Discord.GuildMember['id']
-type UserId = Discord.User['id']
-type ChannelID = Discord.Channel['id']
-
-// !!! Use types in GuildData instead (this looks aids in hints)
-type Question = Quest['questions'][number]
-type Answer = Question['answers'][number] extends Randomizable<infer X> ? X : never
-type Faction = (GuildData['factions'] extends undefined | infer X ? X : never)[string]
-type UserData = GuildData['userData'][string]
-
-type GuildData = {
-  // Internal
-  userData: {
-    [memberId: string]: {
-      quests: Array<{
-        question: string
-        result?: 'good' | 'bad' | 'skip'
-        startTime: number
-        endTime?: number
-        attempts: number
-        points?: {[faction: string]: number}
-        faction?: string
-      }>
-    }
-  }
-} & ({
-  // preinitialization form
-  ready: false
-  botChannels?: ChannelID[]
-  joinRoles?: RoleId[]
-  questingRoles?: RoleId[]
-  goodRoles?: RoleId[]
-  badRoles?: RoleId[]
-  skipRoles?: RoleId[]
-  factions?: { [name: string]: { role: RoleId, points: number } }
-  quest?: Quest
-} | {
-  ready: true
-  /** The channel which the bot reads for commands */
-  botChannels: ChannelID[]
-  /** Granted when joining the channel. Removed when finishing a quest or skipping */
-  joinRoles: RoleId[]
-  /** Granted when doing a quest */
-  questingRoles: RoleId[]
-  /** Granted when finishing a quest goodly */
-  goodRoles: RoleId[]
-  /** Granted when finishing a quest badly */
-  badRoles: RoleId[]
-  /** Granted when skipping a quest. The skip role is removed if the member has finished any quests */
-  skipRoles: RoleId[]
-  /** Factions */
-  factions: {
-    /** The name of the faction */
-    [name: string]: {
-      /** Granted when finishing the quest with this faction having the most points */
-      role: RoleId
-      /** Faction points */
-      points: number
-    }
-  }
-  /** Quest */
-  quest: Quest
-})
-
-
-interface Quest {
-  /** Start question name */
-  startQuestion: Randomizable<string>
-  /** Message shown when the user reaches an invalid/missing question */
-  deadEndMessage: Randomizable<string>
-  /** Object of all the questions */
-  questions: {
-    [id: string]: {
-      /** Shown text, array of strings for random starting quests */
-      text: Randomizable<string>
-      /** Array of answers with. Use arrays for randomized answers */
-      answers: Array<Randomizable<{
-        /** Shown text */
-        text: string
-        /** Next question id. 'good', 'bad', 'start' or 'skip' to run the respective function. Leave empty for staying in current question */
-        target?: Randomizable<string | string[] | 'good' | 'bad' | 'start' | 'skip'>
-        /** Point values given */
-        points?: {
-          /** Points given towards this faction */
-          [faction: string]: Randomizable<number>
-        }
-        /** Shown when this answer is chosen */
-        message?: Randomizable<string>
-        /** Higher priority answers are shown first. Answers with same values have randomized order */
-        priority?: string
-        /** Manual prefix. Leave empty for automatic numbering */
-        prefix?: string
-      }>>
-    }
-  }
-}
-
-interface GlobalQuestData {
-  [member: string]: {
-    activeGuild: string
-  }
-}
-
-const asd: GuildData = {
-  botChannels: ['662642640478797827'],
-  ready: true,
-  factions: {
-    dire: {
-      role: '662771273138700299',
-      points: 0,
-    },
-    radiant: {
-      role: '662771367942422560',
-      points: 0,
-    },
-  },
-  questingRoles: ['662772307965509654'],
-  badRoles: ['662771246181777408'],
-  goodRoles: ['662771155429621790'],
-  joinRoles: ['662771421428187186'],
-  skipRoles: ['662771258580271125'],
-  quest: {
-    deadEndMessage: 'Dead end',
-    startQuestion: 'first',
-    questions: {
-      first: {
-        text: 'What is the square root of 4?',
-        answers: [
-          { text: '2', target: 'first', message: 'Too easy = wrong' },
-          { text: '-2', target: 'second', message: 'Omg big brain' },
-          { text: '16', target: 'first', message: 'Are you a pepega or what' },
-        ],
-      },
-      second: {
-        answers: [
-          { text: 'This is the right answer', message: 'false', prefix: 'A' },
-          { text: 'This is the right answer', message: 'you won Pog', target: 'good', prefix: 'B' },
-        ],
-        text: 'Which one of these answers is true?',
-      },
-    },
-  },
-  userData: {},
 }
