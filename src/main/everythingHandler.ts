@@ -60,22 +60,26 @@ export default class EverythingHandler {
       if (data.botChannels.includes(msg.channel.id)) {
         msg.delete()
 
-        const userData = data.userData[msg.member.id]
+        let userData = data.userData[msg.member.id]
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
           await this.onGuildMemberAdd(msg.member)
         } else if (userData.quests.length === 0) {
           // Start quest if somehow never started
           this.start(msg.member.id, msg.member.guild.id)
-        } else if (userData.quests[0].question === data.quest.startQuestion) {
-          const question = data.quest.questions[data.userData[msg.member.id].quests[0].question]
-          const answers = this.getSeededAnswers(msg.member.id, msg.guild.id, question.answers)
-          if (!answers) return
+        }
+        userData = data.userData[msg.member.id]
+        if (userData) {
+          if (userData.quests[0].question === data.quest.startQuestion) {
+            const question = data.quest.questions[data.userData[msg.member.id].quests[0].question]
+            const answers = this.getSeededAnswers(msg.member.id, msg.guild.id, question.answers)
+            if (!answers) return
 
-          const prefixes = this.getSeededPrefixes(answers)
-          const index = prefixes.indexOf(msg.content.toLowerCase())
-          if (index !== -1) {
-            this.advance(answers[index], msg.member.id, msg.member.guild.id)
+            const prefixes = this.getSeededPrefixes(answers)
+            const index = prefixes.indexOf(msg.content.toLowerCase())
+            if (index !== -1) {
+              this.advance(answers[index], msg.member.id, msg.member.guild.id)
+            }
           }
         }
       }

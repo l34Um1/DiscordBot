@@ -9,7 +9,7 @@
       "role": "661226029536378900",
       "points": 0
     },
-    "mw": {
+    "mv": {
       "title": "Mystic Vanguard",
       "role": "661226080895500289",
       "points": 1
@@ -39,22 +39,22 @@
           {
             "text": "Im a bot",
             "target": "first",
-            "message": "No i am :)"
+            "reply": "No i am :)"
           },
           {
             "text": "This is a test answer",
             "target": "first",
-            "message": "Test answer answer message"
+            "reply": "Test answer answer message"
           },
           {
             "text": "Made with love, from Japan",
             "target": "first",
-            "message": "Yes i was made in Japan"
+            "reply": "Yes i was made in Japan"
           },
           {
             "text": "Password is \"mni\" (in lowercase and without quotes)",
             "target": "second",
-            "message": "It literally just \"mni\""
+            "reply": "It literally just \"mni\""
           }
         ]
       },
@@ -64,7 +64,7 @@
           {
             "text": "Joekka's devotees",
             "target": "finish",
-            "message": "Confirmation message",
+            "reply": "Confirmation message",
             "points": {
               "jd": 1000
             }
@@ -72,15 +72,15 @@
           {
             "text": "Mystic Vanguard",
             "target": "finish",
-            "message": "Confirmation message",
+            "reply": "Confirmation message",
             "points": {
-              "mw": 1000
+              "mv": 1000
             }
           },
           {
             "text": "Stewards of fate",
             "target": "finish",
-            "message": "Confirmation message",
+            "reply": "Confirmation message",
             "points": {
               "sof": 1000
             }
@@ -88,7 +88,7 @@
           {
             "text": "God beast gang",
             "target": "finish",
-            "message": "Confirmation message",
+            "reply": "Confirmation message",
             "points": {
               "gbc": 1000
             }

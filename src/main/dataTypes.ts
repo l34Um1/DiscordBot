@@ -29,7 +29,7 @@ type UserData = GuildData['userData'][string]
 // ----------------------- //
 
 type GuildData = {
-  // Internal
+  // Internal // !!! Move to own type so it wont make editing questions and such a nightmare
   userData: {
     [memberId: string]: {
       quests: Array<{
@@ -113,7 +113,7 @@ interface Quest {
           [faction: string]: Randomizable<number>
         }
         /** Shown after this answer is chosen */
-        message?: Randomizable<string>
+        reply?: Randomizable<string>
         /**
          * Prefix shown before this answers' text, e.g. `value) Cool answer`  
          * User must type this prefix to select this answer.  
