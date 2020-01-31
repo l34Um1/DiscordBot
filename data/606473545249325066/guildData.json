@@ -33,17 +33,18 @@
     "deadEndMessage": "Dead end",
     "startQuestion": "first",
     "questions": {
-      "one": {
+      "zero": {
         "text": "Hello, I'm Helper Bot. Would you like to take the faction quiz? After taking it you'll join one of the four factions. To answer please reply with the number corresponding to the answer you choose for each question.",
         "answers": [
           {
             "text": "Yes, I would like to take the quiz now.",
-            "target": "one",
+            "target": "one"
           },
           {
             "text": "No, thanks. Maybe later.",
             "target": "skip",
-            "reply": "You may take the faction quiz any time you want, simply use the command !quiz.",
+            "reply": "You may take the faction quiz any time you want, simply use the command !quiz."
+          }
         ]
       },
       "one": {
@@ -67,6 +68,7 @@
               "jd": 5,
               "mv": 1,
               "sof": 0
+            }
           },
           {
             "text": "I'll make sure the town is in order - That everyone has a place to sleep, enough food to eat, and are reunited with their loved ones.",
@@ -76,6 +78,7 @@
               "jd": 1,
               "mv": 0,
               "sof": 5
+            }
           },
           {
             "text": "I'll research the causes of the earthquake so that we can redesign the town to be more resistant.",
@@ -85,6 +88,7 @@
               "jd": 0,
               "mv": 5,
               "sof": 0
+            }
           }
         ]
       },
@@ -109,6 +113,7 @@
               "jd": 4,
               "mv": 2,
               "sof": 0
+            }
           },
           {
             "text": "An ornate bronze chestpiece that repels the effects of spells or magic cast on the wearer.",
@@ -118,6 +123,7 @@
               "jd": 1,
               "mv": 0,
               "sof": 5
+            }
           },
           {
             "text": "A necklace that amplifies willpower.",
@@ -127,350 +133,374 @@
               "jd": 0,
               "mv": 5,
               "sof": 2
-          }
-        ]
-      },
-      "three": {
-        "text": "What would you hate to be called the most?",
-        "answers": [
-          {
-            "text": "Ignorant.",
-            "target": "four",
-            "points": {
-              "gbc": 0,
-              "jd": 5,
-              "mv": 0,
-              "sof": 0
             }
-          },
-          {
-            "text": "Spineless.",
-            "target": "four",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 5,
-              "sof": 0
-          },
-          {
-            "text": "Careless.",
-            "target": "four",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 0,
-              "sof": 5
-          },
-          {
-            "text": "Dull.",
-            "target": "four",
-            "points": {
-              "gbc": 5,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
-          }
-        ]
-      },
-      "four": {
-        "text": "You've just found out that a good friend of yours has been smuggling forbidden Cardinal Cap mushrooms into Drachoria. What is your next step?",
-        "answers": [
-          {
-            "text": "Tell your friend that you're worried about what might happen if they get caught. The law could become involved and that wouldn't be pretty.",
-            "target": "five",
-            "points": {
-              "gbc": 2,
-              "jd": 0,
-              "mv": 0,
-              "sof": 4
-            }
-          },
-          {
-            "text": "Talk to your friend, and ask them to stop. The mushrooms can be deadly, and your friend might end up responsible for hurting someone.",
-            "target": "five",
-            "points": {
-              "gbc": 0,
-              "jd": 5,
-              "mv": 0,
-              "sof": 2
-          },
-          {
-            "text": "Ask them about their connections and see if they think you could make some extra cash doing it too.",
-            "target": "five",
-            "points": {
-              "gbc": 4,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
-          },
-          {
-            "text": "Ask them how much a mushroom costs - Apparently they're a lot of fun.",
-            "target": "five",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
-          }
-        ]
-      },
-      "five": {
-        "text": "You enter a garden bordering Sulhanna's Orchard, where all sorts of strange and wonderful flowers bloom. Which catches your eye first?",
-        "answers": [
-          {
-            "text": "The tallest and largest flower of them all - a beautiful lilac bloom that shimmers with opalescent light.",
-            "target": "six",
-            "points": {
-              "gbc": 4,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
-            }
-          },
-          {
-            "text": "A bloomless vine that has what appears to be inscribed parchment and small silver keys hanging from it in the place of leaves.",
-            "target": "six",
-            "points": {
-              "gbc": 0,
-              "jd": 4,
-              "mv": 0,
-              "sof": 0
-          },
-          {
-            "text": "A bed of tiny red flowers that glow like ashes, with an intoxicating scent that makes you feel powerful and lively.",
-            "target": "six",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 4,
-              "sof": 0
-          },
-          {
-            "text": "I'm not looking for flowers at the moment.",
-            "target": "six",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 0,
-              "sof": 4
-          }
-        ]
-      },
-      "six": {
-        "text": "Four kittens are playing in a field, seemingly motherless but unharmed. You decide to take them in. You give three away to loving homes, and keep one. Which one do you keep?",
-        "answers": [
-          {
-            "text": "The sleek jet black one that spends its time playing with its siblings and grooming them.",
-            "target": "seven",
-            "points": {
-              "gbc": 2,
-              "jd": 3,
-              "mv": 0,
-              "sof": 2
-            }
-          },
-          {
-            "text": "The tiny grey one that wants nothing more than to play and bat shiny things around the floor.",
-            "target": "seven",
-            "points": {
-              "gbc": 3,
-              "jd": 0,
-              "mv": 1,
-              "sof": 0
-          },
-          {
-            "text": "The larger tabby that struts around like it owns the place - and you suppose it does now.",
-            "target": "seven",
-            "points": {
-              "gbc": 2,
-              "jd": 1,
-              "mv": 0,
-              "sof": 3
-          },
-          {
-            "text": "The small cream-colored loner that would do just about anything for a piece of chicken.",
-            "target": "seven",
-            "points": {
-              "gbc": 1,
-              "jd": 0,
-              "mv": 2,
-              "sof": 0
-          }
-        ]
-      },
-      "seven": {
-        "text": "You wake in a cold sweat from your worst nightmare - What happened?",
-        "answers": [
-          {
-            "text": "You lost your voice and nobody could understand what you were trying to tell them. When you tried to write things down, all that you produced were scribbles.",
-            "target": "eigth",
-            "points": {
-              "gbc": 2,
-              "jd": 4,
-              "mv": 0,
-              "sof": 0
-            }
-          },
-          {
-            "text": "You were on stage giving a speech, when you suddenly realised you were naked. Then all your teeth fell out of your mouth.",
-            "target": "eigth",
-            "points": {
-              "gbc": 4,
-              "jd": 0,
-              "mv": 1,
-              "sof": 3
-          },
-          {
-            "text": "You were suddenly reverted to the form of a baby. All you could do was cry.",
-            "target": "eigth",
-            "points": {
-              "gbc": 1,
-              "jd": 0,
-              "mv": 5,
-              "sof": 2
-          },
-          {
-            "text": "You were standing before a great beast receiving judgement. You were judged as evil, and empty suits of armour began to encircle and trap you.",
-            "target": "eigth",
-            "points": {
-              "gbc": 0,
-              "jd": 3,
-              "mv": 0,
-              "sof": 5
-          }
-        ]
-      },
-      "eigth": {
-        "text": "It's your birthday in a few days. What would be your ideal day?",
-        "answers": [
-          {
-            "text": "A big surprise party put on by your friends and loved ones, with plenty of cake, presents and food.",
-            "target": "nine",
-            "points": {
-              "gbc": 5,
-              "jd": 3,
-              "mv": 0,
-              "sof": 0
-            }
-          },
-          {
-            "text": "A quiet day with your family at a museum or park, celebrating another year of life.",
-            "target": "nine",
-            "points": {
-              "gbc": 0,
-              "jd": 4,
-              "mv": 0,
-              "sof": 2
-          },
-          {
-            "text": "A day to yourself, so you can do exactly what you want to do without needing to think about anyone else. ",
-            "target": "nine",
-            "points": {
-              "gbc": 0,
-              "jd": 2,
-              "mv": 5,
-              "sof": 0
-          },
-          {
-            "text": "Celebrating birthdays isn't really your thing. It's just another day.",
-            "target": "nine",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 2,
-              "sof": 5
-          }
-        ]
-      },
-      "nine": {
-        "text": "You have the chance to learn the ways of magic. What do you most want to use them for?",
-        "answers": [
-          {
-            "text": "To create beautiful things and better the lives of the people in my community.",
-            "target": "ten",
-            "points": {
-              "gbc": 5,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
-            }
-          },
-          {
-            "text": "To heal the sick and wounded, to improve the lives of all.",
-            "target": "ten",
-            "points": {
-              "gbc": 0,
-              "jd": 5,
-              "mv": 0,
-              "sof": 0
-          },
-          {
-            "text": "To fix the chaos in the world, and stop those who would use magic destructively.",
-            "target": "ten",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 0,
-              "sof": 5
-          },
-          {
-            "text": "To attain everlasting life.",
-            "target": "ten",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 5,
-              "sof": 0
-          }
-        ]
-      },
-      "ten": {
-        "text": "You stumble upon a stranger limping down a darkened alleyway. You call out, and as he turns to look at you, his eyes reflect the little light around him, and you feel uneasy. What do you do next?",
-        "answers": [
-          {
-            "text": "Ask him if he's in need of help, be it medical or otherwise.",
-            "target": "finish",
-            "reply": "Thank you for answering my questions, you have joined your faction.",
-            "points": {
-              "gbc": 0,
-              "jd": 4,
-              "mv": 1,
-              "sof": 2
-            }
-          },
-          {
-            "text": "Ask him what he's doing here. A dark alleyway is no place to be lurking at night. ",
-            "target": "finish",
-            "reply": "Thank you for answering my questions, you have joined your faction.",
-            "points": {
-              "gbc": 3,
-              "jd": 0,
-              "mv": 0,
-              "sof": 5
-          },
-          {
-            "text": "Put your hand on your weapon, as he might be dangerous.",
-            "target": "finish",
-            "reply": "Thank you for answering my questions, you have joined your faction.",
-            "points": {
-              "gbc": 0,
-              "jd": 0,
-              "mv": 4,
-              "sof": 2
-          },
-          {
-            "text": "Turn and leave. Whatever he's doing, it's none of your business. ",
-            "target": "finish",
-            "reply": "Thank you for answering my questions, you have joined your faction.",
-            "points": {
-              "gbc": 5,
-              "jd": 0,
-              "mv": 0,
-              "sof": 0
           }
         ]
       }
+    },
+    "three": {
+      "text": "What would you hate to be called the most?",
+      "answers": [
+        {
+          "text": "Ignorant.",
+          "target": "four",
+          "points": {
+            "gbc": 0,
+            "jd": 5,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "Spineless.",
+          "target": "four",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 5,
+            "sof": 0
+          }
+        },
+        {
+          "text": "Careless.",
+          "target": "four",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 0,
+            "sof": 5
+          }
+        },
+        {
+          "text": "Dull.",
+          "target": "four",
+          "points": {
+            "gbc": 5,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        }
+      ]
+    },
+    "four": {
+      "text": "You've just found out that a good friend of yours has been smuggling forbidden Cardinal Cap mushrooms into Drachoria. What is your next step?",
+      "answers": [
+        {
+          "text": "Tell your friend that you're worried about what might happen if they get caught. The law could become involved and that wouldn't be pretty.",
+          "target": "five",
+          "points": {
+            "gbc": 2,
+            "jd": 0,
+            "mv": 0,
+            "sof": 4
+          }
+        },
+        {
+          "text": "Talk to your friend, and ask them to stop. The mushrooms can be deadly, and your friend might end up responsible for hurting someone.",
+          "target": "five",
+          "points": {
+            "gbc": 0,
+            "jd": 5,
+            "mv": 0,
+            "sof": 2
+          }
+        },
+        {
+          "text": "Ask them about their connections and see if they think you could make some extra cash doing it too.",
+          "target": "five",
+          "points": {
+            "gbc": 4,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "Ask them how much a mushroom costs - Apparently they're a lot of fun.",
+          "target": "five",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        }
+      ]
+    },
+    "five": {
+      "text": "You enter a garden bordering Sulhanna's Orchard, where all sorts of strange and wonderful flowers bloom. Which catches your eye first?",
+      "answers": [
+        {
+          "text": "The tallest and largest flower of them all - a beautiful lilac bloom that shimmers with opalescent light.",
+          "target": "six",
+          "points": {
+            "gbc": 4,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "A bloomless vine that has what appears to be inscribed parchment and small silver keys hanging from it in the place of leaves.",
+          "target": "six",
+          "points": {
+            "gbc": 0,
+            "jd": 4,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "A bed of tiny red flowers that glow like ashes, with an intoxicating scent that makes you feel powerful and lively.",
+          "target": "six",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 4,
+            "sof": 0
+          }
+        },
+        {
+          "text": "I'm not looking for flowers at the moment.",
+          "target": "six",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 0,
+            "sof": 4
+          }
+        }
+      ]
+    },
+    "six": {
+      "text": "Four kittens are playing in a field, seemingly motherless but unharmed. You decide to take them in. You give three away to loving homes, and keep one. Which one do you keep?",
+      "answers": [
+        {
+          "text": "The sleek jet black one that spends its time playing with its siblings and grooming them.",
+          "target": "seven",
+          "points": {
+            "gbc": 2,
+            "jd": 3,
+            "mv": 0,
+            "sof": 2
+          }
+        },
+        {
+          "text": "The tiny grey one that wants nothing more than to play and bat shiny things around the floor.",
+          "target": "seven",
+          "points": {
+            "gbc": 3,
+            "jd": 0,
+            "mv": 1,
+            "sof": 0
+          }
+        },
+        {
+          "text": "The larger tabby that struts around like it owns the place - and you suppose it does now.",
+          "target": "seven",
+          "points": {
+            "gbc": 2,
+            "jd": 1,
+            "mv": 0,
+            "sof": 3
+          }
+        },
+        {
+          "text": "The small cream-colored loner that would do just about anything for a piece of chicken.",
+          "target": "seven",
+          "points": {
+            "gbc": 1,
+            "jd": 0,
+            "mv": 2,
+            "sof": 0
+          }
+        }
+      ]
+    },
+    "seven": {
+      "text": "You wake in a cold sweat from your worst nightmare - What happened?",
+      "answers": [
+        {
+          "text": "You lost your voice and nobody could understand what you were trying to tell them. When you tried to write things down, all that you produced were scribbles.",
+          "target": "eigth",
+          "points": {
+            "gbc": 2,
+            "jd": 4,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "You were on stage giving a speech, when you suddenly realised you were naked. Then all your teeth fell out of your mouth.",
+          "target": "eigth",
+          "points": {
+            "gbc": 4,
+            "jd": 0,
+            "mv": 1,
+            "sof": 3
+          }
+        },
+        {
+          "text": "You were suddenly reverted to the form of a baby. All you could do was cry.",
+          "target": "eigth",
+          "points": {
+            "gbc": 1,
+            "jd": 0,
+            "mv": 5,
+            "sof": 2
+          }
+        },
+        {
+          "text": "You were standing before a great beast receiving judgement. You were judged as evil, and empty suits of armour began to encircle and trap you.",
+          "target": "eigth",
+          "points": {
+            "gbc": 0,
+            "jd": 3,
+            "mv": 0,
+            "sof": 5
+          }
+        }
+      ]
+    },
+    "eigth": {
+      "text": "It's your birthday in a few days. What would be your ideal day?",
+      "answers": [
+        {
+          "text": "A big surprise party put on by your friends and loved ones, with plenty of cake, presents and food.",
+          "target": "nine",
+          "points": {
+            "gbc": 5,
+            "jd": 3,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "A quiet day with your family at a museum or park, celebrating another year of life.",
+          "target": "nine",
+          "points": {
+            "gbc": 0,
+            "jd": 4,
+            "mv": 0,
+            "sof": 2
+          }
+        },
+        {
+          "text": "A day to yourself, so you can do exactly what you want to do without needing to think about anyone else. ",
+          "target": "nine",
+          "points": {
+            "gbc": 0,
+            "jd": 2,
+            "mv": 5,
+            "sof": 0
+          }
+        },
+        {
+          "text": "Celebrating birthdays isn't really your thing. It's just another day.",
+          "target": "nine",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 2,
+            "sof": 5
+          }
+        }
+      ]
+    },
+    "nine": {
+      "text": "You have the chance to learn the ways of magic. What do you most want to use them for?",
+      "answers": [
+        {
+          "text": "To create beautiful things and better the lives of the people in my community.",
+          "target": "ten",
+          "points": {
+            "gbc": 5,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "To heal the sick and wounded, to improve the lives of all.",
+          "target": "ten",
+          "points": {
+            "gbc": 0,
+            "jd": 5,
+            "mv": 0,
+            "sof": 0
+          }
+        },
+        {
+          "text": "To fix the chaos in the world, and stop those who would use magic destructively.",
+          "target": "ten",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 0,
+            "sof": 5
+          }
+        },
+        {
+          "text": "To attain everlasting life.",
+          "target": "ten",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 5,
+            "sof": 0
+          }
+        }
+      ]
+    },
+    "ten": {
+      "text": "You stumble upon a stranger limping down a darkened alleyway. You call out, and as he turns to look at you, his eyes reflect the little light around him, and you feel uneasy. What do you do next?",
+      "answers": [
+        {
+          "text": "Ask him if he's in need of help, be it medical or otherwise.",
+          "target": "finish",
+          "reply": "Thank you for answering my questions, you have joined your faction.",
+          "points": {
+            "gbc": 0,
+            "jd": 4,
+            "mv": 1,
+            "sof": 2
+          }
+        },
+        {
+          "text": "Ask him what he's doing here. A dark alleyway is no place to be lurking at night. ",
+          "target": "finish",
+          "reply": "Thank you for answering my questions, you have joined your faction.",
+          "points": {
+            "gbc": 3,
+            "jd": 0,
+            "mv": 0,
+            "sof": 5
+          }
+        },
+        {
+          "text": "Put your hand on your weapon, as he might be dangerous.",
+          "target": "finish",
+          "reply": "Thank you for answering my questions, you have joined your faction.",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 4,
+            "sof": 2
+          }
+        },
+        {
+          "text": "Turn and leave. Whatever he's doing, it's none of your business. ",
+          "target": "finish",
+          "reply": "Thank you for answering my questions, you have joined your faction.",
+          "points": {
+            "gbc": 5,
+            "jd": 0,
+            "mv": 0,
+            "sof": 0
+          }
+        }
+      ]
     }
-  },
-  "userData": {}
+  }
 }
