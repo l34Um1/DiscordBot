@@ -6,22 +6,22 @@
   "factions": {
     "jd": {
       "title": "Jaekka's Devoted",
-      "role": "661227136031391756",
+      "role": "661226029536378900",
       "points": 0
     },
     "mv": {
       "title": "Mystic Vanguard",
-      "role": "661227181552173087",
+      "role": "661226080895500289",
       "points": 1
     },
     "sof": {
       "title": "Stewards Of Fate",
-      "role": "661227253522366477",
+      "role": "661226163657506816",
       "points": 1
     },
     "gbc": {
       "title": "God Beast's Congregation",
-      "role": "661227323818901534",
+      "role": "661225825441415181",
       "points": 0
     }
   },
