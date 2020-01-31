@@ -21,7 +21,7 @@ type ChannelID = Channel['id']
 // !!! Use types in GuildData instead (this looks aids in hints)
 type Question = Quest['questions'][number]
 type Answer = Question['answers'][number] extends Randomizable<infer X> ? X : never
-type Faction = (GuildData['factions'] extends undefined | infer X ? X : never)[string]
+type Faction = (StaticGuildData['factions'] extends undefined | infer X ? X : never)[string]
 type UserData = GuildUserData[string]
 
 // ----------------------- //
@@ -30,7 +30,7 @@ type UserData = GuildUserData[string]
 
 type CombinedGuildData = {
   userData: GuildUserData
-} & GuildData
+} & StaticGuildData
 
 interface GuildUserData {
   [memberId: string]: {
@@ -46,44 +46,44 @@ interface GuildUserData {
   }
 }
 
-type GuildData = ({
+type StaticGuildData = ({
   // preinitialization form
-  ready: false
-  botChannels?: ChannelID[]
-  joinRoles?: RoleId[]
-  questingRoles?: RoleId[]
-  finishRoles?: RoleId[]
-  skipRoles?: RoleId[]
-  factions?: { [name: string]: { role: RoleId, points: number } }
-  quest?: Quest
+  readonly ready: false
+  readonly botChannels?: ChannelID[]
+  readonly joinRoles?: RoleId[]
+  readonly questingRoles?: RoleId[]
+  readonly finishRoles?: RoleId[]
+  readonly skipRoles?: RoleId[]
+  readonly factions?: { [name: string]: { role: RoleId, points: number } }
+  readonly quest?: Quest
 } | {
   // Intialized form
   /** Initialized or not */
-  ready: true
+  readonly ready: true
   /** The channel which the bot reads for commands */
-  botChannels: ChannelID[]
+  readonly botChannels: ChannelID[]
   /** Granted when joining the channel. Removed when finishing a quest or skipping */
-  joinRoles: RoleId[]
+  readonly joinRoles: RoleId[]
   /** Granted when doing a quest */
-  questingRoles: RoleId[]
+  readonly questingRoles: RoleId[]
   /** Granted when finishing a quest succesfully */
-  finishRoles: RoleId[]
+  readonly finishRoles: RoleId[]
   /** Granted when skipping a quest. The skip role is removed if the member has finished any quests */
-  skipRoles: RoleId[]
+  readonly skipRoles: RoleId[]
   /** Factions */
-  factions: {
+  readonly factions: {
     /** String used to refer to this faction ("usa") */
-    [name: string]: {
+    readonly [name: string]: {
       /** Full name ("United States of America") */
-      title: RoleId
+      readonly title: RoleId
       /** Roles(s) granted when user is selected for this faction */
-      role: RoleId
+      readonly role: RoleId
       /** Faction wide points */
-      points: number
+      readonly points: number
     }
   }
   /** Quest */
-  quest: Quest
+  readonly quest: Quest
 })
 
 

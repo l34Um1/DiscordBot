@@ -60,7 +60,14 @@ export default class EverythingHandler {
       if (data.botChannels.includes(msg.channel.id)) {
         msg.delete()
 
+
         let userData = data.userData[msg.member.id]
+        if (userData) {
+          if (msg.content === '!reset') {
+            delete data.userData[msg.member.id]
+            return
+          }
+        }
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
           await this.onGuildMemberAdd(msg.member)
@@ -186,12 +193,12 @@ export default class EverythingHandler {
   }
 
   private async getData(guild: Discord.Guild): Promise<CombinedGuildData> {
-    let guildData = this.data.getData(guild.id, 'guildData') as GuildData | undefined
+    let guildData = this.data.getData(guild.id, 'guildData') as StaticGuildData | undefined
     let userData = this.data.getData(guild.id, 'guildUserData') as GuildUserData | undefined
     if (!guildData) {
       const channel = guild.channels.first()
-      const defaults: GuildData = { ...channel ? { botChannels: [channel.id] } : {}, ...{ ready: false, userData: {} } }
-      guildData = await this.data.load(guild.id, 'guildData', defaults) as GuildData | undefined
+      const defaults: StaticGuildData = { ...channel ? { botChannels: [channel.id] } : {}, ...{ ready: false, userData: {} } }
+      guildData = await this.data.load(guild.id, 'guildData', defaults) as StaticGuildData | undefined
     }
     if (!userData) {
       userData = await this.data.load(guild.id, 'guildUserData', {}) as GuildUserData | undefined
@@ -200,7 +207,7 @@ export default class EverythingHandler {
     return { userData, ...guildData }
   }
   private getDataBasic(guildId: GuildId): CombinedGuildData {
-    const guildData = this.data.getData(guildId, 'guildData') as GuildData | undefined
+    const guildData = this.data.getData(guildId, 'guildData') as StaticGuildData | undefined
     const userData = this.data.getData(guildId, 'guildUserData') as GuildUserData | undefined
     if (!guildData || !userData) throw new Error('Not loaded eShrug')
     return { userData, ...guildData }
@@ -219,7 +226,7 @@ export default class EverythingHandler {
     }
   }
 
-  private getFactionRoles(factions: GuildData['factions']) {
+  private getFactionRoles(factions: StaticGuildData['factions']) {
     const res = []
     for (const faction in factions) res.push(factions[faction].role)
     return res
