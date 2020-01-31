@@ -28,7 +28,7 @@ export default class EverythingHandler {
   }
 
   private async onGuildMemberAdd(member: Discord.GuildMember) {
-    const data = await this.getData(member.guild) as GuildData | undefined
+    const data = await this.getData(member.guild) as CombinedGuildData | undefined
     if (!data || data.userData[member.id]) return
 
     data.userData[member.id] = { quests: [] }
@@ -41,7 +41,7 @@ export default class EverythingHandler {
     if (msg.channel.type === 'dm') {
       const activeGuild = this.globalData[msg.author.id]?.activeGuild
       if (activeGuild) {
-        const data = this.data.getData(activeGuild, 'guildData') as GuildData | undefined
+        const data = this.getDataBasic(activeGuild) as CombinedGuildData | undefined
         if (data?.ready) {
           const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
           const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
@@ -87,7 +87,7 @@ export default class EverythingHandler {
   }
 
   private advance(answer: Answer, memberId: MemberId, guildId: GuildId) {
-    const data = this.data.getData(guildId, 'guildData') as GuildData | undefined
+    const data = this.getDataBasic(guildId) as CombinedGuildData | undefined
     if (data?.ready) {
       logger.botInfo(`Advancing quest for: ${memberId} in guild  ${guildId}`)
 
@@ -99,7 +99,7 @@ export default class EverythingHandler {
         }
       }
 
-      if (answer.message) this.message(`${this.getRandomValue(answer.message)}\n\n`, memberId)
+      if (answer.reply) this.message(`${this.getRandomValue(answer.reply)}\n\n`, memberId)
       if (answer.target === 'start') {
         this.start(memberId, guildId)
       } else if (answer.target === 'skip') {
@@ -185,18 +185,25 @@ export default class EverythingHandler {
     return startTime + memberId
   }
 
-  private async getData(guild: Discord.Guild): Promise<GuildData> {
-    let data = this.data.getData(guild.id, 'guildData') as GuildData | undefined
-    if (!data) {
+  private async getData(guild: Discord.Guild): Promise<CombinedGuildData> {
+    let guildData = this.data.getData(guild.id, 'guildData') as GuildData | undefined
+    let userData = this.data.getData(guild.id, 'guildUserData') as GuildUserData | undefined
+    if (!guildData) {
       const channel = guild.channels.first()
       const defaults: GuildData = { ...channel ? { botChannels: [channel.id] } : {}, ...{ ready: false, userData: {} } }
-      data = await this.data.load(guild.id, 'guildData', defaults) as GuildData | undefined
+      guildData = await this.data.load(guild.id, 'guildData', defaults) as GuildData | undefined
     }
-    if (!data) throw new Error('Didnt load eShrug')
-    return data
+    if (!userData) {
+      userData = await this.data.load(guild.id, 'guildUserData', {}) as GuildUserData | undefined
+    }
+    if (!guildData || !userData) throw new Error('Didnt load eShrug')
+    return { userData, ...guildData }
   }
-  private getDataBasic(guildId: GuildId) {
-    return this.data.getData(guildId, 'guildData') as GuildData | undefined
+  private getDataBasic(guildId: GuildId): CombinedGuildData {
+    const guildData = this.data.getData(guildId, 'guildData') as GuildData | undefined
+    const userData = this.data.getData(guildId, 'guildUserData') as GuildUserData | undefined
+    if (!guildData || !userData) throw new Error('Not loaded eShrug')
+    return { userData, ...guildData }
   }
 
   private setFactionFromPoints(quest: UserData['quests'][number]) {

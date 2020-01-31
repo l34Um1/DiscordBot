@@ -22,28 +22,31 @@ type ChannelID = Channel['id']
 type Question = Quest['questions'][number]
 type Answer = Question['answers'][number] extends Randomizable<infer X> ? X : never
 type Faction = (GuildData['factions'] extends undefined | infer X ? X : never)[string]
-type UserData = GuildData['userData'][string]
+type UserData = GuildUserData[string]
 
 // ----------------------- //
 // customizable data stuff //
 // ----------------------- //
 
-type GuildData = {
-  // Internal // !!! Move to own type so it wont make editing questions and such a nightmare
-  userData: {
-    [memberId: string]: {
-      quests: Array<{
-        question: string
-        result?: 'finish' | 'bad' | 'skip'
-        startTime: number
-        endTime?: number
-        attempts: number
-        points?: {[faction: string]: number}
-        faction?: string
-      }>
-    }
+type CombinedGuildData = {
+  userData: GuildUserData
+} & GuildData
+
+interface GuildUserData {
+  [memberId: string]: {
+    quests: Array<{
+      question: string
+      result?: 'finish' | 'skip'
+      startTime: number
+      endTime?: number
+      attempts: number
+      points?: {[faction: string]: number}
+      faction?: string
+    }>
   }
-} & ({
+}
+
+type GuildData = ({
   // preinitialization form
   ready: false
   botChannels?: ChannelID[]
