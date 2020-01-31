@@ -99,7 +99,7 @@ export default class EverythingHandler {
         }
       }
 
-      if (answer.message) this.message(`${this.getRandomValue(answer.message)}\n\n`, memberId)
+      if (answer.reply) this.message(`${this.getRandomValue(answer.reply)}\n\n`, memberId)
       if (answer.target === 'start') {
         this.start(memberId, guildId)
       } else if (answer.target === 'skip') {
