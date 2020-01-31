@@ -41,7 +41,7 @@ export default class EverythingHandler {
     if (msg.channel.type === 'dm') {
       const activeGuild = this.globalData[msg.author.id]?.activeGuild
       if (activeGuild) {
-        const data = this.getDataBasic(activeGuild) as CombinedGuildData | undefined
+        const data = this.getDataBasic(activeGuild)
         if (data?.ready) {
           const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
           const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
@@ -94,9 +94,9 @@ export default class EverythingHandler {
   }
 
   private advance(answer: Answer, memberId: MemberId, guildId: GuildId) {
-    const data = this.getDataBasic(guildId) as CombinedGuildData | undefined
+    const data = this.getDataBasic(guildId)
     if (data?.ready) {
-      logger.botInfo(`Advancing quest for: ${memberId} in guild  ${guildId}`)
+      logger.botInfo(`Advancing quest for: ${memberId} in guild ${guildId}`)
 
       const quest = data.userData[memberId].quests[0]
       if (answer.points) {
@@ -122,6 +122,11 @@ export default class EverythingHandler {
   }
 
   private async displayQuestion(question: Question, memberId: MemberId) {
+    if (!this.globalData[memberId]) {
+      logger.error(new Error('globalData[memberId] not defined'))
+      return
+    }
+
     const activeGuild = this.globalData[memberId].activeGuild
 
     const answers = this.getSeededAnswers(memberId, activeGuild, question.answers)
@@ -206,10 +211,10 @@ export default class EverythingHandler {
     if (!guildData || !userData) throw new Error('Didnt load eShrug')
     return { userData, ...guildData }
   }
-  private getDataBasic(guildId: GuildId): CombinedGuildData {
+  private getDataBasic(guildId: GuildId): CombinedGuildData | undefined {
     const guildData = this.data.getData(guildId, 'guildData') as StaticGuildData | undefined
     const userData = this.data.getData(guildId, 'guildUserData') as GuildUserData | undefined
-    if (!guildData || !userData) throw new Error('Not loaded eShrug')
+    if (!guildData || !userData) return
     return { userData, ...guildData }
   }
 
