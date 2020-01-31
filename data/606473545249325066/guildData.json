@@ -31,7 +31,7 @@
   "skipRoles": [],
   "quest": {
     "deadEndMessage": "Dead end",
-    "startQuestion": "first",
+    "startQuestion": "zero",
     "questions": {
       "zero": {
         "text": "Hello, I'm Helper Bot. Would you like to take the faction quiz? After taking it you'll join one of the four factions. To answer please reply with the number corresponding to the answer you choose for each question.",
