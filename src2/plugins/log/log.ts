@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 import { PRIVMSG } from '../../main/client/parser'
-import logger from '../../main/logger'
+import logger from '../../main/lib/logger'
 import * as afs from '../../main/lib/atomicFS'
 import { PluginInstance, PluginOptions } from '../../main/commander'
 import PluginLibrary from '../../main/pluginLib'
@@ -74,13 +74,13 @@ export const events = {
   massGift: 'm',
 } as const
 
-const _toLong: {[x: string]: string} = {}
+const _toLong: { [x: string]: string } = {}
 for (const event in events) {
   const small = events[event as Events] // Why oh why
   _toLong[small] = event
 }
 
-const reverseEvents: {[P in typeof events[Events]]: Events} = _toLong as any
+const reverseEvents: { [P in typeof events[Events]]: Events } = _toLong as any
 
 export type Events = keyof typeof events
 
@@ -105,25 +105,25 @@ interface TimeoutEvent {
   ms: number
   type: typeof events.timeout
   userId: number
-  data: {duration?: number, reason?: string}
+  data: { duration?: number, reason?: string }
 }
 interface SubEvent {
   ms: number
   type: typeof events.sub
   userId: number
-  data: {streak?: number, cumulative?: number, tier: 1|2|3, prime: boolean, gifted: boolean, message?: string}
+  data: { streak?: number, cumulative?: number, tier: 1 | 2 | 3, prime: boolean, gifted: boolean, message?: string }
 }
 interface GiftEvent {
   ms: number
   type: typeof events.gift
   userId?: number
-  data: {targetId: number, tier: 1 | 2 | 3, total?: number}
+  data: { targetId: number, tier: 1 | 2 | 3, total?: number }
 }
 interface MassGiftEvent {
   ms: number
   type: typeof events.massGift
   userId?: number
-  data: {count: number, tier: 1 | 2 | 3, total?: number}
+  data: { count: number, tier: 1 | 2 | 3, total?: number }
 }
 
 
@@ -317,12 +317,12 @@ export class Instance implements PluginInstance {
     if (_events) _events = this.l.u.deduplicate(_events, true)
     else _events = Object.keys(events) as Events[]
 
-    const offsets: {[P in Events]?: number[]} = { }
+    const offsets: { [P in Events]?: number[] } = {}
     for (const event of _events) {
       if (user.events[event]) offsets[event] = user.events[event]!.offsets
     }
 
-    const normalized: {[P in Events]?: number[]} = {}
+    const normalized: { [P in Events]?: number[] } = {}
     for (const _event in offsets) {
       const event = _event as Events
       const current: number[] = []

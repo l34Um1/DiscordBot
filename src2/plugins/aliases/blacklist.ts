@@ -1,5 +1,6 @@
 import { Extra, PluginInstance, PluginOptions, Userlvl } from '../../main/commander'
 import PluginLibrary from '../../main/pluginLib'
+import { Guild, GuildMember } from 'discord.js'
 
 const exp: Array<{ options: PluginOptions, Instance: any }> = [
   {
@@ -9,7 +10,7 @@ const exp: Array<{ options: PluginOptions, Instance: any }> = [
       title: 'Blacklist',
       description: 'Forbids a user from using a command',
       default: {
-        alias: ['?blacklist'],
+        alias: ['!blacklist'],
         options: {
           userlvl: Userlvl.admin,
         },
@@ -27,22 +28,22 @@ const exp: Array<{ options: PluginOptions, Instance: any }> = [
         this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<USER> <COMMAND>', this.callMain)
       }
 
-      private async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+      private async callMain(guild: Guild, member: GuildMember, params: any, extra: Extra) {
         const [targetId, aliasName]: [number, string] = params
 
-        const alias = this.l.getAlias(channelId, aliasName)
+        const alias = this.l.getAlias(guildId, aliasName)
         if (alias) { // Channel alias
           if (!this.l.isPermitted(alias, userId, extra.irc.tags.badges, { ignoreWhiteList: true })) return 'You cannot edit the blacklist of a command you are not permitted to use'
 
-          if (targetId === channelId) return 'You cannot blacklist the broadcaster'
-          if (this.l.isMod(channelId, extra.words[1])) return 'You cannot blacklist a moderator'
+          if (targetId === guildId) return 'You cannot blacklist the broadcaster'
+          if (this.l.isMod(guildId, extra.words[1])) return 'You cannot blacklist a moderator'
 
           if (alias.blacklist && alias.blacklist.includes(targetId)) return `${extra.words[2]} is already blacklisted from using ${aliasName}`
 
           let out: number[] = []
           if (alias.blacklist) out = [...alias.blacklist]
           out.push(targetId)
-          this.l.modAlias(channelId, aliasName, { blacklist: out })
+          this.l.modAlias(guildId, aliasName, { blacklist: out })
           return `Blacklisted ${extra.words[1]} from using ${aliasName}`
         }
         return 'Cannot find that command'

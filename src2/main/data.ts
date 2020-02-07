@@ -5,7 +5,7 @@ import { Client as DiscordClient, Guild } from 'discord.js'
 
 import * as afs from './lib/atomicFS'
 import defaultKeys from './lib/defaultKeys'
-import logger from './logger'
+import logger from './lib/logger'
 
 export default class Data extends EventEmitter {
   /** This data changes when events happen */

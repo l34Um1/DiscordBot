@@ -7,7 +7,7 @@ import * as secretKey from './lib/secretKey'
 import { onExit } from './lib/util'
 import ParamValidator from './paramValidator'
 import { getArgs } from './argRules'
-import logger, { options as logOpts } from './logger'
+import logger, { options as logOpts } from './lib/logger'
 
 export interface BotOptions {
   masters: readonly string[]
@@ -42,7 +42,7 @@ export default class Bot {
       }
     }
 
-    const joinMessage: {[channelId: number]: string} = {}
+    const joinMessage: { [channelId: number]: string } = {}
     if (this.args.args['join-message']) {
       for (const element of this.args.args['join-message']) {
         const split: string[] = element.split(/:/)

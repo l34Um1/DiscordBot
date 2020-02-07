@@ -3,7 +3,7 @@ import fs from 'fs'
 import Bot from './bot'
 import { Manager, ManagerOptions } from './manager'
 import { getArgs } from './argRules'
-import logger from './logger'
+import logger from './lib/logger'
 
 const errorPath = './data/logs/'
 const errorFile = 'fatal.txt'
@@ -31,17 +31,17 @@ if (args.args.manager && !process.send) {
     throw e
   })
 
-  const bot = new Bot({ masters: [61365582] })
+  const bot = new Bot({ masters: ['160439044348575745'] })
 }
 
 function logError(error: any) {
   if (typeof error !== 'object' || error === null) return fs.appendFileSync(`${errorPath}${errorFile}`, error)
 
-  let data = `${new Date()}`
-  if (!error.stack) data += `\n${error.code}`
-  if (error.code) data += `\n${error.code}`
-  if (error.message && !error.stack) data += `\n${error.message}`
-  if (error.stack) data += `\n${error.stack}`
+  let data = `${new Date().toString()}`
+  if (!error.stack) data += `\n${error.code as string}`
+  if (error.code) data += `\n${error.code as string}`
+  if (error.message && !error.stack) data += `\n${error.message as string}`
+  if (error.stack) data += `\n${error.stack as string}`
   data += '\n\n'
   fs.appendFileSync(`${errorPath}${errorFile}`, data)
 }

@@ -1,6 +1,6 @@
 import Commander, { PluginInstance, Handlers } from './commander'
 import { addArticle, commaPunctuate, plural, deduplicate } from './lib/util'
-import logger from './logger'
+import logger from './lib/logger'
 
 interface Bit {
   // Whether or not the field is optional

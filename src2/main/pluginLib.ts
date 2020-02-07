@@ -1,9 +1,9 @@
-import TwitchClient from './client/client'
+import { Client as DiscordClient, GuildMember } from 'discord.js'
 import Commander, { CommandAlias, Extra, PluginInstance, PluginOptions, Userlvl, Handlers, ReadonlyCommandAlias } from './commander'
 import Data from './data'
 import * as secretKey from './lib/secretKey'
 import * as util from './lib/util'
-import logger from './logger'
+import logger from './lib/logger'
 
 export default class PluginLibrary {
   /** util library */
@@ -12,13 +12,12 @@ export default class PluginLibrary {
   public ext: { [commandId: string]: { [x: string]: any } }
 
   public emitter: {
-    on: TwitchClient['on']
-    once: TwitchClient['once']
-    removeListener: TwitchClient['removeListener']
-    prependListener: TwitchClient['prependListener']
-    prependOnceListener: TwitchClient['prependOnceListener']
+    on: DiscordClient['on']
+    once: DiscordClient['once']
+    removeListener: DiscordClient['removeListener']
+    prependListener: DiscordClient['prependListener']
+    prependOnceListener: DiscordClient['prependOnceListener']
   }
-  public api: TwitchClient['api']
 
   /**
    * Returns the path to the file where the specified data is stored
@@ -69,15 +68,6 @@ export default class PluginLibrary {
   /** Saves all loaded data types synchronously */
   public saveAllSync: Data['saveAllSync']
 
-  /** Whisper `msg` to `channelId` */
-  public chat: TwitchClient['chat']
-  /** Whisper `msg` to `userId` */
-  public whisper: TwitchClient['whisper']
-  /** Join `channelIds` */
-  public join: TwitchClient['join']
-  /** Leave `channelIds` */
-  public part: TwitchClient['part']
-
   /**
    * Create or overwrite a command alias in `channelId`  
    * @returns Created alias
@@ -108,9 +98,9 @@ export default class PluginLibrary {
 
   private commander: Commander
   private data: Data
-  private client: TwitchClient
+  private client: DiscordClient
 
-  constructor(client: TwitchClient, data: Data, commander: Commander) {
+  constructor(client: DiscordClient, data: Data, commander: Commander) {
     this.commander = commander
     this.data = data
     this.client = client
@@ -127,7 +117,6 @@ export default class PluginLibrary {
       prependListener: client.prependListener.bind(this.client),
       prependOnceListener: client.prependOnceListener.bind(this.client),
     }
-    this.api = this.client.api
 
     this.getPath = this.data.getPath.bind(this.data)
     this.getData = this.data.getData.bind(this.data)
@@ -138,11 +127,6 @@ export default class PluginLibrary {
     this.reload = this.data.reload.bind(this.data)
     this.saveData = this.data.save.bind(this.data)
     this.saveAllSync = this.data.saveAllSync.bind(this.data)
-
-    this.chat = this.client.chat.bind(this.client)
-    this.whisper = this.client.whisper.bind(this.client)
-    this.join = this.client.join.bind(this.client)
-    this.part = this.client.part.bind(this.client)
 
     this.setAlias = this.commander.setAlias.bind(this.commander)
     this.getAlias = this.commander.getAlias.bind(this.commander)
@@ -160,22 +144,17 @@ export default class PluginLibrary {
 
   /** Maximum message length for chat */
   public get maxMsgLength() {
-    return this.client.opts.maxMsgLength - this.dupeAffix.length
+    return 1997
   }
 
-  /** String used to avoid duplicate messages */
-  public get dupeAffix() {
-    return this.client.opts.dupeAffix
-  }
-
-  /** The list of joined channelsIds */
+  /** The list of joined channel's Ids */
   public get joinedChannels() {
-    return this.client.joinedChannels
+    return this.client.guilds
   }
 
   /** Websocket is ready */
   public get connected() {
-    return this.client.ws ? this.client.ws.readyState === 1 : false
+    return this.client.status === 0
   }
 
   /** Set pluginLib.ext[pluginId][sub] */
@@ -270,12 +249,8 @@ export default class PluginLibrary {
       switch (userlvl) {
         case Userlvl.any:
           return
-        case Userlvl.sub:
-          return 'subscriber'
-        case Userlvl.vip:
-          return 'vip'
         case Userlvl.admin:
-          return 'moderator'
+          return 'administrator'
         case Userlvl.owner:
           return 'broadcaster'
         case Userlvl.master:
@@ -286,19 +261,18 @@ export default class PluginLibrary {
   }
 
   /** Whether or not `userId` is a master user */
-  public isMaster(userId: number) {
+  public isMaster(userId: string) {
     return this.commander.masters.includes(userId)
   }
 
   /** Whether or not `user` (LOGIN) SEEMS TO BE a mod in `channelId` (ID) */
-  public isMod(channelId: number, user: string) {
-    if (!this.client.channelCache.mods[channelId]) return false
-    return Boolean(this.client.channelCache.mods[channelId][user.toLowerCase()])
+  public isMod(member: GuildMember) {
+    return member.hasPermission("ADMINISTRATOR")
   }
 
   /** Insert @user to `message` if needed and return it */
-  public insertAtUser(message: string, extra: Extra, overrideAtUser?: true): string {
-    return (this.commander.shouldAtUser(overrideAtUser, message, extra.irc) ? this.commander.getAtUser(extra.irc.user) : '') + message
+  public insertAtUser(userId: string, content: string, overrideAtUser?: true): string {
+    return (this.commander.shouldAtUser(overrideAtUser, content, userId) ? this.commander.getAtUser(userId) : '') + content
   }
 
   /**

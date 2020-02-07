@@ -8,7 +8,7 @@ import * as util from './lib/util'
 import { readDirRecursive } from './lib/util'
 import ParamValidator from './paramValidator'
 import PluginLibrary from './pluginLib'
-import logger from './logger'
+import logger from './lib/logger'
 
 export type PluginOptions = (Command | Controller) & PluginBase
 
@@ -135,6 +135,8 @@ export interface Extra {
   alias: DefaultCommandAlias
   /** Message split by spaces */
   words: string[]
+  /** Userlevel of user */
+  message: Message
   /** Remaining cooldown when trying to trigger command */
   cooldown: number
   /** Userlevel of user */
@@ -563,17 +565,17 @@ export default class Commander {
   }
 
   /** Determines if @user should be inserted to message */
-  public shouldAtUser(atUser: Command['disableMention'], content: string, member: GuildMember): boolean {
+  public shouldAtUser(atUser: Command['disableMention'], content: string, userId: string): boolean {
     if (atUser) return false
     content = content.toLowerCase()
     if (content.length > 200) return false
-    if (content.includes(`<@!?${member.id}>`)) return false
+    if (content.includes(`<@!?${userId}>`)) return false
     return true
   }
 
-  /** Returns the `'@<user> '` string */
-  public getAtUser(display: string): string {
-    return `@${display} `
+  /** Returns the `'<@userId> '` string */
+  public getAtUser(userId: string): string {
+    return `<@${userId}> `
   }
 
 
@@ -654,18 +656,18 @@ export default class Commander {
       const userlvl = this.getUserlvl(member)
       if (userlvl >= Userlvl.admin) {
         // Master users, mods and the broadcaster don't care about cooldowns
-        const validation = await this.validator.validate(guild, plugin.id, words.slice(1), alias.group)
+        const validation = await this.validator.validate(guild.id, plugin.id, words.slice(1), alias.group)
         if (!validation.pass) {
-          return this.client.chat(guild, `${addAtUser(this, plugin.disableMention, validation.message, irc)}${validation.message}`)
+          return message.channel.send(`${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`);
         }
 
-        const extra: Extra = { alias, words, content: message, me, cooldown: 0, irc, userlvl }
+        const extra: Extra = { message, alias, words, cooldown: 0, userlvl }
         let res = await instance.handlers.call[group][validation.index].handler(guild, member, validation.values, extra)
         if (typeof res === 'object') {
           res = handleAdvanced(this, res, plugin, false)
         }
         if (res) {
-          this.client.chat(guild, `${addAtUser(this, plugin.disableMention, res, irc)}${res}`)
+          message.channel.send(`${addAtUser(this, plugin.disableMention, res)}${res}`);
         }
       } else {
         const cooldown = this.getCooldown(guild.id, member, alias)
@@ -684,30 +686,30 @@ export default class Commander {
 
           const validation = await this.validator.validate(guild.id, plugin.id, words.slice(1), alias.group)
           if (!validation.pass) {
-            if (whisperCall) this.client.whisper(member, validation.message)
-            else this.client.chat(guild, `${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`)
+            if (whisperCall) member.user.send(validation.message);
+            else message.channel.send(`${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`)
             return
           }
 
-          const extra: Extra = { alias, words, content: message, me, cooldown, irc, userlvl }
+          const extra: Extra = { message, alias, words, cooldown, userlvl }
           let res = await instance.handlers.call[group][validation.index].handler(guild, member, validation.values, extra)
           if (typeof res === 'object') {
             res = handleAdvanced(this, res, plugin, whisperCall)
           }
           if (res) {
-            if (whisperCall) this.client.whisper(member, res)
-            else this.client.chat(guild, `${addAtUser(this, plugin.disableMention, res, irc)}${res}`)
+            if (whisperCall) member.user.send(res);
+            else message.channel.send(`${addAtUser(this, plugin.disableMention, res)}${res}`)
           }
         } else if (instance.handlers.cd[group]) { // Call cooldown handlers if defined
-          const validation = await this.validator.validate(guild, plugin.id, words.slice(1), alias.group)
+          const validation = await this.validator.validate(guild.id, plugin.id, words.slice(1), alias.group)
           if (!validation.pass) return
 
           if (!instance.handlers.cd[group][validation.index].handler) return
 
-          const extra: Extra = { alias, words, content: message, me, cooldown, irc, userlvl }
+          const extra: Extra = { message, alias, words, cooldown, userlvl }
           let res = await instance.handlers.cd[group][validation.index].handler!(guild, member, validation.values, extra)
           if (typeof res === 'object') res = handleAdvanced(this, res, plugin, true)
-          if (res) this.client.whisper(member, res)
+          if (res) member.user.send(res);
         }
       }
     }
@@ -716,25 +718,25 @@ export default class Commander {
         const fitParams: Array<[string, number]> = []
         // Add @user as a "high" priority segment
         if (!whisper && ((adv.atUser === undefined && plugin.allowMentions) || adv.atUser)) {
-          fitParams.push([com.getAtUser(com.client.api.cachedDisplay(userId) || 'Unknown'), Infinity])
+          fitParams.push([com.getAtUser(message.author.id || 'Unknown'), Infinity])
         }
         for (let i = 0; i < adv.segments.length; i++) {
           const segment = adv.segments[i]
           fitParams.push([segment, adv.segmentPriority[i] || 0])
         }
 
-        const fitOps: util.FitStringOptions = { maxLength: com.client.opts.maxMsgLength * (adv.lengthMult || 1), ...adv.truncationSettings }
+        const fitOps: util.FitStringOptions = { maxLength: 1997 * (adv.lengthMult || 1), ...adv.truncationSettings }
 
         const fitted = util.fitStrings(fitOps, ...fitParams)
         return fitted
       }
       if (!whisper && ((adv.atUser === undefined && plugin.allowMentions) || adv.atUser)) {
-        return com.getAtUser(com.client.api.cachedDisplay(userId) || 'Unknown') + adv.segments.join('')
+        return com.getAtUser(message.author.id || 'Unknown') + adv.segments.join('')
       }
       return adv.segments.join('')
     }
-    function addAtUser(self: Commander, atUser: true | undefined, message: string): string {
-      return self.shouldAtUser(atUser, message) ? `${self.getAtUser(self.client.api.cachedDisplay(userId) || 'Unknown')}` : ''
+    function addAtUser(self: Commander, atUser: true | undefined, content: string): string {
+      return self.shouldAtUser(atUser, content, message.member.id) ? `${self.getAtUser(message.author.id || 'Unknown')}` : ''
     }
   }
 }

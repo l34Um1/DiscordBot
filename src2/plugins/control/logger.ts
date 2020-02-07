@@ -1,6 +1,6 @@
 import { Extra, PluginInstance, PluginOptions, Userlvl } from '../../main/commander'
 import PluginLibrary from '../../main/pluginLib'
-import { Category, categories } from '../../main/logger'
+import { Category, categories } from '../../main/lib/logger'
 
 const categoryNames = Object.keys(categories)
 
