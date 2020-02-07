@@ -70,7 +70,7 @@ export class Manager {
           this.extraArgs = removeOption(val, this.extraArgs, rules)
           break
         case 'PUSH_ARGS':
-          if (Array.isArray(val)) this.extraArgs.push(...val.map((v: string) => `${v}`))
+          if (Array.isArray(val)) this.extraArgs.push(...val.map(v => `${v}`))
           break
         default:
           console.log('Invalid message')
@@ -106,7 +106,6 @@ export class Manager {
 
   private gracedBirth(this: Manager) {
     console.log('Manager birthing')
-    // @ts-ignore // false positive
     if (this.child.once) birth.bind(this)()
     else this.child.once('close', birth.bind(this))
 

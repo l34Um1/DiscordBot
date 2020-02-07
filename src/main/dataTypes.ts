@@ -1,13 +1,8 @@
+import { GuildMember, Role, Guild, User, Channel } from 'discord.js'
 
 // ---------------------- //
 // Faction bot stuff here //
 // ---------------------- //
-
-type Role = import('discord.js').Role;
-type Guild = import('discord.js').Guild
-type GuildMember = import('discord.js').GuildMember
-type User = import('discord.js').User
-type Channel = import('discord.js').Channel
 
 /** If an array is passed, a random value is used */
 type Randomizable<T> = T | T[]

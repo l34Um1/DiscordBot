@@ -23,6 +23,12 @@ export default class EverythingHandler {
     this.init()
   }
 
+  public async whisper(msg: string, userId: UserId): Promise<void>
+  public async whisper(msg: string, user: User): Promise<void>
+  public async whisper(msg: string, userId: UserId | User) {
+    await (typeof userId === 'string' ? await this.client.fetchUser(userId, true) : userId).send(msg)
+  }
+
   private async init() {
     this.globalData = await this.data.load('global', 'questData', {}) as GlobalQuestData
   }
@@ -106,7 +112,7 @@ export default class EverythingHandler {
         }
       }
 
-      if (answer.reply) this.message(`${this.getRandomValue(answer.reply)}\n\n`, memberId)
+      if (answer.reply) this.whisper(`${this.getRandomValue(answer.reply)}\n\n`, memberId)
       if (answer.target === 'start') {
         this.start(memberId, guildId)
       } else if (answer.target === 'skip') {
@@ -135,11 +141,7 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    this.message(`${this.getRandomValue(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
-  }
-
-  private async message(msg: string, userId: UserId) {
-    await (await this.client.fetchUser(userId, true)).send(msg)
+    this.whisper(`${this.getRandomValue(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
   }
 
   /** Lowercase prefixes */
