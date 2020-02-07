@@ -51,11 +51,11 @@
         "text": "An enormous earthquake struck the small town you’re currently residing in, and the people of the town need your aid. What role will you assume to help the townspeople?",
         "answers": [
           {
-            "text": "I'll help repair houses and make sure the buildings are safe to be in - Wouldn't want them collapsing on someone!",
+            "text": "I'll marshall people to safe areas, conduct triage for the injured and make sure everyone knows what they should do.",
             "target": "two",
             "points": {
               "gbc": 4,
-              "jd": 0,
+              "jd": 2,
               "mv": 0,
               "sof": 3
             }
@@ -74,10 +74,10 @@
             "text": "I'll make sure the town is in order - That everyone has a place to sleep, enough food to eat, and are reunited with their loved ones.",
             "target": "two",
             "points": {
-              "gbc": 2,
+              "gbc": 1,
               "jd": 1,
               "mv": 0,
-              "sof": 5
+              "sof": 4
             }
           },
           {
@@ -96,11 +96,11 @@
         "text": "You find a weathered chest hidden in the shadows of a great cave. You carefully lift the lid, and inscribed within, you read “Pick one of greatest importance, that you may better your world”. Which artifact will you choose?",
         "answers": [
           {
-            "text": "A paintbrush that helps someone paint exactly what they see in their mind’s eye.",
+            "text": "A never-ending bottle of a potion that makes you feel warm, energised, calm and comfortable, wherever you are, whatever you're doing.",
             "target": "three",
             "points": {
               "gbc": 5,
-              "jd": 0,
+              "jd": 1,
               "mv": 0,
               "sof": 0
             }
@@ -109,7 +109,7 @@
             "text": "A candle that when lit, seems to quiet the mind and tame the thoughts of the onlooker.",
             "target": "three",
             "points": {
-              "gbc": 0,
+              "gbc": 2,
               "jd": 4,
               "mv": 2,
               "sof": 0
@@ -126,7 +126,7 @@
             }
           },
           {
-            "text": "A necklace that amplifies willpower.",
+            "text": "A necklace that amplifies willpower and makes you feel as though you could take on any challenge thrown at you.",
             "target": "three",
             "points": {
               "gbc": 0,
@@ -141,6 +141,16 @@
     "three": {
       "text": "What would you hate to be called the most?",
       "answers": [
+        {
+          "text": "Careless.",
+          "target": "four",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 0,
+            "sof": 5
+          }
+        },
         {
           "text": "Ignorant.",
           "target": "four",
@@ -162,17 +172,7 @@
           }
         },
         {
-          "text": "Careless.",
-          "target": "four",
-          "points": {
-            "gbc": 0,
-            "jd": 0,
-            "mv": 0,
-            "sof": 5
-          }
-        },
-        {
-          "text": "Dull.",
+          "text": "Irritating .",
           "target": "four",
           "points": {
             "gbc": 5,
@@ -207,23 +207,23 @@
           }
         },
         {
-          "text": "Ask them about their connections and see if they think you could make some extra cash doing it too.",
+          "text": "Ask them how you can get in on the business - extra cash never hurt.",
           "target": "five",
           "points": {
             "gbc": 4,
             "jd": 0,
-            "mv": 0,
+            "mv": 3,
             "sof": 0
           }
         },
         {
-          "text": "Ask them how much a mushroom costs - Apparently they're a lot of fun.",
+          "text": "You've always wanted to try these mushrooms, as they have mind-expanding properties. Ask them how much a mushroom costs.",
           "target": "five",
           "points": {
             "gbc": 0,
             "jd": 0,
-            "mv": 0,
-            "sof": 0
+            "mv": 4,
+            "sof": 1
           }
         }
       ]
@@ -232,7 +232,17 @@
       "text": "You enter a garden bordering Sulhanna's Orchard, where all sorts of strange and wonderful flowers bloom. Which catches your eye first?",
       "answers": [
         {
-          "text": "The tallest and largest flower of them all - a beautiful lilac bloom that shimmers with opalescent light.",
+          "text": "A bed of tiny red flowers that glow like ashes, with an intoxicating scent that makes you feel powerful and lively.",
+          "target": "six",
+          "points": {
+            "gbc": 0,
+            "jd": 0,
+            "mv": 4,
+            "sof": 0
+          }
+        },
+        {
+          "text": "A sweet-smelling bushel that is groaning under the weight of its bright blue berries, inviting you to take a handful and eat your fill.",
           "target": "six",
           "points": {
             "gbc": 4,
@@ -252,17 +262,7 @@
           }
         },
         {
-          "text": "A bed of tiny red flowers that glow like ashes, with an intoxicating scent that makes you feel powerful and lively.",
-          "target": "six",
-          "points": {
-            "gbc": 0,
-            "jd": 0,
-            "mv": 4,
-            "sof": 0
-          }
-        },
-        {
-          "text": "I'm not looking for flowers at the moment.",
+          "text": "A fern growing in a fractal pattern, its fronds sprouting from the soil at perfect angles.",
           "target": "six",
           "points": {
             "gbc": 0,
@@ -277,21 +277,11 @@
       "text": "Four kittens are playing in a field, seemingly motherless but unharmed. You decide to take them in. You give three away to loving homes, and keep one. Which one do you keep?",
       "answers": [
         {
-          "text": "The sleek jet black one that spends its time playing with its siblings and grooming them.",
-          "target": "seven",
-          "points": {
-            "gbc": 2,
-            "jd": 3,
-            "mv": 0,
-            "sof": 2
-          }
-        },
-        {
           "text": "The tiny grey one that wants nothing more than to play and bat shiny things around the floor.",
           "target": "seven",
           "points": {
-            "gbc": 3,
-            "jd": 0,
+            "gbc": 4,
+            "jd": 2,
             "mv": 1,
             "sof": 0
           }
@@ -302,8 +292,8 @@
           "points": {
             "gbc": 2,
             "jd": 1,
-            "mv": 0,
-            "sof": 3
+            "mv": 3,
+            "sof": 4
           }
         },
         {
@@ -312,8 +302,18 @@
           "points": {
             "gbc": 1,
             "jd": 0,
-            "mv": 2,
-            "sof": 0
+            "mv": 4,
+            "sof": 2
+          }
+        },
+        {
+          "text": "The sleek jet black one that spends its time playing with its siblings and washing them.",
+          "target": "seven",
+          "points": {
+            "gbc": 2,
+            "jd": 4,
+            "mv": 0,
+            "sof": 2
           }
         }
       ]
@@ -322,42 +322,42 @@
       "text": "You wake in a cold sweat from your worst nightmare - What happened?",
       "answers": [
         {
-          "text": "You lost your voice and nobody could understand what you were trying to tell them. When you tried to write things down, all that you produced were scribbles.",
+          "text": "You had severely injured someone you love in an accident. The guilt weighed on your chest until you felt like you could barely breathe.",
           "target": "eigth",
           "points": {
-            "gbc": 2,
-            "jd": 4,
-            "mv": 0,
-            "sof": 0
-          }
-        },
-        {
-          "text": "You were on stage giving a speech, when you suddenly realised you were naked. Then all your teeth fell out of your mouth.",
-          "target": "eigth",
-          "points": {
-            "gbc": 4,
-            "jd": 0,
+            "gbc": 3,
+            "jd": 5,
             "mv": 1,
-            "sof": 3
-          }
-        },
-        {
-          "text": "You were suddenly reverted to the form of a baby. All you could do was cry.",
-          "target": "eigth",
-          "points": {
-            "gbc": 1,
-            "jd": 0,
-            "mv": 5,
             "sof": 2
           }
         },
         {
-          "text": "You were standing before a great beast receiving judgement. You were judged as evil, and empty suits of armour began to encircle and trap you.",
+          "text": "You were sat in an armchair, at a very old age, sick and exhausted, and you realised you had completely wasted your life - And you were far too old and weak to change anything.",
           "target": "eigth",
           "points": {
-            "gbc": 0,
+            "gbc": 1,
+            "jd": 4,
+            "mv": 5,
+            "sof": 1
+          }
+        },
+        {
+          "text": "None of your friends or family would acknowledge your existence, it was like you weren't even there, and you didn't know why.",
+          "target": "eigth",
+          "points": {
+            "gbc": 5,
+            "jd": 2,
+            "mv": 1,
+            "sof": 4
+          }
+        },
+        {
+          "text": "You found yourself in a great examination hall, and you knew it was the most important exam you'd ever take. You read the first page, only to realise were completely and utterly unprepared.",
+          "target": "eigth",
+          "points": {
+            "gbc": 4,
             "jd": 3,
-            "mv": 0,
+            "mv": 2,
             "sof": 5
           }
         }
@@ -377,33 +377,33 @@
           }
         },
         {
-          "text": "A quiet day with your family at a museum or park, celebrating another year of life.",
+          "text": "Celebrating birthdays isn't really your thing. It's just another day.",
           "target": "nine",
           "points": {
             "gbc": 0,
+            "jd": 0,
+            "mv": 3,
+            "sof": 4
+          }
+        },
+        {
+          "text": "A quiet day with your family at a museum or park, celebrating another year of life.",
+          "target": "nine",
+          "points": {
+            "gbc": 3,
             "jd": 4,
-            "mv": 0,
+            "mv": 2,
             "sof": 2
           }
         },
         {
-          "text": "A day to yourself, so you can do exactly what you want to do without needing to think about anyone else. ",
+          "text": "A day to yourself, so you can do exactly what you want to do without needing to think about anyone else.",
           "target": "nine",
           "points": {
             "gbc": 0,
             "jd": 2,
             "mv": 5,
             "sof": 0
-          }
-        },
-        {
-          "text": "Celebrating birthdays isn't really your thing. It's just another day.",
-          "target": "nine",
-          "points": {
-            "gbc": 0,
-            "jd": 0,
-            "mv": 2,
-            "sof": 5
           }
         }
       ]
@@ -412,7 +412,7 @@
       "text": "You have the chance to learn the ways of magic. What do you most want to use them for?",
       "answers": [
         {
-          "text": "To create beautiful things and better the lives of the people in my community.",
+          "text": "To lead a fulfilling life for myself, and better the lives of the people in my community.",
           "target": "ten",
           "points": {
             "gbc": 5,
@@ -422,7 +422,7 @@
           }
         },
         {
-          "text": "To heal the sick and wounded, to improve the lives of all.",
+          "text": "To see the ways of the world more clearly, and to be able to use this to help those who need it most.",
           "target": "ten",
           "points": {
             "gbc": 0,
@@ -432,7 +432,7 @@
           }
         },
         {
-          "text": "To fix the chaos in the world, and stop those who would use magic destructively.",
+          "text": "To fix the chaos in the world, and stop those who would cause destruction and evil.",
           "target": "ten",
           "points": {
             "gbc": 0,
@@ -461,21 +461,10 @@
           "target": "finish",
           "reply": "Thank you for answering my questions, you have joined your faction.",
           "points": {
-            "gbc": 0,
+            "gbc": 2,
             "jd": 4,
-            "mv": 1,
+            "mv": 3,
             "sof": 2
-          }
-        },
-        {
-          "text": "Ask him what he's doing here. A dark alleyway is no place to be lurking at night. ",
-          "target": "finish",
-          "reply": "Thank you for answering my questions, you have joined your faction.",
-          "points": {
-            "gbc": 3,
-            "jd": 0,
-            "mv": 0,
-            "sof": 5
           }
         },
         {
@@ -483,21 +472,32 @@
           "target": "finish",
           "reply": "Thank you for answering my questions, you have joined your faction.",
           "points": {
-            "gbc": 0,
+            "gbc": 1,
             "jd": 0,
+            "mv": 3,
+            "sof": 5
+          }
+        },
+        {
+          "text": "Try and figure out if he's a direct threat to you. If he isn't, you'll help him.",
+          "target": "finish",
+          "reply": "Thank you for answering my questions, you have joined your faction.",
+          "points": {
+            "gbc": 0,
+            "jd": 1,
             "mv": 4,
             "sof": 2
           }
         },
         {
-          "text": "Turn and leave. Whatever he's doing, it's none of your business. ",
+          "text": "Call to the friends you're with, and ask them to come over and help.",
           "target": "finish",
           "reply": "Thank you for answering my questions, you have joined your faction.",
           "points": {
             "gbc": 5,
-            "jd": 0,
+            "jd": 3,
             "mv": 0,
-            "sof": 0
+            "sof": 1
           }
         }
       ]
