@@ -65,9 +65,6 @@ export default class EverythingHandler {
       const data = await this.getData(msg.guild)
       if (!data.ready) return
       if (data.botChannels.includes(msg.channel.id)) {
-        msg.delete()
-
-
         let userData = data.userData[msg.member.id]
         if (userData) {
           if (msg.content === '!reset') {
