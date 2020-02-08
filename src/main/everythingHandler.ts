@@ -55,6 +55,10 @@ export default class EverythingHandler {
         }
       }
     } else if (msg.channel.type === 'text') {
+      if (msg.content === '!save' && msg.member.hasPermission('ADMINISTRATOR')) {
+        this.data.saveAllSync()
+      }
+
       const data = await this.getData(msg.guild)
       if (!data.ready) return
       if (data.botChannels.includes(msg.channel.id)) {
