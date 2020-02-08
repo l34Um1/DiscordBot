@@ -21,7 +21,7 @@ type ChannelID = Channel['id']
 // !!! Use types in GuildData instead (this looks aids in hints)
 type Question = Quest['questions'][number]
 type Answer = Question['answers'][number] extends Randomizable<infer X> ? X : never
-type Faction = (StaticGuildData['factions'] extends undefined | infer X ? X : never)[string]
+type Faction = (StaticData['factions'] extends undefined | infer X ? X : never)[string]
 type UserData = GuildUserData[string]
 
 // ----------------------- //
@@ -30,7 +30,7 @@ type UserData = GuildUserData[string]
 
 type CombinedGuildData = {
   userData: GuildUserData
-} & StaticGuildData
+} & StaticData
 
 interface GuildUserData {
   [memberId: string]: {
@@ -46,20 +46,24 @@ interface GuildUserData {
   }
 }
 
-type StaticGuildData = ({
-  // preinitialization form
-  readonly ready: false
-  readonly botChannels?: ChannelID[]
-  readonly joinRoles?: RoleId[]
-  readonly questingRoles?: RoleId[]
-  readonly finishRoles?: RoleId[]
-  readonly skipRoles?: RoleId[]
-  readonly factions?: { [name: string]: { role: RoleId, points: number } }
-  readonly quest?: Quest
-} | {
-  // Intialized form
-  /** Initialized or not */
-  readonly ready: true
+
+/** Faction specific data */
+interface FactionData {
+  /** The actual data */
+  factions: {
+    /** String used to refer to this faction ("usa") */
+    [faction: string]: {
+      /** Internally tracked count of users in this faction */
+      count: number
+      /** Global faction points */
+      points: number
+      /** Total quest points towards this faction */
+      questPoints: number
+    }
+  }
+}
+
+type StaticData = ({
   /** The channel which the bot reads for commands */
   readonly botChannels: ChannelID[]
   /** Granted when joining the channel. Removed when finishing a quest or skipping */
@@ -78,8 +82,6 @@ type StaticGuildData = ({
       readonly title: RoleId
       /** Roles(s) granted when user is selected for this faction */
       readonly role: RoleId
-      /** Faction wide points */
-      readonly points: number
     }
   }
   /** Quest */
@@ -89,41 +91,41 @@ type StaticGuildData = ({
 
 interface Quest {
   /** Start question id */
-  startQuestion: Randomizable<string>
+  readonly startQuestion: Randomizable<string>
   /** Message shown to the user when they reach an invalid or missing question */
-  deadEndMessage: Randomizable<string>
+  readonly deadEndMessage: Randomizable<string>
   /** Object containing all the questions */
-  questions: {
+  readonly questions: {
     /** The question id used to refer to the question */
-    [questionId: string]: {
+    readonly [questionId: string]: {
       /** Shown text, array of strings for random starting quests */
-      text: Randomizable<string>
+      readonly text: Randomizable<string>
       /** Array of answer objects. Use arrays of arrays for randomized answers (experimental) */
-      answers: Array<Randomizable<{
+      readonly answers: Array<Randomizable<{
         /** Shown text */
-        text: string
+        readonly text: string
         /**
          * Next question id to move to after this answer is selected.  
          * Define as `"finish"` to finish the quest.  
          * Define as `"skip"` to skip the quest.  
          * Leave undefined to stay in the current question without reshowing it.  
          */
-        target?: Randomizable<string | string[] | 'finish' | 'skip'>
+        readonly target?: Randomizable<string | string[] | 'finish' | 'skip'>
         /** Point values given towards factions */
-        points?: {
+        readonly points?: {
           /** Value is added towards faction */
-          [faction: string]: Randomizable<number>
+          readonly [faction: string]: Randomizable<number>
         }
         /** Show `reply` in the channel where bot was answered isntead. Only applicable if user answered in guild and not in dms */
-        replyInGuildChannel?: true
+        readonly replyInGuildChannel?: true
         /** Shown after this answer is chosen */
-        reply?: Randomizable<string>
+        readonly reply?: Randomizable<string>
         /**
          * Prefix shown before this answers' text, e.g. `value) Cool answer`  
          * User must type this prefix to select this answer.  
          * Leave empty for automatic prefixing.  
          */
-        prefix?: string
+        readonly prefix?: string
       }>>
     }
   }

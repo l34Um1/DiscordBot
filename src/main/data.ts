@@ -38,22 +38,22 @@ export default class Data extends EventEmitter {
    * Returns the data or undefined if it isn't loaded.  
    * Data will be an object and therefore a reference, so keep that it mind. The undefined value is not a reference
    */
-  public getData(group: string | number, name: string) {
-    if ((this.data[group] || {})[name]) return this.data[group][name]
+  public getData<T>(group: string | number, name: string): T | undefined {
+    if ((this.data[group] || {})[name]) return this.data[group][name] as T
     return undefined
   }
   /** Sets the data variable to `value` */
-  public setData(group: string | number, name: string, value: object) {
+  public setData<T>(group: string | number, name: string, value: T) {
     if (!this.data[group]) this.data[group] = {}
     this.data[group][name] = value
     return value
   }
 
   /** Wait until the data is loaded. Resolves with the data or undefined if timedout */
-  public async waitData(group: string | number, name: string, timeout?: number): Promise<object | undefined> {
+  public async waitData<T>(group: string | number, name: string, timeout?: number): Promise<T | undefined> {
     if (this.getData(group, name)) return this.getData(group, name)
     return new Promise((resolve) => {
-      const cbFunc = (s?: string, n?: string, data?: object) => {
+      const cbFunc = (s?: string, n?: string, data?: T) => {
         if (s && n) if (s !== group || n !== name) return
         this.removeListener('load', cbFunc)
         clearTimeout(_timeout)
@@ -127,7 +127,7 @@ export default class Data extends EventEmitter {
    * @param defaultData If the file doesn't exist, create it with this data
    * @param setDefaults Sets all undefined keys in the returned data that exist in `defaultData` to the value of `defaultData`
    */
-  public async load(group: string | number, name: string, defaultData?: object, setDefaults = false): Promise<object> {
+  public async load<T>(group: string | number, name: string, defaultData?: T, setDefaults = false): Promise<T> {
     if (!this.data[group]) this.data[group] = {}
     if (String(group).length === 0 || name.length === 0) throw new Error('group and name must not be zero-length')
     if (this.reserved.includes(name)) throw new Error(`${name} is reserved for internal functions`)

@@ -11,9 +11,6 @@ export default class EverythingHandler {
   private globalData!: GlobalQuestData
   private rl: RateLimiter
   constructor(client: Discord.Client, data: Data) {
-    client.on('guildMemberAdd', this.onGuildMemberAdd.bind(this))
-    client.on('message', this.onMessage.bind(this))
-
     this.client = client
     this.data = data
     this.rl = new RateLimiter({
@@ -24,7 +21,11 @@ export default class EverythingHandler {
   }
 
   private async init() {
-    this.globalData = await this.data.load('global', 'questData', {}) as GlobalQuestData
+    this.globalData = await this.data.load<GlobalQuestData>('global', 'questData', {})
+
+    this.client.on('guildMemberAdd', this.onGuildMemberAdd.bind(this))
+    this.client.on('message', this.onMessage.bind(this))
+    this.client.on('guildCreate', this.onGuildAdd.bind(this))
   }
 
   private async onGuildMemberAdd(member: Discord.GuildMember) {
@@ -36,13 +37,37 @@ export default class EverythingHandler {
     this.start(member)
   }
 
+  private async onGuildAdd(guild: Guild) {
+    const func = () => {
+      if (!guild.available) {
+        clearInterval(interval)
+        return
+      }
+
+      const staticData = this.data.getData<FactionData>(guild.id, 'factionData')
+      if (!staticData) return
+      for (const faction in staticData.factions) {
+        const role = this.getDataBasic(guild.id)?.factions[faction].role
+        if (!role) continue
+
+        const count = guild.roles.get(role)?.members.size
+        if (typeof count === 'undefined') continue
+        staticData.factions[faction].count = count
+      }
+    }
+    func()
+
+    const interval = setInterval(func, 60 * 60 * 1000)
+  }
+
   private async onMessage(msg: Discord.Message) {
+    if (msg.author.id === this.client.user.id) return
     logger.chat(`[${msg.channel.type}]>${msg.author.username ?? 'BOT'}: ${msg.content}`)
     if (msg.channel.type === 'dm') {
       const activeGuild = this.globalData[msg.author.id]?.activeGuild
       if (activeGuild) {
         const data = this.getDataBasic(activeGuild)
-        if (data?.ready) {
+        if (data) {
           const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
           const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
           if (!answers) return
@@ -63,7 +88,7 @@ export default class EverythingHandler {
       }
 
       const data = await this.getData(msg.guild)
-      if (!data.ready) return
+      if (!data) return
       if (data.botChannels.includes(msg.channel.id)) {
         let userData = data.userData[msg.member.id]
         if (userData) {
@@ -74,7 +99,8 @@ export default class EverythingHandler {
         }
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
-          await this.onGuildMemberAdd(msg.member)
+          this.onGuildMemberAdd(msg.member)
+          return
         } else if (userData.quests.length === 0) {
           // Start quest if somehow never started
           this.start(msg.member)
@@ -99,7 +125,7 @@ export default class EverythingHandler {
 
   private advance(answer: Answer, memberId: MemberId, guildId: GuildId, textChannel?: TextChannel) {
     const data = this.getDataBasic(guildId)
-    if (data?.ready) {
+    if (data) {
       logger.botInfo(`Advancing quest for: ${memberId} in guild ${guildId}`)
 
       const quest = data.userData[memberId].quests[0]
@@ -216,12 +242,10 @@ export default class EverythingHandler {
   }
 
   private async getData(guild: Discord.Guild): Promise<CombinedGuildData> {
-    let guildData = this.data.getData(guild.id, 'guildData') as StaticGuildData | undefined
-    let userData = this.data.getData(guild.id, 'guildUserData') as GuildUserData | undefined
+    let guildData = this.data.getData<StaticData>(guild.id, 'guildData')
+    let userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
     if (!guildData) {
-      const channel = guild.channels.first()
-      const defaults: StaticGuildData = { ...channel ? { botChannels: [channel.id] } : {}, ...{ ready: false, userData: {} } }
-      guildData = await this.data.load(guild.id, 'guildData', defaults) as StaticGuildData | undefined
+      guildData = await this.data.load<StaticData>(guild.id, 'guildData')
     }
     if (!userData) {
       userData = await this.data.load(guild.id, 'guildUserData', {}) as GuildUserData | undefined
@@ -230,26 +254,63 @@ export default class EverythingHandler {
     return { userData, ...guildData }
   }
   private getDataBasic(guildId: GuildId): CombinedGuildData | undefined {
-    const guildData = this.data.getData(guildId, 'guildData') as StaticGuildData | undefined
-    const userData = this.data.getData(guildId, 'guildUserData') as GuildUserData | undefined
+    const guildData = this.data.getData<StaticData>(guildId, 'guildData')
+    const userData = this.data.getData<GuildUserData>(guildId, 'guildUserData')
     if (!guildData || !userData) return
     return { userData, ...guildData }
   }
 
-  private setFactionFromPoints(quest: UserData['quests'][number]) {
-    const points = quest.points!
+  private setFactionFromPoints(quest: UserData['quests'][number], guildId: string) {
+    const rangePercent = 0.2
+    if (!quest.points) return
+
+    const points = quest.points
     if (points) {
-      let max = -Infinity
-      for (const faction in points) {
-        if (points[faction] > max) {
-          quest.faction = faction
-          max = points[faction]
+      const maxRarePoints = 5
+      const rareFactionPoints: {[faction: string]: number} = {}
+      const staticData = this.data.getData<FactionData>(guildId, 'factionData')
+      if (staticData) {
+        const populations: {[faction: string]: number} = {}
+        let population = 0
+
+        for (const faction in staticData.factions) {
+          populations[faction] = staticData.factions[faction].count
+          population += staticData.factions[faction].count
+        }
+
+        const evenSpreadPopulation = population / Object.keys(staticData.factions).length
+
+        for (const faction in staticData.factions) {
+          rareFactionPoints[faction] = (1 - Math.max(staticData.factions[faction].count / evenSpreadPopulation, 1)) * maxRarePoints
         }
       }
+
+
+      let maxPoints = -Infinity
+      let maxFact = ''
+      for (const faction in points) {
+        if (points[faction] > maxPoints) {
+          const raredPoints = points[faction] + rareFactionPoints[faction]
+          maxPoints = raredPoints
+          maxFact = faction
+        }
+      }
+
+      let minInRangePoints = -Infinity
+      let minInRange = maxFact
+      for (const faction in points) {
+        const raredPoints = points[faction] + rareFactionPoints[faction]
+        if ((1 - raredPoints / maxPoints) <= rangePercent) {
+          minInRangePoints = raredPoints
+          minInRange = faction
+        }
+      }
+
+      quest.faction = minInRange
     }
   }
 
-  private getFactionRoles(factions: StaticGuildData['factions']) {
+  private getFactionRoles(factions: StaticData['factions']) {
     const res = []
     for (const faction in factions) res.push(factions[faction].role)
     return res
@@ -269,7 +330,7 @@ export default class EverythingHandler {
     this.globalData[memberId] = { activeGuild: guildId }
 
     const data = this.getDataBasic(guildId)
-    if (data?.ready) {
+    if (data) {
       const userData = data.userData[memberId]
       if (userData.quests.length === 0 || userData.quests[0].endTime) {
         userData.quests.push({ question: this.getRngVal(data.quest.startQuestion), startTime: Date.now(), attempts: 1 })
@@ -295,7 +356,7 @@ export default class EverythingHandler {
     logger.botInfo(`Skipped quest for: ${memberId} in guild ${guildId}`)
 
     const data = this.getDataBasic(guildId)
-    if (data?.ready) {
+    if (data) {
       const userData = data.userData[memberId]
       const quest = userData.quests[0]
       quest.result = 'skip'
@@ -315,12 +376,12 @@ export default class EverythingHandler {
     logger.botInfo(`Finished quest for: ${memberId} in guild ${guildId}`)
 
     const data = this.getDataBasic(guildId)
-    if (data?.ready) {
+    if (data) {
       const userData = data.userData[memberId]
       const quest = userData.quests[0]
       quest.result = 'finish'
       quest.endTime = Date.now()
-      this.setFactionFromPoints(quest)
+      this.setFactionFromPoints(quest, guildId)
       delete this.globalData[memberId]
 
       const member = this.client.guilds.get(guildId)?.member(memberId)
@@ -330,6 +391,22 @@ export default class EverythingHandler {
 
       if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
       this.addRoles(member, data.finishRoles)
+
+      const staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
+      if (quest.points) {
+        for (const faction in quest.points) {
+          if (!staticData.factions[faction]) {
+            staticData.factions[faction] = { points: 0, count: 0, questPoints: 0 }
+          }
+          staticData.factions[faction].questPoints += quest.points[faction]
+        }
+      }
+      if (quest.faction) {
+        if (!staticData.factions[quest.faction]) {
+          staticData.factions[quest.faction] = { points: 0, count: 0, questPoints: 0 }
+        }
+        staticData.factions[quest.faction].count++
+      }
     }
   }
 }
