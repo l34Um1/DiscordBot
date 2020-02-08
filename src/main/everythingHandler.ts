@@ -275,7 +275,7 @@ export default class EverythingHandler {
       this.addRoles(member, data.questingRoles)
 
       const channel = guild.defaultChannel ?? guild.channels.find('id', data.botChannels[0])
-      channel.send(`${member.nickname} ${this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)].text)}`)
+      channel.send(`${member.displayName} ${this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)].text)}`)
     }
   }
 
