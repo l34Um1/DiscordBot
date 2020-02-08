@@ -38,7 +38,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', 'path <path>', this.callPath)
   }
 
-  public async callLoad(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callLoad((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, pluginId]: ['load', string] = params
 
     if (!await this.compile()) return 'An error occurred during compilation'
@@ -46,7 +46,7 @@ export class Instance implements PluginInstance {
     const resMsg = (await this.l.loadPlugin(pluginId)).message
     return resMsg || `Loaded ${pluginId} succesfully`
   }
-  public async callReload(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callReload((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, pluginId]: ['reload', string] = params
 
     if (!await this.compile()) return 'An error occurred during compilation'
@@ -54,13 +54,13 @@ export class Instance implements PluginInstance {
     const resMsg = (await this.l.reloadPlugin(pluginId)).message
     return resMsg || `Reloaded ${pluginId} succesfully`
   }
-  public async callUnload(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callUnload((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, pluginId]: ['unload', string] = params
 
     const resMsg = (await this.l.unloadPlugin(pluginId)).message
     return resMsg || `Unloaded ${pluginId} succesfully`
   }
-  public async callPath(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPath((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, path]: ['path', string] = params
 
     try {

@@ -45,7 +45,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<USER> <message...>', this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [targetId, message]: [number, string[]] = params
 
     const data = this.l.getData(channelId, 'notifies') as NotifyData
@@ -61,7 +61,7 @@ export class Instance implements PluginInstance {
     return `${extra.words[1]} now has ${this.l.u.plural(data[targetId].length, 'notify', 'notifies')}`
   }
 
-  public async callDelete(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDelete((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, targetId]: ['del', number | undefined] = params
 
     const data = this.l.getData(channelId, 'notifies') as NotifyData

@@ -44,7 +44,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '[<USER>]', this.callMain)
   }
 
-  public async callRecord(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callRecord((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: ['record'] = params
 
     const data = this.l.getData(channelId, 'myIq') as MyIQData
@@ -58,7 +58,7 @@ export class Instance implements PluginInstance {
     return `@${extra.irc.tags['display-name']} The highest IQ is ${high} by ${byHigh} and the lowest IQ is ${low} by ${byLow}`
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [_targetId]: [number | undefined] = params
     const recipientId = _targetId || userId
 

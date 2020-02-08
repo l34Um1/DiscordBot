@@ -30,7 +30,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '[<echo...>]', this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [echo]: [string[] | undefined] = params
 
     return echo ? echo.join(' ') : 'echo'

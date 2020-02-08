@@ -28,7 +28,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', `enable|disable ${categoryNames.map(v => v.toLowerCase()).join('|')}`, this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, key]: ['enable' | 'disable', string] = params
 
     for (const name of categoryNames) {

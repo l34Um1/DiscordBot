@@ -126,7 +126,7 @@ interface AliasData {
 }
 
 interface CooldownData {
-  user: { [pluginId: string]: { [memberId: string]: number[] } }
+  user: { [pluginId: string]: { [userId: string]: number[] } }
   shared: { [pluginId: string]: number[] }
 }
 
@@ -290,7 +290,8 @@ export default class Commander {
     }
   }
 
-  public delAlias(guildId: string, alias: string): boolean {
+  public delAlias(guild: Guild | string, alias: string): boolean {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     alias = alias.toLowerCase()
     if (!(this.data.data[guildId] || {}).aliases) return false
     delete this.data.data[guildId].aliases.aliases[alias]
@@ -299,7 +300,8 @@ export default class Commander {
   }
 
   /** Merge `options` over `alias` */
-  public modAlias(guildId: string, alias: string, options: Partial<CommandAliasSource>): ReadonlyCommandAlias | void {
+  public modAlias(guild: Guild | string, alias: string, options: Partial<CommandAliasSource>): ReadonlyCommandAlias | void {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     alias = alias.toLowerCase()
     if (!(this.data.data[guildId] || {}).aliases.aliases) return
     if (!this.data.data[guildId].aliases.aliases[alias]) {
@@ -313,7 +315,8 @@ export default class Commander {
     return this.data.data[guildId].aliases.aliases[alias]
   }
 
-  public setAlias(guildId: string, alias: string, options: CommandAliasSource): ReadonlyCommandAlias | void {
+  public setAlias(guild: Guild | string, alias: string, options: CommandAliasSource): ReadonlyCommandAlias | void {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     alias = alias.toLowerCase()
     if (!(this.data.data[guildId] || {}).aliases.aliases) return
     this.data.data[guildId].aliases.aliases[alias] = deepClone(options)
@@ -321,7 +324,8 @@ export default class Commander {
     return this.data.data[guildId].aliases.aliases[alias]
   }
 
-  public getAlias(guildId: string, alias: string): ReadonlyCommandAlias | void {
+  public getAlias(guild: Guild | string, alias: string): ReadonlyCommandAlias | void {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     alias = alias.toLowerCase()
     if (!(this.data.data[guildId] || {}).aliases) return
     if (!this.data.data[guildId].aliases.deletes[alias]) {
@@ -330,7 +334,8 @@ export default class Commander {
     return this.data.data[guildId].aliases.aliases[alias]
   }
 
-  public getAliases(guildId: string): { [x: string]: ReadonlyCommandAlias } | void {
+  public getAliases(guild: Guild | string): { [x: string]: ReadonlyCommandAlias } | void {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     if (!(this.data.data[guildId] || {}).aliases) return
 
     const defaults: { [x: string]: ReadonlyCommandAlias } = {}
@@ -340,7 +345,8 @@ export default class Commander {
     return { ...defaults, ...this.data.data[guildId].aliases.aliases }
   }
 
-  public getAliasesById(guildId: string, pluginId: string): { [x: string]: ReadonlyCommandAlias } | void {
+  public getAliasesById(guild: Guild | string, pluginId: string): { [x: string]: ReadonlyCommandAlias } | void {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     if (!(this.data.data[guildId] || {}).aliases) return
 
     const res: { [x: string]: ReadonlyCommandAlias } = {}
@@ -361,12 +367,24 @@ export default class Commander {
   public getUserlvl(member: GuildMember): Userlvl {
     // Number: 0: anyone 6: admin, 8: owner, 10: master
     if (this.masters.includes(member.id)) return Userlvl.master // Master
-    if (member.id === member.guild.ownerID) return Userlvl.owner
+    if (this.isOwner(member)) return Userlvl.owner
     if (member.hasPermission('ADMINISTRATOR')) return Userlvl.admin
     return Userlvl.any
   }
 
-  /** Determine if `userId` with `badges` would be permitted to call this alias */
+  /** Whether or not `member` is the owner of `guild` */
+  public isOwner(member: GuildMember | string, guild: Guild): boolean
+  public isOwner(member: GuildMember, guild?: Guild): boolean
+  public isOwner(member: GuildMember | string, guild?: Guild) {
+    if (typeof member === 'object') {
+      return member.id === (guild ?? member.guild).ownerID
+    } else {
+      if (!guild) throw new Error('No guild value passed and no variable was used for deriving guild')
+      return member === guild.ownerID
+    }
+  }
+
+  /** Determine if `member` would be permitted to call this alias */
   public isPermitted(alias: CommandAliasLike, member: GuildMember, options: IsPermittedOptions = {}) {
     const userlvl = this.getUserlvl(member)
     if (userlvl >= Userlvl.master) return true
@@ -377,8 +395,9 @@ export default class Commander {
     return userlvl >= (alias.userlvl || 0)
   }
 
-  /** Determine the remaining cooldown of `alias` in `channelId` for `userId` */
-  public getCooldown(guildId: string, user: GuildMember, alias: DefaultCommandAlias): number {
+  /** Determine the remaining cooldown of `alias` in `guild` for `member` */
+  public getCooldown(guild: Guild | string, member: GuildMember, alias: DefaultCommandAlias): number {
+    const guildId = typeof guild === 'object' ? guild.id : guild
     const cooldowns = this.data.getData(guildId, 'cooldowns') as CooldownData
     if (!cooldowns) return 0
 
@@ -391,8 +410,8 @@ export default class Commander {
     }
     if (alias.userCooldown) {
       if (typeof cooldowns.user[alias.target] !== 'object') cooldowns.user[alias.target] = {}
-      if (typeof cooldowns.user[alias.target][user.id] !== 'object') cooldowns.user[alias.target][user.id] = []
-      ucd = next(cooldowns.user[alias.target][user.id], alias.userCooldown)
+      if (typeof cooldowns.user[alias.target][member.id] !== 'object') cooldowns.user[alias.target][member.id] = []
+      ucd = next(cooldowns.user[alias.target][member.id], alias.userCooldown)
     }
     return Math.max(cd, ucd)
 
@@ -565,7 +584,8 @@ export default class Commander {
   }
 
   /** Determines if @user should be inserted to message */
-  public shouldAtUser(atUser: Command['disableMention'], content: string, userId: string): boolean {
+  public shouldAtUser(atUser: Command['disableMention'], content: string, user: User | GuildMember | string): boolean {
+    const userId = typeof user === 'object' ? user.id : user
     if (atUser) return false
     content = content.toLowerCase()
     if (content.length > 200) return false
@@ -574,7 +594,8 @@ export default class Commander {
   }
 
   /** Returns the `'<@userId> '` string */
-  public getAtUser(userId: string): string {
+  public getAtUser(user: User | GuildMember | string): string {
+    const userId = typeof user === 'object' ? user.id : user
     return `<@${userId}> `
   }
 
@@ -658,7 +679,7 @@ export default class Commander {
         // Master users, mods and the broadcaster don't care about cooldowns
         const validation = await this.validator.validate(guild.id, plugin.id, words.slice(1), alias.group)
         if (!validation.pass) {
-          return message.channel.send(`${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`);
+          return message.channel.send(`${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`)
         }
 
         const extra: Extra = { message, alias, words, cooldown: 0, userlvl }
@@ -667,7 +688,7 @@ export default class Commander {
           res = handleAdvanced(this, res, plugin, false)
         }
         if (res) {
-          message.channel.send(`${addAtUser(this, plugin.disableMention, res)}${res}`);
+          message.channel.send(`${addAtUser(this, plugin.disableMention, res)}${res}`)
         }
       } else {
         const cooldown = this.getCooldown(guild.id, member, alias)
@@ -686,7 +707,7 @@ export default class Commander {
 
           const validation = await this.validator.validate(guild.id, plugin.id, words.slice(1), alias.group)
           if (!validation.pass) {
-            if (whisperCall) member.user.send(validation.message);
+            if (whisperCall) member.user.send(validation.message)
             else message.channel.send(`${addAtUser(this, plugin.disableMention, validation.message)}${validation.message}`)
             return
           }
@@ -697,7 +718,7 @@ export default class Commander {
             res = handleAdvanced(this, res, plugin, whisperCall)
           }
           if (res) {
-            if (whisperCall) member.user.send(res);
+            if (whisperCall) member.user.send(res)
             else message.channel.send(`${addAtUser(this, plugin.disableMention, res)}${res}`)
           }
         } else if (instance.handlers.cd[group]) { // Call cooldown handlers if defined
@@ -709,7 +730,7 @@ export default class Commander {
           const extra: Extra = { message, alias, words, cooldown, userlvl }
           let res = await instance.handlers.cd[group][validation.index].handler!(guild, member, validation.values, extra)
           if (typeof res === 'object') res = handleAdvanced(this, res, plugin, true)
-          if (res) member.user.send(res);
+          if (res) member.user.send(res)
         }
       }
     }

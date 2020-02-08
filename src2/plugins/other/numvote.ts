@@ -53,7 +53,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '', this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const []: [] = params
 
     if (!this.voteData[channelId]) this.voteData[channelId] = { voters: [], votes: {}, time: this.opts.time, timeout: undefined }

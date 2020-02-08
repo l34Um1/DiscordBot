@@ -1,4 +1,5 @@
-import { Client as DiscordClient, GuildMember } from 'discord.js'
+import { Client as DiscordClient, GuildMember, User, Guild } from 'discord.js'
+
 import Commander, { CommandAlias, Extra, PluginInstance, PluginOptions, Userlvl, Handlers, ReadonlyCommandAlias } from './commander'
 import Data from './data'
 import * as secretKey from './lib/secretKey'
@@ -69,23 +70,25 @@ export default class PluginLibrary {
   public saveAllSync: Data['saveAllSync']
 
   /**
-   * Create or overwrite a command alias in `channelId`  
+   * Create or overwrite a command alias in `guild`  
    * @returns Created alias
    */
   public setAlias: Commander['setAlias']
-  /** Return alias of `channelId` */
+  /** Return alias of `guild` */
   public getAlias: Commander['getAlias']
-  /** Merge `options` to an existing alias of `channelId` */
+  /** Merge `options` to an existing alias of `guild` */
   public modAlias: Commander['modAlias']
-  /** Delete a command alias in `channelId` */
+  /** Delete a command alias in `guild` */
   public delAlias: Commander['delAlias']
-  /** Returns all aliases of `channelId` */
+  /** Returns all aliases of `guild` */
   public getAliases: Commander['getAliases']
-  /** Returns all aliases of `pluginId` of `channelId` */
+  /** Returns all aliases of `pluginId` of `guild` */
   public getAliasesById: Commander['getAliasesById']
-  /** Determine if `userId` with `badges` would be permitted to call this command */
+  /** Whether or not `member` is the owner of `guild` */
+  public isOwner: Commander['isOwner']
+  /** Determine if `member` would be permitted to call this command */
   public isPermitted: Commander['isPermitted']
-  /** Determine the remaining cooldown of `alias` in `channelId` for `userId` */
+  /** Determine the remaining cooldown of `alias` in `guild` for `userId` */
   public getCooldown: Commander['getCooldown']
   /** Reloads `pluginId` if possible */
   public reloadPlugin: Commander['reloadPlugin']
@@ -134,6 +137,7 @@ export default class PluginLibrary {
     this.delAlias = this.commander.delAlias.bind(this.commander)
     this.getAliases = this.commander.getAliases.bind(this.commander)
     this.getAliasesById = this.commander.getAliasesById.bind(this.commander)
+    this.isOwner = this.commander.isOwner.bind(this.commander)
     this.isPermitted = this.commander.isPermitted.bind(this.commander)
     this.getCooldown = this.commander.getCooldown.bind(this.commander)
     this.reloadPlugin = this.commander.reloadPlugin.bind(this.commander)
@@ -207,30 +211,6 @@ export default class PluginLibrary {
     }
   }
 
-  /** 
-   * @example 
-   * {
-   *   call: {
-   *     default: Array<{
-   *       params: string
-   *       handler: (channelId: number, userId: number, params: any, extra: Extra) => Promise<string | void>
-   *     }>
-   *     [group: string]: Array<{
-   *       params: string
-   *       handler: (channelId: number, userId: number, params: any, extra: Extra) => Promise<string | void>
-   *     }>
-   *   }
-   *   cd: {
-   *     default: Array<{
-   *       handler?: (channelId: number, userId: number, params: any, extra: Extra) => Promise<string | void>
-   *     }>
-   *     [group: string]: Array<{
-   *       handler?: (channelId: number, userId: number, params: any, extra: Extra) => Promise<string | void>
-   *     }>
-   *   }
-   * } 
-   */
-
   /** Throws if conflicts are found */
   public findConflicts() {
     this.commander.findConflicts(Object.values(this.commander.plugins), Object.values(this.commander.paths))
@@ -261,17 +241,18 @@ export default class PluginLibrary {
   }
 
   /** Whether or not `userId` is a master user */
-  public isMaster(userId: string) {
+  public isMaster(user: User | GuildMember| string) {
+    const userId = typeof user === 'object' ? user.id : user
     return this.commander.masters.includes(userId)
   }
 
-  /** Whether or not `user` (LOGIN) SEEMS TO BE a mod in `channelId` (ID) */
+  /** Whether or not `member` is an administrator of the guild */
   public isMod(member: GuildMember) {
-    return member.hasPermission("ADMINISTRATOR")
+    return member.hasPermission('ADMINISTRATOR')
   }
 
   /** Insert @user to `message` if needed and return it */
-  public insertAtUser(userId: string, content: string, overrideAtUser?: true): string {
+  public insertAtUser(userId: User | GuildMember| string, content: string, overrideAtUser?: true): string {
     return (this.commander.shouldAtUser(overrideAtUser, content, userId) ? this.commander.getAtUser(userId) : '') + content
   }
 
@@ -355,28 +336,29 @@ export default class PluginLibrary {
     return Object.values(this.commander.plugins)
   }
 
-  /** Returns active default aliases or active aliases of `channelId` */
-  public getEnabledAliases(channelId: number): { [alias: string]: ReadonlyCommandAlias } {
-    return this._getEnabledAliases(channelId)
+  /** Returns active default aliases or active aliases of `guild` */
+  public getEnabledAliases(guild: string | Guild): { [alias: string]: ReadonlyCommandAlias } {
+    return this._getEnabledAliases(guild)
   }
   /** Returns active default aliases */
   public getEnabledGlobalAliases(): { [x: string]: ReadonlyCommandAlias } {
     return this._getEnabledAliases()
   }
 
-  /** Returns active aliases of `channelId` */
-  private _getEnabledAliases(channelId: number): { [alias: string]: ReadonlyCommandAlias }
+  /** Returns active aliases of `guild` */
+  private _getEnabledAliases(guild: string | Guild): { [alias: string]: ReadonlyCommandAlias }
   /** Returns active default aliases */
   private _getEnabledAliases(): { [x: string]: ReadonlyCommandAlias }
-  /** Returns active default aliases or active aliases of `channelId` */
-  private _getEnabledAliases(channelId?: number): { [alias: string]: ReadonlyCommandAlias } {
+  /** Returns active default aliases or active aliases of `guild` */
+  private _getEnabledAliases(guild?: string | Guild): { [alias: string]: ReadonlyCommandAlias } {
     const result: { [alias: string]: ReadonlyCommandAlias } = {}
-    if (channelId) {
+    if (guild) {
       // Channel aliases
-      for (const alias in this.data.data[channelId].aliases.aliases) {
-        if (this.data.data[channelId].aliases.aliases[alias].disabled) continue
+      const guildId = typeof guild === 'object' ? guild.id : guild
+      for (const alias in this.data.data[guildId].aliases.aliases) {
+        if (this.data.data[guildId].aliases.aliases[alias].disabled) continue
         // Channel aliases may and should overwrite default aliases here
-        result[alias] = this.data.data[channelId].aliases.aliases[alias]
+        result[alias] = this.data.data[guildId].aliases.aliases[alias]
       }
     } else {
       // Default aliases

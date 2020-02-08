@@ -36,7 +36,7 @@ export class Instance implements PluginInstance {
   }
 
 
-  public async callDisabled(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDisabled((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, _userlvl]: ['disabled', UserlvlParam] = params
     const userlvl = _userlvl === undefined ? Userlvl.any : _userlvl // Don't show master commands by default
 
@@ -52,7 +52,7 @@ export class Instance implements PluginInstance {
     return `Disabled commands: ${this.l.u.commaPunctuate(results.sort())}`
   }
 
-  public async callHidden(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callHidden((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, _userlvl]: ['hidden', UserlvlParam] = params
     const userlvl = _userlvl === undefined ? Userlvl.any : _userlvl // Don't show master commands by default
 
@@ -67,7 +67,7 @@ export class Instance implements PluginInstance {
     return `Hidden commands: ${this.l.u.commaPunctuate(results.sort())}`
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [_userlvl]: [UserlvlParam] = params
     const userlvl = _userlvl === undefined ? Userlvl.any : _userlvl // Don't show master commands by default
 

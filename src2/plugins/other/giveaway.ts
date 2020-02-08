@@ -75,7 +75,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'join', '<NOTHING>', this.callJoin)
   }
 
-  public async callStart(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callStart((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, userlvl]: [string, number] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -108,7 +108,7 @@ export class Instance implements PluginInstance {
     }`
   }
 
-  public async callLvl(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callLvl((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, userlvl, power]: [string, keyof typeof Userlvl, number?] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -138,7 +138,7 @@ export class Instance implements PluginInstance {
     }`
   }
 
-  public async callPower(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPower((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, userlvl, power]: [string, keyof typeof Userlvl, number] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -155,7 +155,7 @@ export class Instance implements PluginInstance {
     return `Entry power of ${userlvl}s changed from ${prevPow} to ${power}`
   }
 
-  public async callPowers(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPowers((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -165,7 +165,7 @@ export class Instance implements PluginInstance {
     return `Powers: ${this.validUserlvls.map(lvl => `${lvl}: ${data.powers[Userlvl[lvl]]}`).join(', ')}`
   }
 
-  public async callPause(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPause((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -179,7 +179,7 @@ export class Instance implements PluginInstance {
     return 'Giveaway paused'
   }
 
-  public async callPick(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPick((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, count]: [string, number?] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -228,7 +228,7 @@ export class Instance implements PluginInstance {
     }
   }
 
-  public async callUnpause(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callUnpause((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -242,7 +242,7 @@ export class Instance implements PluginInstance {
     return 'Giveaway unpaused'
   }
 
-  public async callEnd(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callEnd((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to modify giveaways'
 
@@ -261,7 +261,7 @@ export class Instance implements PluginInstance {
     return `Giveaway ended with ${winnerStrs.length ? commaPunctuate(winnerStrs) : 'nobody'} winning`
   }
 
-  public async callCreateJoin(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callCreateJoin((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, alias]: [string, string] = params
     if (!this.l.isPermitted(extra.alias, userId, extra.irc.tags.badges)) return 'You are not permitted to create commands'
 
@@ -272,7 +272,7 @@ export class Instance implements PluginInstance {
     return `Created join command ${alias}`
   }
 
-  public async callGetWinners(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callGetWinners((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
 
     const data = this.l.getData(channelId, 'giveaway') as GiveawayData
@@ -291,7 +291,7 @@ export class Instance implements PluginInstance {
     }`
   }
 
-  public async callJoin(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callJoin((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const []: [] = params
 
     const data = this.l.getData(channelId, 'giveaway') as GiveawayData
@@ -300,7 +300,7 @@ export class Instance implements PluginInstance {
     if (data.userlvl <= extra.userlvl) data.entries[userId] = extra.userlvl
   }
 
-  public async callPart(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPart((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
 
     const data = this.l.getData(channelId, 'giveaway') as GiveawayData

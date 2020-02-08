@@ -27,7 +27,7 @@ const exp: Array<{ options: PluginOptions, Instance: any }> = [
         this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<USER> <COMMAND>', this.callMain)
       }
 
-      public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+      public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
         const [targetId, aliasName]: [number, string] = params
 
         const alias = this.l.getAlias(channelId, aliasName)
@@ -74,7 +74,7 @@ const exp: Array<{ options: PluginOptions, Instance: any }> = [
         this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<USER> <COMMAND>', this.callMain)
       }
 
-      public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+      public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
         const [targetId, aliasName]: [number, string] = params
 
         const alias = this.l.getAlias(channelId, aliasName)

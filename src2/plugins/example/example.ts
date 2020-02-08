@@ -64,21 +64,21 @@ export class Instance implements PluginInstance {
     // Executed and awaited on plugin load
   }
 
-  public async callPrimary(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callPrimary((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [exact, variable, optVar]: ['exact', string, string | undefined] = params // Inititalize params from the ParamValidator
     return 'Example message 1'
   }
-  public async callSecondary(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callSecondary((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [match, message]: [string, string[]] = params
     return 'Example message 2'
   }
-  public async callTertiary(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callTertiary((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, channelIds]: ['join' | 'part', number[]] = params
     // join(channels)
     return `${action}ed` // joined or parted
   }
 
-  public async cooldownPrimary(channelId: number, userId: number, params: any, extra: Extra) {
+  public async cooldownPrimary((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [ting]: [string] = params
     // Command was called but it was on cooldown
     // Show a combined message for each of the users that called this when it was on cooldown?

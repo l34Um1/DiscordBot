@@ -56,7 +56,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<message...>', this.callMain)
   }
 
-  public async callReply(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callReply((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, index, message]: ['REPLY', number, string[]] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])
@@ -85,7 +85,7 @@ export class Instance implements PluginInstance {
     }
   }
 
-  public async callGet(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callGet((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, index]: ['GET', number] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])
@@ -99,7 +99,7 @@ export class Instance implements PluginInstance {
     return `Suggestion #${finalIndex}, [${await this.l.api.getDisplay(suggestion.channelId)}] ${await this.l.api.getDisplay(suggestion.userId)}: ${suggestion.message}`
   }
 
-  public async callNew(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callNew((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: ['NEW'] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])
@@ -116,7 +116,7 @@ export class Instance implements PluginInstance {
     return 'No unread suggestions'
   }
 
-  public async callOld(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callOld((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: ['OLD'] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])
@@ -135,7 +135,7 @@ export class Instance implements PluginInstance {
     return 'No unread suggestions'
   }
 
-  public async callCount(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callCount((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: ['COUNT'] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])
@@ -152,7 +152,7 @@ export class Instance implements PluginInstance {
   }
 
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [suggestion]: [string[]] = params
 
     const suggestions = this.lists.getGlobalList<Suggestion>(options.id, [])

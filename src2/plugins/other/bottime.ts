@@ -27,7 +27,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '[TEST]', this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const []: [] = params
 
     return `The bot has been running for ${this.l.u.timeDuration(process.uptime() * 1000, 2)}`

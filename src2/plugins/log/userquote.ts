@@ -36,7 +36,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '[<USER>] [<INDEX>]', this.callUser)
   }
 
-  public async callIndex(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callIndex((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [index]: [number] = params
     const targetId = userId
 
@@ -48,7 +48,7 @@ export class Instance implements PluginInstance {
     return this.l.insertAtUser(`Logger returned an invalid type: ${res.type}`, extra)
   }
 
-  public async callUser(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callUser((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [_targetId, _index]: [number | undefined, number | undefined] = params
 
     const targetId = _targetId || userId

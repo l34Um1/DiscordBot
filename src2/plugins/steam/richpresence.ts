@@ -36,7 +36,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '', this.callMain)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const []: [] = params
 
     if (!this.l.getData('global', 'steam')) return 'Steam data is currently unavailable'
@@ -51,7 +51,7 @@ export class Instance implements PluginInstance {
     }
   }
 
-  public async callSetId(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callSetId((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, steamId]: ['set', number] = params
 
     if (!this.l.isPermitted({ userlvl: Userlvl.admin }, userId, extra.irc.tags.badges)) {

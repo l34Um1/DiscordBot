@@ -48,7 +48,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', 'get <COMMAND> [blacklist|bl|cd|cooldown|disabled|enabled|group|hidden|plugin|ucd|userCooldown|ul|userlevel|userlvl|whitelist|wl]', this.callGet)
   }
 
-  public async callAdd(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callAdd((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName, pluginId]: ['add', string, string] = params
 
     const plugin = this.l.getPlugin(pluginId)
@@ -60,14 +60,14 @@ export class Instance implements PluginInstance {
     else return 'Command creation failed'
   }
 
-  public async callDelete(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDelete((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName]: ['del', string] = params
 
     if (this.l.delAlias(channelId, aliasName)) return 'Command successfully deleted'
     else return 'Command deletion failed'
   }
 
-  public async callEdit(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callEdit((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName, pluginId]: ['edit', string, string] = params
 
     const alias = this.l.getAlias(channelId, aliasName)
@@ -78,7 +78,7 @@ export class Instance implements PluginInstance {
     else return 'Command edit failed'
   }
 
-  public async callCopy(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callCopy((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, sourceName, targetName]: ['copy', string, string] = params
 
     const alias = this.l.getAlias(channelId, sourceName)
@@ -89,7 +89,7 @@ export class Instance implements PluginInstance {
     else return 'Command copy failed'
   }
 
-  public async callRename(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callRename((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, sourceAlias, targetAlias]: ['rename', string, string] = params
 
     const alias = this.l.getAlias(channelId, sourceAlias)
@@ -101,7 +101,7 @@ export class Instance implements PluginInstance {
     else return `${sourceAlias} renamed to ${targetAlias}`
   }
 
-  public async callEnable(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callEnable((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName]: ['enable' | 'disable', string] = params
 
     const enable = action === 'enable'
@@ -114,7 +114,7 @@ export class Instance implements PluginInstance {
     else return `Command ${enable ? 'enabling' : 'disabling'} failed`
   }
 
-  public async callHide(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callHide((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName]: ['hide' | 'unhide', string] = params
 
     const hide = action === 'hide'
@@ -127,7 +127,7 @@ export class Instance implements PluginInstance {
     else return `Command ${hide ? 'hiding' : 'unhiding'} failed`
   }
 
-  public async callSet(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callSet((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName, key, cd]: ['set', string, 'cd' | 'ucd', number] = params
 
     switch (key) {
@@ -152,7 +152,7 @@ export class Instance implements PluginInstance {
     }
   }
 
-  public async callGet(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callGet((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName, key]: ['set', string, 'blacklist' | 'bl' | 'cd' | 'cooldown' | 'disabled' | 'enabled' | 'group' | 'hidden' | 'plugin' | 'ucd' | 'usercooldown' | 'ul' | 'userlevel' | 'userlvl' | 'whitelist' | 'wl' | undefined] = params
 
     const alias = this.l.getAlias(channelId, aliasName)

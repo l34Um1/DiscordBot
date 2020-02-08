@@ -42,7 +42,7 @@ export class Instance implements PluginInstance {
   }
 
 
-  public async callAddEdit(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callAddEdit((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName, _message]: ['add' | 'edit', string, string[]] = params
 
     const overwrite = action === 'edit'
@@ -86,7 +86,7 @@ export class Instance implements PluginInstance {
     return `Response ${action === 'add' ? 'created' : 'edited'}: ${aliasName}`
   }
 
-  public async callRaw(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callRaw((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName]: ['raw', string] = params
 
     const alias = this.l.getAlias(channelId, aliasName)
@@ -95,7 +95,7 @@ export class Instance implements PluginInstance {
     return `${aliasName}: "${alias.data.join('')}"`
   }
 
-  public async callDelete(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDelete((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, aliasName]: ['del', string] = params
 
     const alias = this.l.getAlias(channelId, aliasName)
@@ -111,7 +111,7 @@ export class Instance implements PluginInstance {
     else return 'Command deletion failed'
   }
 
-  public async callResponse(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callResponse((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [_parameters]: [any[] | undefined] = params
     const parameters = _parameters || []
 

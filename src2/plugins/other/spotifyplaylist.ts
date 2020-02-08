@@ -58,7 +58,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', 'del', this.callDelete)
   }
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [_index]: [number | undefined] = params
     const index = (_index || 1) - 1
 
@@ -91,7 +91,7 @@ export class Instance implements PluginInstance {
     }
   }
 
-  public async callList(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callList((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: [string] = params
 
     const data = this.l.getData(channelId, 'spotifyPlaylist') as SpotifyPlaylistData
@@ -102,7 +102,7 @@ export class Instance implements PluginInstance {
     return this.l.insertAtUser(`${data.name && data.creator ? `${data.name} by ${data.creator}` : 'Paylist'}: open.spotify.com/playlist/${data.playlist}`, extra)
   }
 
-  public async callSet(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callSet((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, input]: [string, string] = params
 
     if (!this.l.isPermitted({ userlvl: Userlvl.admin }, userId, extra.irc.tags.badges)) return this.l.insertAtUser('You are not permitted to do this operation', extra)
@@ -122,7 +122,7 @@ export class Instance implements PluginInstance {
     return this.l.insertAtUser(`Playlist set to ${playlist.name} by ${playlist.owner.display_name}`, extra)
   }
 
-  public async callDelete(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDelete((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action]: ['del'] = params
 
     if (!this.l.isPermitted({ userlvl: Userlvl.admin }, userId, extra.irc.tags.badges)) return this.l.insertAtUser('You are not permitted to do this operation', extra)

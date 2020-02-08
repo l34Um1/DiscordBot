@@ -41,7 +41,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '[<INDEX>]', this.callMain, this.callMain)
   }
 
-  public async callAdd(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callAdd((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, quote]: ['add', string[]] = params
 
     const quotes = this.lists.getList<string>(options.id, channelId, [])
@@ -53,7 +53,7 @@ export class Instance implements PluginInstance {
     else return 'Something went horribly wrong!'
   }
 
-  public async callEdit(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callEdit((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, index, quote]: ['edit', number, string[]] = params
 
     const quotes = this.lists.getList<string>(options.id, channelId, [])
@@ -65,7 +65,7 @@ export class Instance implements PluginInstance {
     else return 'Invalid index'
   }
 
-  public async callInsert(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callInsert((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, index, quote]: ['insert', number, string[]] = params
 
     const quotes = this.lists.getList<string>(options.id, channelId, [])
@@ -77,7 +77,7 @@ export class Instance implements PluginInstance {
     else return 'Invalid index'
   }
 
-  public async callDelete(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callDelete((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [action, index]: ['del', number] = params
 
     const quotes = this.lists.getList<string>(options.id, channelId, [])
@@ -90,7 +90,7 @@ export class Instance implements PluginInstance {
   }
 
 
-  public async callMain(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callMain((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [index]: [number | undefined] = params
 
     const quotes = this.lists.getList<string>(options.id, channelId, [])

@@ -29,7 +29,7 @@ export class Instance implements PluginInstance {
     this.handlers = this.l.addHandlers(this, this.handlers, 'default', '<name>', this.callLocal)
   }
 
-  public async callGlobal(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callGlobal((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [subType, name]: [string, string] = params
 
     if (!this.l.getData(subType, name)) return ` \\${subType}\\${name} is not loaded`
@@ -37,7 +37,7 @@ export class Instance implements PluginInstance {
     return `Reloaded \\${subType}\\${name}`
   }
 
-  public async callLocal(channelId: number, userId: number, params: any, extra: Extra) {
+  public async callLocal((guild: Guild, member: GuildMember, params: any, extra: Extra), extra: Extra) {
     const [name]: [string] = params
 
     const subType = channelId
