@@ -102,7 +102,7 @@ export default class EverythingHandler {
       if (answer.points) {
         if (!quest.points) quest.points = {}
         for (const faction in answer.points) {
-          quest.points[faction] = quest.points[faction] ?? 0 + this.getRandomValue(answer.points[faction])
+          quest.points[faction] = (quest.points[faction] ?? 0) + this.getRandomValue(answer.points[faction])
         }
       }
 
