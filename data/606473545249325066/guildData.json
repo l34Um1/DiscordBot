@@ -43,6 +43,7 @@
           {
             "text": "No, thanks. Maybe later.",
             "target": "skip",
+            "replyInGuildChannel": true,
             "reply": "You may take the faction quiz any time you want, simply use the command !quiz."
           }
         ]

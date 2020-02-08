@@ -105,16 +105,17 @@ interface Quest {
         /**
          * Next question id to move to after this answer is selected.  
          * Define as `"finish"` to finish the quest.  
-         * Define as `"start"` to retry the quest.  
          * Define as `"skip"` to skip the quest.  
          * Leave undefined to stay in the current question without reshowing it.  
          */
-        target?: Randomizable<string | string[] | 'finish' | 'start' | 'skip'>
+        target?: Randomizable<string | string[] | 'finish' | 'skip'>
         /** Point values given towards factions */
         points?: {
           /** Value is added towards faction */
           [faction: string]: Randomizable<number>
         }
+        /** Show `reply` in the channel where bot was answered isntead. Only applicable if user answered in guild and not in dms */
+        replyInGuildChannel?: true
         /** Shown after this answer is chosen */
         reply?: Randomizable<string>
         /**

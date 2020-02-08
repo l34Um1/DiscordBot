@@ -1,4 +1,4 @@
-import Discord from 'discord.js'
+import Discord, { TextChannel } from 'discord.js'
 
 import prand from './lib/pseudoRandom'
 import Data from './data'
@@ -33,7 +33,7 @@ export default class EverythingHandler {
 
     data.userData[member.id] = { quests: [] }
     if (data.joinRoles) this.addRoles(member, data.joinRoles)
-    this.start(member.id, member.guild.id)
+    this.start(member)
   }
 
   private async onMessage(msg: Discord.Message) {
@@ -58,6 +58,9 @@ export default class EverythingHandler {
       if (msg.content === '!save' && msg.member.hasPermission('ADMINISTRATOR')) {
         this.data.saveAllSync()
       }
+      if (msg.content === '!exit' && msg.member.hasPermission('ADMINISTRATOR')) {
+        process.exit()
+      }
 
       const data = await this.getData(msg.guild)
       if (!data.ready) return
@@ -77,7 +80,7 @@ export default class EverythingHandler {
           await this.onGuildMemberAdd(msg.member)
         } else if (userData.quests.length === 0) {
           // Start quest if somehow never started
-          this.start(msg.member.id, msg.member.guild.id)
+          this.start(msg.member)
         }
         userData = data.userData[msg.member.id]
         if (userData) {
@@ -89,7 +92,7 @@ export default class EverythingHandler {
             const prefixes = this.getSeededPrefixes(answers)
             const index = prefixes.indexOf(msg.content.toLowerCase())
             if (index !== -1) {
-              this.advance(answers[index], msg.member.id, msg.member.guild.id)
+              this.advance(answers[index], msg.member.id, msg.member.guild.id, msg.channel instanceof TextChannel ? msg.channel : undefined)
             }
           }
         }
@@ -97,7 +100,7 @@ export default class EverythingHandler {
     }
   }
 
-  private advance(answer: Answer, memberId: MemberId, guildId: GuildId) {
+  private advance(answer: Answer, memberId: MemberId, guildId: GuildId, textChannel?: TextChannel) {
     const data = this.getDataBasic(guildId)
     if (data?.ready) {
       logger.botInfo(`Advancing quest for: ${memberId} in guild ${guildId}`)
@@ -106,20 +109,24 @@ export default class EverythingHandler {
       if (answer.points) {
         if (!quest.points) quest.points = {}
         for (const faction in answer.points) {
-          quest.points[faction] = (quest.points[faction] ?? 0) + this.getRandomValue(answer.points[faction])
+          quest.points[faction] = (quest.points[faction] ?? 0) + this.getRngVal(answer.points[faction])
         }
       }
 
-      if (answer.reply) this.message(`${this.getRandomValue(answer.reply)}\n\n`, memberId)
-      if (answer.target === 'start') {
-        this.start(memberId, guildId)
-      } else if (answer.target === 'skip') {
+      if (answer.reply) {
+        if (answer.replyInGuildChannel && textChannel) {
+          textChannel?.send(`${this.getRngVal(answer.reply)}\n\n`)
+        } else {
+          this.message(`${this.getRngVal(answer.reply)}\n\n`, memberId)
+        }
+      }
+      if (answer.target === 'skip') {
         this.skip(memberId, guildId)
       } else if (answer.target === 'finish') {
         this.finish(memberId, guildId)
       } else {
         if (!answer.target) return
-        quest.question = this.getRandomValue(answer.target)
+        quest.question = this.getRngVal(answer.target)
         this.displayQuestion(data.quest.questions[quest.question], memberId)
       }
     }
@@ -139,7 +146,7 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    this.message(`${this.getRandomValue(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
+    this.message(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
   }
 
   private async message(msg: string, userId: UserId) {
@@ -193,7 +200,7 @@ export default class EverythingHandler {
    * **If T is an array itself don't use this method!!**  
    * @returns If `randomizable` is an array, a random element in that array, otherwise, `randomizable` is returned
    */
-  private getRandomValue<T>(randomizable: Randomizable<T>): T extends any[] ? T[number] : T {
+  private getRngVal<T>(randomizable: Randomizable<T>): T extends any[] ? T[number] : T {
     return (Array.isArray(randomizable) ? randomizable[Math.random() * randomizable.length - 1] : randomizable) as T extends any[] ? T[number] : T
   }
 
@@ -245,7 +252,11 @@ export default class EverythingHandler {
     return true
   }
 
-  private async start(memberId: MemberId, guildId: GuildId) {
+  private async start(member: GuildMember) {
+    const memberId = member.id
+    const guild = member.guild
+    const guildId = guild.id
+
     logger.botInfo(`Starting quest for: ${memberId} in guild ${guildId}`)
 
     this.globalData[memberId] = { activeGuild: guildId }
@@ -254,19 +265,19 @@ export default class EverythingHandler {
     if (data?.ready) {
       const userData = data.userData[memberId]
       if (userData.quests.length === 0 || userData.quests[0].endTime) {
-        userData.quests.push({ question: this.getRandomValue(data.quest.startQuestion), startTime: Date.now(), attempts: 1 })
+        userData.quests.push({ question: this.getRngVal(data.quest.startQuestion), startTime: Date.now(), attempts: 1 })
       } else {
         const quest = userData.quests[0]
         quest.attempts++
-        quest.question = this.getRandomValue(data.quest.startQuestion)
+        quest.question = this.getRngVal(data.quest.startQuestion)
         quest.startTime = Date.now()
         delete quest.points
       }
       userData.quests[0].startTime = Date.now()
 
-      const member = this.client.guilds.get(guildId)?.member(memberId)
-
       this.addRoles(member, data.questingRoles)
+
+      guild.defaultChannel.send(this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)].text))
     }
   }
 
