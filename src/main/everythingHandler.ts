@@ -146,6 +146,16 @@ export default class EverythingHandler {
     this.message(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
   }
 
+  private async displayQuestionInChannel(question: Question, member: GuildMember, channel: TextChannel) {
+    const answers = this.getSeededAnswers(member.id, member.guild.id, question.answers)
+    if (!answers) return
+
+    const prefixes = this.getSeededPrefixes(answers)
+    const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
+
+    channel.send(`<@${member.id}>${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`)
+  }
+
   private async message(msg: string, userId: UserId) {
     await (await this.client.fetchUser(userId, true)).send(msg)
   }
@@ -275,7 +285,9 @@ export default class EverythingHandler {
       this.addRoles(member, data.questingRoles)
 
       const channel = guild.defaultChannel ?? guild.channels.find('id', data.botChannels[0])
-      channel.send(`${member.displayName} ${this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)].text)}`)
+      const question = this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)])
+
+      this.displayQuestionInChannel(question, member, channel)
     }
   }
 
