@@ -82,13 +82,13 @@
             }
           },
           {
-            "text": "I'll research the causes of the earthquake so that we can redesign the town to be more resistant.",
+            "text": "I'll be part of the rescue mission - Venturing into the rubble to pull out survivors.",
             "target": "two",
             "points": {
               "gbc": 2,
               "jd": 0,
               "mv": 5,
-              "sof": 0
+              "sof": 1
             }
           }
         ]
@@ -172,7 +172,7 @@
             }
           },
           {
-            "text": "Irritating .",
+            "text": "Irritating.",
             "target": "four",
             "points": {
               "gbc": 5,
