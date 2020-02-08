@@ -345,7 +345,12 @@ export default class EverythingHandler {
 
       this.addRoles(member, data.questingRoles)
 
-      const channel = guild.defaultChannel ?? guild.channels.find('id', data.botChannels[0])
+      const channel = guild.channels.find('id', data.botChannels[0])
+      if (!(channel instanceof TextChannel)) {
+        logger.warn('No suitable channel found for channel answer')
+        return
+      }
+
       const question = this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)])
 
       this.displayQuestionInChannel(question, member, channel)
@@ -392,7 +397,10 @@ export default class EverythingHandler {
       if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
       this.addRoles(member, data.finishRoles)
 
-      const staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
+      let staticData = this.data.getData<FactionData>(guildId, 'factionData')
+      if (!staticData) {
+        staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
+      }
       if (quest.points) {
         for (const faction in quest.points) {
           if (!staticData.factions[faction]) {
