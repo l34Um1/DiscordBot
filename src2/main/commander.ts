@@ -384,6 +384,11 @@ export default class Commander {
     }
   }
 
+  /** Whether or not `member` is an administrator of `guild` */
+  public isAdmin(member: GuildMember) {
+    return member.hasPermission('ADMINISTRATOR')
+  }
+
   /** Determine if `member` would be permitted to call this alias */
   public isPermitted(alias: CommandAliasLike, member: GuildMember, options: IsPermittedOptions = {}) {
     const userlvl = this.getUserlvl(member)

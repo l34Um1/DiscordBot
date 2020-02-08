@@ -25,8 +25,8 @@ export default class EverythingHandler {
 
   public async whisper(msg: string, userId: UserId): Promise<void>
   public async whisper(msg: string, user: User): Promise<void>
-  public async whisper(msg: string, userId: UserId | User) {
-    await (typeof userId === 'string' ? await this.client.fetchUser(userId, true) : userId).send(msg)
+  public async whisper(msg: string, user: UserId | User) {
+    await (typeof user === 'string' ? await this.client.fetchUser(user, true) : user).send(msg)
   }
 
   private async init() {

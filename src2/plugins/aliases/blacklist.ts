@@ -30,21 +30,21 @@ const exp: Array<{ options: PluginOptions, Instance: any }> = [
       }
 
       private async callMain(guild: Guild, member: GuildMember, params: any, extra: Extra) {
-        const [targetId, aliasName]: [number, string] = params
+        const [target, aliasName]: [GuildMember, string] = params
 
-        const alias = this.l.getAlias(guildId, aliasName)
+        const alias = this.l.getAlias(guild, aliasName)
         if (alias) { // Channel alias
-          if (!this.l.isPermitted(alias, userId, extra.irc.tags.badges, { ignoreWhiteList: true })) return 'You cannot edit the blacklist of a command you are not permitted to use'
+          if (!this.l.isPermitted(alias, member, { ignoreWhiteList: true })) return 'You cannot edit the blacklist of a command you are not permitted to use'
 
-          if (targetId === guildId) return 'You cannot blacklist the broadcaster'
-          if (this.l.isMod(guildId, extra.words[1])) return 'You cannot blacklist a moderator'
+          if (this.l.isOwner(member)) return 'You cannot blacklist the broadcaster'
+          if (this.l.isAdmin(member)) return 'You cannot blacklist an administrator'
 
-          if (alias.blacklist && alias.blacklist.includes(targetId)) return `${extra.words[2]} is already blacklisted from using ${aliasName}`
+          if (alias.blacklist && alias.blacklist.includes(target.id)) return `${extra.words[2]} is already blacklisted from using ${aliasName}`
 
-          let out: number[] = []
+          let out: string[] = []
           if (alias.blacklist) out = [...alias.blacklist]
-          out.push(targetId)
-          this.l.modAlias(guildId, aliasName, { blacklist: out })
+          out.push(target.id)
+          this.l.modAlias(guild, aliasName, { blacklist: out })
           return `Blacklisted ${extra.words[1]} from using ${aliasName}`
         }
         return 'Cannot find that command'

@@ -86,6 +86,8 @@ export default class PluginLibrary {
   public getAliasesById: Commander['getAliasesById']
   /** Whether or not `member` is the owner of `guild` */
   public isOwner: Commander['isOwner']
+  /** Whether or not `member` is an administrator of `guild` */
+  public isAdmin: Commander['isAdmin']
   /** Determine if `member` would be permitted to call this command */
   public isPermitted: Commander['isPermitted']
   /** Determine the remaining cooldown of `alias` in `guild` for `userId` */
