@@ -64,7 +64,7 @@ export class Manager {
           this.opts.autoRestartNext = typeof val === undefined ? true : val
           break
         case 'AUTO_RESTART':
-          this.opts.noAutoRestart = !(typeof val === undefined ? true : val)
+          this.opts.noAutoRestart = typeof val === undefined ? false : !val
           break
         case 'REMOVE_ARG':
           this.extraArgs = removeOption(val, this.extraArgs, rules)

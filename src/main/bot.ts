@@ -13,10 +13,6 @@ export interface BotOptions {
   masters: readonly number[]
 }
 
-/**
- * Creates a fully operating bot  
- * Assuming you have set all the keys etc...  
- */
 export default class Bot {
   private data: Data
   private opts: Required<BotOptions>
@@ -51,7 +47,9 @@ export default class Bot {
     const configPath = './cfg/keys.json'
 
     const token = secretKey.getKey(configPath, 'discord', 'token')
-    if (typeof token !== 'string') throw new TypeError(`Provide a string value for discord.token ${configPath}`)
+    if (typeof token !== 'string') {
+      throw new TypeError(`Provide a string value for discord.token ${configPath}`)
+    }
 
 
     this.client = new Discord.Client({})

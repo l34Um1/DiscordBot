@@ -31,7 +31,7 @@ if (args.args.manager && !process.send) {
     throw e
   })
 
-  const bot = new Bot({ masters: ['160439044348575745'] })
+  const bot = new Bot({ masters: [61365582] })
 }
 
 function logError(error: any) {
