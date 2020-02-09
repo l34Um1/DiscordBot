@@ -67,8 +67,10 @@ interface CommandData {
   /** The channel which the bot reads for commands */
   readonly commands: {
     [command: string]: {
-      /** The message sent  */
+      /** The message sent */
       text: string
+      /** Commands which also call this message */
+      alias?: string[]
     }
   }
 }

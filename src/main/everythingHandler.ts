@@ -10,6 +10,7 @@ export default class EverythingHandler {
   private data: Data
   private globalData!: GlobalQuestData
   private rl: RateLimiter
+  private commandKeys: {[guild: string]: {[command: string]: CommandData['commands'][number]}}
   constructor(client: Discord.Client, data: Data) {
     this.client = client
     this.data = data
@@ -17,6 +18,7 @@ export default class EverythingHandler {
       duration: 0,
       delay: 1000,
     })
+    this.commandKeys = {}
     this.init()
   }
 
@@ -127,6 +129,7 @@ export default class EverythingHandler {
             return
           }
           cmdData.commands[name] = { text }
+          this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command created')
         }
         if (msg.content.startsWith('!editcom')) {
@@ -146,6 +149,7 @@ export default class EverythingHandler {
             msg.channel.send('Command does not exist. Creating as a new command')
           }
           cmdData.commands[name] = { text }
+          this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command modified')
         }
         if (msg.content.startsWith('!delcom')) {
@@ -161,43 +165,58 @@ export default class EverythingHandler {
             return
           }
           if (!cmdData.commands[name]) {
-            msg.channel.send('Command does not exist')
+            msg.channel.send('Command does not exist. Note that hardcoded aliases cannot be edited')
             return
           }
           delete cmdData.commands[name]
+          this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command deleted')
         }
       }
-      if (cmdData?.commands[words[0]]) {
-        msg.channel.send(cmdData.commands[words[0]].text)
-        return
+
+      const cmdKeys = this.getCommandKeys(msg.guild.id)
+      if (cmdKeys) {
+        for (const key in cmdKeys) {
+          if (msg.content.indexOf(' ')) {
+            if (msg.content.startsWith(`${key} `)) {
+              msg.channel.send(cmdKeys[key].text)
+              return
+            }
+          } else if (msg.content.startsWith(key)) {
+            msg.channel.send(cmdKeys[key].text)
+            return
+          }
+        }
       }
 
       const data = await this.getData(msg.guild)
       if (!data) return
-      if (data.botChannels.includes(msg.channel.id)) {
-        let userData = data.userData[msg.member.id]
-        if (userData) {
-          if (msg.content === '!quiz') {
-            const quests = userData.quests
-            commandUsed = true
-            if (userData.quests.length) {
-              const quest = quests[userData.quests.length - 1]
-              if (quest) {
-                if (quest.result === 'skip') {
-                  quests.pop()
-                } else if (quest.result === 'finish') {
-                  msg.channel.send('You already did the quest')
-                } else {
-                  msg.channel.send('You are already in the process of doing the quest')
-                }
+
+      let userData = data.userData[msg.member.id]
+      if (userData) {
+        if (msg.content === '!quiz') {
+          const quests = userData.quests
+          commandUsed = true
+          if (quests.length) {
+            const quest = quests[quests.length - 1]
+            if (quest) {
+              if (quest.result === 'skip') {
+                quests.pop()
+              } else if (quest.result === 'finish') {
+                msg.channel.send('You already did the quest')
+              } else {
+                msg.channel.send('You are already in the process of doing the quest')
               }
-            } else {
-              delete data.userData[msg.member.id]
             }
+          } else {
+            delete data.userData[msg.member.id]
           }
         }
-        if (maybeCommand && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
+      }
+      if (maybeCommand && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
+
+      // If in main channel (#welcome)
+      if (data.botChannels.includes(msg.channel.id)) {
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
           this.onGuildMemberAdd(msg.member)
@@ -219,6 +238,25 @@ export default class EverythingHandler {
               this.advance(answers[index], msg.member.id, msg.member.guild.id, msg.channel instanceof TextChannel ? msg.channel : undefined)
             }
           }
+        }
+      }
+    }
+  }
+  private getCommandKeys(guildId: string): EverythingHandler['commandKeys'][string] | undefined {
+    return this.commandKeys[guildId]
+  }
+
+  private updateCommandKeys(guildId: string, commands: CommandData['commands']) {
+    this.commandKeys[guildId] = {}
+
+    const cmdKeys = this.commandKeys[guildId]
+
+    for (const commandKey in commands) {
+      const command = commands[commandKey]
+      cmdKeys[commandKey] = command
+      if (command.alias) {
+        for (const alias of command.alias) {
+          cmdKeys[alias] = command
         }
       }
     }
@@ -360,6 +398,7 @@ export default class EverythingHandler {
     let cmdData = this.data.getData<CommandData>(guild.id, 'commandData')
     if (!cmdData) {
       cmdData = await this.data.load<CommandData>(guild.id, 'commandData', { commands: {} })
+      if (cmdData) this.updateCommandKeys(guild.id, cmdData.commands)
     }
     return cmdData
   }
