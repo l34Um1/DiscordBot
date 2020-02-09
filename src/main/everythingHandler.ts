@@ -83,12 +83,21 @@ export default class EverythingHandler {
         }
       }
     } else if (msg.channel.type === 'text') {
+      const words = msg.content.split(' ')
+      const cmdData = await this.getCommandData(msg.guild)
       if (msg.member.hasPermission('ADMINISTRATOR')) {
         if (msg.content === '!save') {
           this.data.saveAllSync()
+          return
         }
         if (msg.content === '!exit') {
           process.exit()
+        }
+        if (msg.content === '!reset') {
+          const data = await this.getData(msg.guild)
+          if (!data) return
+          delete data.userData[msg.member.id]
+          return
         }
         if (msg.content.startsWith('!addcom')) {
           if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
@@ -96,10 +105,8 @@ export default class EverythingHandler {
             return
           }
 
-          const words = msg.content.split(' ')
           const name = words[1]
           const text = words.slice(2).join(' ')
-          const cmdData = await this.getCommandData(msg.guild)
           if (!cmdData) {
             msg.channel.send('Data is not available. Try again later')
             return
@@ -117,10 +124,8 @@ export default class EverythingHandler {
             return
           }
 
-          const words = msg.content.split(' ')
           const name = words[1]
           const text = words.slice(2).join(' ')
-          const cmdData = await this.getCommandData(msg.guild)
           if (!cmdData) {
             msg.channel.send('Data is not available. Try again later')
             return
@@ -137,10 +142,7 @@ export default class EverythingHandler {
             return
           }
 
-          const words = msg.content.split(' ')
           const name = words[1]
-          const text = words.slice(2).join(' ')
-          const cmdData = await this.getCommandData(msg.guild)
           if (!cmdData) {
             msg.channel.send('Data is not available. Try again later')
             return
@@ -153,15 +155,31 @@ export default class EverythingHandler {
           msg.channel.send('Command deleted')
         }
       }
+      if (cmdData?.commands[words[0]]) {
+        msg.channel.send(cmdData.commands[words[0]].text)
+        return
+      }
 
       const data = await this.getData(msg.guild)
       if (!data) return
       if (data.botChannels.includes(msg.channel.id)) {
         let userData = data.userData[msg.member.id]
         if (userData) {
-          if (msg.content === '!reset') {
-            delete data.userData[msg.member.id]
-            return
+          if (msg.content === '!quiz') {
+            const quests = data.userData[msg.member.id].quests
+            if (quests[data.userData[msg.member.id].quests.length]) {
+              const quest = quests[data.userData[msg.member.id].quests.length - 1]
+              if (quest) {
+                if (quest.result === 'skip') {
+                  quests.pop()
+                  msg.channel.send('You can now do the quest')
+                } else {
+                  msg.channel.send('You already did the quest')
+                }
+              }
+            } else {
+              delete data.userData[msg.member.id]
+            }
           }
         }
         if (!userData) {
