@@ -140,7 +140,7 @@ export default class EverythingHandler {
         if (answer.replyInGuildChannel && textChannel) {
           textChannel?.send(`${this.getRngVal(answer.reply)}\n\n`)
         } else {
-          this.message(`${this.getRngVal(answer.reply)}\n\n`, memberId)
+          this.whisper(`${this.getRngVal(answer.reply)}\n\n`, memberId)
         }
       }
       if (answer.target === 'skip') {
@@ -169,7 +169,7 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    this.message(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
+    this.whisper(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
   }
 
   private async displayQuestionInChannel(question: Question, member: GuildMember, channel: TextChannel) {
@@ -182,8 +182,12 @@ export default class EverythingHandler {
     channel.send(`<@${member.id}>${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`)
   }
 
-  private async message(msg: string, userId: UserId) {
-    await (await this.client.fetchUser(userId, true)).send(msg)
+  private async whisper(msg: string, userId: UserId) {
+    try {
+      await (await this.client.fetchUser(userId, true)).send(msg)
+    } catch (err) {
+      logger.error(err)
+    }
   }
 
   /** Lowercase prefixes */
@@ -260,9 +264,30 @@ export default class EverythingHandler {
     return { userData, ...guildData }
   }
 
-  private setFactionFromPoints(quest: UserData['quests'][number], guildId: string) {
+  private async updateStaticData(guildId: string, quest: UserData['quests'][number]) {
+    let staticData = this.data.getData<FactionData>(guildId, 'factionData')
+    if (!staticData) {
+      staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
+    }
+    if (quest.points) {
+      for (const faction in quest.points) {
+        if (!staticData.factions[faction]) {
+          staticData.factions[faction] = { points: 0, count: 0, questPoints: 0 }
+        }
+        staticData.factions[faction].questPoints += quest.points[faction]
+      }
+    }
+    if (quest.faction) {
+      if (!staticData.factions[quest.faction]) {
+        staticData.factions[quest.faction] = { points: 0, count: 0, questPoints: 0 }
+      }
+      staticData.factions[quest.faction].count++
+    }
+  }
+
+  private setFactionFromPoints(quest: UserData['quests'][number], guildId: string): string | undefined {
     const rangePercent = 0.2
-    if (!quest.points) return
+    if (!quest.points) return quest.faction
 
     const points = quest.points
     if (points) {
@@ -296,18 +321,21 @@ export default class EverythingHandler {
         }
       }
 
-      let minInRangePoints = -Infinity
+      let minInRangePoints = Infinity
       let minInRange = maxFact
       for (const faction in points) {
         const raredPoints = points[faction] + rareFactionPoints[faction]
         if ((1 - raredPoints / maxPoints) <= rangePercent) {
-          minInRangePoints = raredPoints
-          minInRange = faction
+          if (raredPoints < minInRangePoints) {
+            minInRangePoints = raredPoints
+            minInRange = faction
+          }
         }
       }
 
-      quest.faction = minInRange
+      quest.faction = minInRange ?? maxFact
     }
+    return quest.faction
   }
 
   private getFactionRoles(factions: StaticData['factions']) {
@@ -386,7 +414,8 @@ export default class EverythingHandler {
       const quest = userData.quests[0]
       quest.result = 'finish'
       quest.endTime = Date.now()
-      this.setFactionFromPoints(quest, guildId)
+
+      const fact = this.setFactionFromPoints(quest, guildId)
       delete this.globalData[memberId]
 
       const member = this.client.guilds.get(guildId)?.member(memberId)
@@ -397,24 +426,23 @@ export default class EverythingHandler {
       if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
       this.addRoles(member, data.finishRoles)
 
-      let staticData = this.data.getData<FactionData>(guildId, 'factionData')
-      if (!staticData) {
-        staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
-      }
-      if (quest.points) {
-        for (const faction in quest.points) {
-          if (!staticData.factions[faction]) {
-            staticData.factions[faction] = { points: 0, count: 0, questPoints: 0 }
+      const faction: Faction = data.factions[fact || '']
+      if (fact && faction) {
+        if (fact && faction.confirmationMessage) {
+          this.whisper(faction.confirmationMessage, memberId)
+        }
+
+        if (fact && faction.newcomerMessage && faction.mainChannel) {
+          const guild = this.client.guilds.get(guildId)
+          const channel = guild?.channels.get(faction.mainChannel)
+
+          if (channel instanceof TextChannel) {
+            channel.send(faction.newcomerMessage)
           }
-          staticData.factions[faction].questPoints += quest.points[faction]
         }
       }
-      if (quest.faction) {
-        if (!staticData.factions[quest.faction]) {
-          staticData.factions[quest.faction] = { points: 0, count: 0, questPoints: 0 }
-        }
-        staticData.factions[quest.faction].count++
-      }
+
+      await this.updateStaticData(guildId, quest)
     }
   }
 }

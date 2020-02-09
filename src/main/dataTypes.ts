@@ -82,6 +82,13 @@ type StaticData = ({
       readonly title: RoleId
       /** Roles(s) granted when user is selected for this faction */
       readonly role: RoleId
+
+      /** The main channel of a faction */
+      readonly mainChannel: ChannelID
+      /** Confirmation message when finishing the quest and joining this faction */
+      readonly confirmationMessage: string
+      /** Send this in the main channel when a user joins the faction */
+      readonly newcomerMessage: string
     }
   }
   /** Quest */
