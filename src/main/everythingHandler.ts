@@ -101,6 +101,7 @@ export default class EverythingHandler {
         }
         if (msg.content === '!exit') {
           commandUsed = true
+          process.send?.({ cmd: 'AUTO_RESTART', val: false })
           process.exit()
         }
         if (msg.content === '!reset') {
