@@ -178,11 +178,11 @@ export default class EverythingHandler {
       if (cmdKeys) {
         for (const key in cmdKeys) {
           if (msg.content.indexOf(' ')) {
-            if (msg.content.startsWith(`${key} `)) {
+            if (msg.content.startsWith(key)) {
               msg.channel.send(cmdKeys[key].text)
               return
             }
-          } else if (msg.content.startsWith(key)) {
+          } else if (msg.content.startsWith(`${key} `)) {
             msg.channel.send(cmdKeys[key].text)
             return
           }
