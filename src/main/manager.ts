@@ -40,7 +40,6 @@ export class Manager {
     this.opts.args = removeOption('inspect-child', this.opts.args, rules)
     this.opts.args = removeOption('manager', this.opts.args, rules)
     this.child = fork(this.opts.childPath, this.getArgs(), { cwd: process.cwd(), stdio: 'inherit', execArgv: this.getExecArgs() })
-    this.opts.args = removeOption('join-message', this.opts.args, rules)
     console.log('Child birth')
 
     this.lastRestart = 0
