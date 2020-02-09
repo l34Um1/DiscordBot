@@ -8,29 +8,25 @@
       "title": "Jaekka's Devoted",
       "role": "661226029536378900",
       "mainChannel": "661227136031391756",
-      "confirmationMessage": "How nice it is to see someone so fitting to Jaekka's Devoted! Truly selfless, they want to care for the world and those around them, and to find out more about it, following Novask the Scribe for his great wisdom and knowledge.",
-      // "newcomerMessage": "A new user has joined this faction, but who?"
+      "confirmationMessage": "How nice it is to see someone so fitting to Jaekka's Devoted! Truly selfless, they want to care for the world and those around them, and to find out more about it, following Novask the Scribe for his great wisdom and knowledge."
     },
     "mv": {
       "title": "Mystic Vanguard",
       "role": "661226080895500289",
       "mainChannel": "661227181552173087",
-      "confirmationMessage": "Well, you seem to know exactly what you want from life - A quality belonging to those in the Mystic Vanguard, who strive for self-improvement and fight against injustice. They greatly admire Thua, the Fundament, for her willpower and ambition.",
-      // "newcomerMessage": "A new user has joined this faction, but who?"
+      "confirmationMessage": "Well, you seem to know exactly what you want from life - A quality belonging to those in the Mystic Vanguard, who strive for self-improvement and fight against injustice. They greatly admire Thua, the Fundament, for her willpower and ambition."
     },
     "sof": {
       "title": "Stewards Of Fate",
       "role": "661226163657506816",
       "mainChannel": "661227253522366477",
-      "confirmationMessage": "Welcome, young one! I'm sure the Stewards of Fate are pleased to have you among their forces. They strive to create order from chaos, and respect Iganash as the King. Go well and with strength, my friend.",
-      // "newcomerMessage": "A new user has joined this faction, but who?"
+      "confirmationMessage": "Welcome, young one! I'm sure the Stewards of Fate are pleased to have you among their forces. They strive to create order from chaos, and respect Iganash as the King. Go well and with strength, my friend."
     },
     "gbc": {
       "title": "God Beast's Congregation",
       "role": "661225825441415181",
       "mainChannel": "661227323818901534",
-      "confirmationMessage": "Hm... Yes. I think you would be an excellent fit for the God Beast's Congregation. Like Sulhanna the Artist, they value community, beauty, and the small pleasures in life.",
-      // "newcomerMessage": "A new user has joined this faction, but who?"
+      "confirmationMessage": "Hm... Yes. I think you would be an excellent fit for the God Beast's Congregation. Like Sulhanna the Artist, they value community, beauty, and the small pleasures in life."
     }
   },
   "joinRoles": [],
