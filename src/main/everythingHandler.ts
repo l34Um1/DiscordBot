@@ -166,15 +166,16 @@ export default class EverythingHandler {
         let userData = data.userData[msg.member.id]
         if (userData) {
           if (msg.content === '!quiz') {
-            const quests = data.userData[msg.member.id].quests
-            if (quests[data.userData[msg.member.id].quests.length]) {
-              const quest = quests[data.userData[msg.member.id].quests.length - 1]
+            const quests = userData.quests
+            if (userData.quests.length) {
+              const quest = quests[userData.quests.length - 1]
               if (quest) {
                 if (quest.result === 'skip') {
                   quests.pop()
-                  msg.channel.send('You can now do the quest')
-                } else {
+                } else if (quest.result === 'finish') {
                   msg.channel.send('You already did the quest')
+                } else {
+                  msg.channel.send('You are already in the process of doing the quest')
                 }
               }
             } else {
