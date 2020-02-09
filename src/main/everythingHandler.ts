@@ -33,7 +33,7 @@ export default class EverythingHandler {
     if (!data || data.userData[member.id]) return
 
     data.userData[member.id] = { quests: [] }
-    if (data.joinRoles) this.addRoles(member, data.joinRoles)
+    if (data.joinRoles) this.editRoles(member, [], data.joinRoles)
     this.start(member)
   }
 
@@ -61,8 +61,11 @@ export default class EverythingHandler {
   }
 
   private async onMessage(msg: Discord.Message) {
-    if (msg.author.id === this.client.user.id) return
-    logger.chat(`[${msg.channel.type}]>${msg.author.username ?? 'BOT'}: ${msg.content}`)
+    if (msg.author.id === this.client.user.id) {
+      logger.botChat(`[${msg.channel.type}]>BOT: ${msg.content}`)
+      return
+    }
+    logger.chat(`[${msg.channel.type}]>${msg.author.username}: ${msg.content}`)
     if (msg.channel.type === 'dm') {
       const activeGuild = this.globalData[msg.author.id]?.activeGuild
       if (activeGuild) {
@@ -80,11 +83,75 @@ export default class EverythingHandler {
         }
       }
     } else if (msg.channel.type === 'text') {
-      if (msg.content === '!save' && msg.member.hasPermission('ADMINISTRATOR')) {
-        this.data.saveAllSync()
-      }
-      if (msg.content === '!exit' && msg.member.hasPermission('ADMINISTRATOR')) {
-        process.exit()
+      if (msg.member.hasPermission('ADMINISTRATOR')) {
+        if (msg.content === '!save') {
+          this.data.saveAllSync()
+        }
+        if (msg.content === '!exit') {
+          process.exit()
+        }
+        if (msg.content.startsWith('!addcom')) {
+          if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
+            msg.channel.send('Invalid format. Format is: "!addcom {command name} {response text}"')
+            return
+          }
+
+          const words = msg.content.split(' ')
+          const name = words[1]
+          const text = words.slice(2).join(' ')
+          const cmdData = await this.getCommandData(msg.guild)
+          if (!cmdData) {
+            msg.channel.send('Data is not available. Try again later')
+            return
+          }
+          if (cmdData.commands[name]) {
+            msg.channel.send('Command already exists. Use !editcom if you intended to edit it')
+            return
+          }
+          cmdData.commands[name] = { text }
+          msg.channel.send('Command created')
+        }
+        if (msg.content.startsWith('!editcom')) {
+          if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
+            msg.channel.send('Invalid format. Format is: "!editcom {command name} {response text}"')
+            return
+          }
+
+          const words = msg.content.split(' ')
+          const name = words[1]
+          const text = words.slice(2).join(' ')
+          const cmdData = await this.getCommandData(msg.guild)
+          if (!cmdData) {
+            msg.channel.send('Data is not available. Try again later')
+            return
+          }
+          if (!cmdData.commands[name]) {
+            msg.channel.send('Command does not exist. Creating as a new command')
+          }
+          cmdData.commands[name] = { text }
+          msg.channel.send('Command modified')
+        }
+        if (msg.content.startsWith('!delcom')) {
+          if (!msg.content.match(/^[^ ]+ [^ ]/)) {
+            msg.channel.send('Invalid format. Format is: "!delcom {command name}"')
+            return
+          }
+
+          const words = msg.content.split(' ')
+          const name = words[1]
+          const text = words.slice(2).join(' ')
+          const cmdData = await this.getCommandData(msg.guild)
+          if (!cmdData) {
+            msg.channel.send('Data is not available. Try again later')
+            return
+          }
+          if (!cmdData.commands[name]) {
+            msg.channel.send('Command does not exist')
+            return
+          }
+          delete cmdData.commands[name]
+          msg.channel.send('Command deleted')
+        }
       }
 
       const data = await this.getData(msg.guild)
@@ -210,27 +277,18 @@ export default class EverythingHandler {
     return res
   }
 
-  private addRoles(member: Discord.GuildMember | undefined, roles: string[]) {
-    if (!member || !roles.length) return
-    logger.apiDebug(`${member.guild.id} Adding roles (${roles.join(', ')}) for ${member.id}`)
-    try {
-      const preRoles = member.roles
-      const filtered = roles.filter(v => !preRoles.has(v))
-      if (roles.length) this.rl.queue(() => { member.addRoles(filtered); logger.apiDebug(`added (${filtered.join(', ')})`) })
-    } catch (err) {
-      logger.apiError(`${member.guild.id} Couldnt add roles (${roles.join(', ')}) for ${member.id}`)
+  private editRoles(member: Discord.GuildMember | undefined, remove: string[], add: string[]) {
+    if (!member || !(add.length + remove.length)) return
+    logger.apiDebug(`${member.guild.name} Editing roles of ${member.displayName} (removing: ${remove.join()}, adding ${add.join()})`)
+
+    const original = member.roles
+    const roles = original.filter(v => !remove.includes(v.id)).map(v => v.id)
+    for (const role of add) {
+      if (roles.includes(role)) continue
+      roles.push(role)
     }
-  }
-  private removeRoles(member: Discord.GuildMember | undefined, roles: string[]) {
-    if (!member || !roles.length) return
-    logger.apiDebug(`${member.guild.id} Removing roles (${roles.join(', ')}) for ${member.id}`)
-    try {
-      const preRoles = member.roles
-      const filtered = roles.filter(v => preRoles.has(v))
-      if (roles.length) this.rl.queue(() => { member.removeRoles(filtered); logger.apiDebug(`removed (${filtered.join(', ')})`) })
-    } catch (err) {
-      logger.apiError(`${member.guild.id} Couldnt remove roles (${roles.join(', ')}) for ${member.id}`)
-    }
+
+    member.setRoles(roles)
   }
 
   /**
@@ -252,7 +310,7 @@ export default class EverythingHandler {
       guildData = await this.data.load<StaticData>(guild.id, 'guildData')
     }
     if (!userData) {
-      userData = await this.data.load(guild.id, 'guildUserData', {}) as GuildUserData | undefined
+      userData = await this.data.load<GuildUserData>(guild.id, 'guildUserData', {})
     }
     if (!guildData || !userData) throw new Error('Didnt load eShrug')
     return { userData, ...guildData }
@@ -262,6 +320,14 @@ export default class EverythingHandler {
     const userData = this.data.getData<GuildUserData>(guildId, 'guildUserData')
     if (!guildData || !userData) return
     return { userData, ...guildData }
+  }
+
+  private async getCommandData(guild: Discord.Guild): Promise<CommandData> {
+    let cmdData = this.data.getData<CommandData>(guild.id, 'commandData')
+    if (!cmdData) {
+      cmdData = await this.data.load<CommandData>(guild.id, 'guildData', { commands: {} })
+    }
+    return cmdData
   }
 
   private async updateStaticData(guildId: string, quest: UserData['quests'][number]) {
@@ -371,7 +437,7 @@ export default class EverythingHandler {
       }
       userData.quests[0].startTime = Date.now()
 
-      this.addRoles(member, data.questingRoles)
+      this.editRoles(member, [], data.questingRoles)
 
       const channel = guild.channels.find('id', data.botChannels[0])
       if (!(channel instanceof TextChannel)) {
@@ -399,9 +465,13 @@ export default class EverythingHandler {
 
       const member = this.client.guilds.get(guildId)?.member(memberId)
 
-      this.removeRoles(member, [...data.questingRoles, ...data.joinRoles])
+      let remove: string[] = []
+      let add: string[] = []
+      remove = [...data.questingRoles, ...data.joinRoles]
 
-      if (userData.quests.every(v => !v.result || v.result === 'skip')) this.addRoles(member, data.skipRoles)
+      if (userData.quests.every(v => !v.result || v.result === 'skip')) add = data.skipRoles
+
+      this.editRoles(member, remove, add)
     }
   }
 
@@ -421,10 +491,13 @@ export default class EverythingHandler {
       const member = this.client.guilds.get(guildId)?.member(memberId)
       const factionRoles = this.getFactionRoles(data.factions)
 
-      this.removeRoles(member, [...factionRoles, ...data.questingRoles, ...data.skipRoles, ...data.joinRoles])
+      const remove: string[] = [...factionRoles, ...data.questingRoles, ...data.skipRoles, ...data.joinRoles]
+      const add: string[] = []
 
-      if (quest.faction) this.addRoles(member, [data.factions[quest.faction].role])
-      this.addRoles(member, data.finishRoles)
+      if (quest.faction) add.push(data.factions[quest.faction].role)
+      add.concat(data.finishRoles)
+
+      this.editRoles(member, remove, add)
 
       const faction: Faction = data.factions[fact || '']
       if (fact && faction) {

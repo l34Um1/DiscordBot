@@ -63,7 +63,18 @@ interface FactionData {
   }
 }
 
-type StaticData = ({
+interface CommandData {
+  /** The channel which the bot reads for commands */
+  readonly commands: {
+    [command: string]: {
+      /** The message sent  */
+      text: string
+    }
+  }
+}
+
+
+interface StaticData {
   /** The channel which the bot reads for commands */
   readonly botChannels: ChannelID[]
   /** Granted when joining the channel. Removed when finishing a quest or skipping */
@@ -93,7 +104,7 @@ type StaticData = ({
   }
   /** Quest */
   readonly quest: Quest
-})
+}
 
 
 interface Quest {
