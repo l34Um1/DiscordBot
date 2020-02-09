@@ -47,7 +47,7 @@ interface GuildUserData {
 }
 
 
-/** Faction specific data */
+/** Faction specific dynamic data */
 interface FactionData {
   /** The actual data */
   factions: {
