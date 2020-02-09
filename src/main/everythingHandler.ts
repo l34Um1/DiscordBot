@@ -84,22 +84,29 @@ export default class EverythingHandler {
       }
     } else if (msg.channel.type === 'text') {
       const words = msg.content.split(' ')
+      const maybeCommand = Boolean(words[0].match(/^!\S/))
+      let commandUsed = false
       const cmdData = await this.getCommandData(msg.guild)
       if (msg.member.hasPermission('ADMINISTRATOR')) {
         if (msg.content === '!save') {
+          commandUsed = true
           this.data.saveAllSync()
           return
         }
         if (msg.content === '!exit') {
+          commandUsed = true
           process.exit()
         }
         if (msg.content === '!reset') {
+          commandUsed = true
+
           const data = await this.getData(msg.guild)
           if (!data) return
           delete data.userData[msg.member.id]
           return
         }
         if (msg.content.startsWith('!addcom')) {
+          commandUsed = true
           if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
             msg.channel.send('Invalid format. Format is: "!addcom {command name} {response text}"')
             return
@@ -119,6 +126,7 @@ export default class EverythingHandler {
           msg.channel.send('Command created')
         }
         if (msg.content.startsWith('!editcom')) {
+          commandUsed = true
           if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
             msg.channel.send('Invalid format. Format is: "!editcom {command name} {response text}"')
             return
@@ -137,6 +145,7 @@ export default class EverythingHandler {
           msg.channel.send('Command modified')
         }
         if (msg.content.startsWith('!delcom')) {
+          commandUsed = true
           if (!msg.content.match(/^[^ ]+ [^ ]/)) {
             msg.channel.send('Invalid format. Format is: "!delcom {command name}"')
             return
@@ -167,6 +176,7 @@ export default class EverythingHandler {
         if (userData) {
           if (msg.content === '!quiz') {
             const quests = userData.quests
+            commandUsed = true
             if (userData.quests.length) {
               const quest = quests[userData.quests.length - 1]
               if (quest) {
@@ -183,6 +193,7 @@ export default class EverythingHandler {
             }
           }
         }
+        if (maybeCommand && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
           this.onGuildMemberAdd(msg.member)
