@@ -325,7 +325,7 @@ export default class EverythingHandler {
   private async getCommandData(guild: Discord.Guild): Promise<CommandData> {
     let cmdData = this.data.getData<CommandData>(guild.id, 'commandData')
     if (!cmdData) {
-      cmdData = await this.data.load<CommandData>(guild.id, 'guildData', { commands: {} })
+      cmdData = await this.data.load<CommandData>(guild.id, 'commandData', { commands: {} })
     }
     return cmdData
   }
