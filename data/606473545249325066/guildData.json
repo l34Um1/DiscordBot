@@ -34,7 +34,7 @@
     "startQuestion": "zero",
     "questions": {
       "zero": {
-        "text": "Hello, I'm Helper Bot. Would you like to take the faction quiz? After taking it you'll join one of the four factions. To answer please reply with the number corresponding to the answer you choose for each question.",
+        "text": "Hello, I'm The Mediator. I'm here to guide you through the world of Chroma: Bloom and Blight. Would you like to take the faction quiz? After taking it you'll join one of the four factions. To answer please reply with the number corresponding to the answer you choose for each question.",
         "answers": [
           {
             "text": "Yes, I would like to take the quiz now.",
@@ -52,10 +52,10 @@
         "text": "An enormous earthquake struck the small town you’re currently residing in, and the people of the town need your aid. What role will you assume to help the townspeople?",
         "answers": [
           {
-            "text": "I'll marshall people to safe areas, conduct triage for the injured and make sure everyone knows what they should do.",
+            "text": "I'll prioritize setting up shelters for the injured. Night is coming and they need to be kept safe and warm.",
             "target": "two",
             "points": {
-              "gbc": 4,
+              "gbc": 5,
               "jd": 2,
               "mv": 0,
               "sof": 3
@@ -65,7 +65,7 @@
             "text": "I'll try and help with the care of the injured, setting bones and cleaning wounds. ",
             "target": "two",
             "points": {
-              "gbc": 1,
+              "gbc": 2,
               "jd": 5,
               "mv": 1,
               "sof": 0
@@ -75,7 +75,7 @@
             "text": "I'll make sure the town is in order - That everyone has a place to sleep, enough food to eat, and are reunited with their loved ones.",
             "target": "two",
             "points": {
-              "gbc": 1,
+              "gbc": 2,
               "jd": 1,
               "mv": 0,
               "sof": 4
@@ -97,7 +97,7 @@
         "text": "You find a weathered chest hidden in the shadows of a great cave. You carefully lift the lid, and inscribed within, you read “Pick one of greatest importance, that you may better your world”. Which artifact will you choose?",
         "answers": [
           {
-            "text": "A never-ending bottle of a potion that makes you feel warm, energised, calm and comfortable, wherever you are, whatever you're doing.",
+            "text": "A cape that when worn, makes you feel warm, energised, calm and comfortable, wherever you are, whatever you're doing.",
             "target": "three",
             "points": {
               "gbc": 5,
@@ -127,10 +127,10 @@
             }
           },
           {
-            "text": "A necklace that amplifies willpower and makes you feel as though you could take on any challenge thrown at you.",
+            "text": "A small black dragon scale on a leather cord that amplifies willpower and makes you feel as though you could take on any challenge thrown at you.",
             "target": "three",
             "points": {
-              "gbc": 0,
+              "gbc": 3,
               "jd": 0,
               "mv": 5,
               "sof": 2
@@ -142,7 +142,7 @@
         "text": "What would you hate to be called the most?",
         "answers": [
           {
-            "text": "Careless.",
+            "text": "Irresponsible.",
             "target": "four",
             "points": {
               "gbc": 0,
@@ -220,7 +220,7 @@
             "text": "You've always wanted to try these mushrooms, as they have mind-expanding properties. Ask them how much a mushroom costs.",
             "target": "five",
             "points": {
-              "gbc": 0,
+              "gbc": 3,
               "jd": 0,
               "mv": 4,
               "sof": 1
