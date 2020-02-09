@@ -71,14 +71,18 @@ export default class EverythingHandler {
       if (activeGuild) {
         const data = this.getDataBasic(activeGuild)
         if (data) {
-          const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
-          const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
-          if (!answers) return
+          try {
+            const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
+            const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
+            if (!answers) return
 
-          const prefixes = this.getSeededPrefixes(answers)
-          const index = prefixes.indexOf(msg.content.toLowerCase())
-          if (index !== -1) {
-            this.advance(answers[index], msg.author.id, activeGuild)
+            const prefixes = this.getSeededPrefixes(answers)
+            const index = prefixes.indexOf(msg.content.toLowerCase())
+            if (index !== -1) {
+              this.advance(answers[index], msg.author.id, activeGuild)
+            }
+          } catch (err) {
+            logger.error(err)
           }
         }
       }
