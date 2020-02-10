@@ -177,18 +177,9 @@ export default class EverythingHandler {
 
       const cmdKeys = this.getCommandKeys(msg.guild.id)
       if (cmdKeys) {
-        var input = msg.content.toLowerCase()
-        for (const key in cmdKeys) {
-          if (input.indexOf(' ')) {
-            if (input.startsWith(key)) {
-              msg.channel.send(cmdKeys[key].text)
-              return
-            }
-          } else if (input.startsWith(`${key} `)) {
-            msg.channel.send(cmdKeys[key].text)
-            return
-          }
-        }
+        const input = msg.content.toLowerCase()
+        if (cmdKeys[input]) msg.channel.send(cmdKeys[input].text)
+        return
       }
 
       const data = await this.getData(msg.guild)
