@@ -29,6 +29,7 @@
       "confirmationMessage": "Hm... Yes. I think you would be an excellent fit for the God Beast's Congregation. Like Sulhanna the Artist, they value community, beauty, and the small pleasures in life."
     }
   },
+  "dailyRandomizeOrder": true,
   "joinRoles": [],
   "questingRoles": [],
   "finishRoles": [],

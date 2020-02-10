@@ -21,7 +21,7 @@ type ChannelID = Channel['id']
 // !!! Use types in GuildData instead (this looks aids in hints)
 type Question = Quest['questions'][number]
 type Answer = Question['answers'][number] extends Randomizable<infer X> ? X : never
-type Faction = (StaticData['factions'] extends undefined | infer X ? X : never)[string]
+type Faction = (GuildData['factions'] extends undefined | infer X ? X : never)[string]
 type UserData = GuildUserData[string]
 
 // ----------------------- //
@@ -29,8 +29,14 @@ type UserData = GuildUserData[string]
 // ----------------------- //
 
 type CombinedGuildData = {
-  userData: GuildUserData
-} & StaticData
+  user: GuildUserData
+  dyn: GuildDynamicData
+  guild: GuildData
+}
+
+interface GuildDynamicData {
+  reorderTime: number
+}
 
 interface GuildUserData {
   [memberId: string]: {
@@ -76,7 +82,7 @@ interface CommandData {
 }
 
 
-interface StaticData {
+interface GuildData {
   /** The channel which the bot reads for commands */
   readonly botChannels: ChannelID[]
   /** Granted when joining the channel. Removed when finishing a quest or skipping */
@@ -87,6 +93,8 @@ interface StaticData {
   readonly finishRoles: RoleId[]
   /** Granted when skipping a quest. The skip role is removed if the member has finished any quests */
   readonly skipRoles: RoleId[]
+  /** Whether or not to randomize faction role order every day */
+  readonly dailyRandomizeOrder: boolean
   /** Factions */
   readonly factions: {
     /** String used to refer to this faction ("usa") */

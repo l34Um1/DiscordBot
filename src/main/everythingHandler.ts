@@ -4,6 +4,7 @@ import prand from './lib/pseudoRandom'
 import Data from './data'
 import logger from './logger'
 import RateLimiter from './lib/rateLimiter'
+import deepClone from './lib/deepClone'
 
 export default class EverythingHandler {
   private client: Discord.Client
@@ -31,11 +32,11 @@ export default class EverythingHandler {
   }
 
   private async onGuildMemberAdd(member: Discord.GuildMember) {
-    const data = await this.getData(member.guild) as CombinedGuildData | undefined
-    if (!data || data.userData[member.id]) return
+    const d = await this.getData(member.guild) as CombinedGuildData | undefined
+    if (!d || d.user[member.id]) return
 
-    data.userData[member.id] = { quests: [] }
-    if (data.joinRoles) this.editRoles(member, [], data.joinRoles)
+    d.user[member.id] = { quests: [] }
+    if (d.guild.joinRoles) this.editRoles(member, [], d.guild.joinRoles)
     this.start(member)
   }
 
@@ -49,7 +50,7 @@ export default class EverythingHandler {
       const staticData = this.data.getData<FactionData>(guild.id, 'factionData')
       if (!staticData) return
       for (const faction in staticData.factions) {
-        const role = this.getDataBasic(guild.id)?.factions[faction].role
+        const role = this.getDataBasic(guild.id)?.guild.factions[faction].role
         if (!role) continue
 
         const count = guild.roles.get(role)?.members.size
@@ -71,17 +72,17 @@ export default class EverythingHandler {
     if (msg.channel.type === 'dm') {
       const activeGuild = this.globalData[msg.author.id]?.activeGuild
       if (activeGuild) {
-        const data = this.getDataBasic(activeGuild)
-        if (data) {
+        const d = this.getDataBasic(activeGuild)
+        if (d) {
           try {
-            const question = data.quest.questions[data.userData[msg.author.id].quests[0].question]
+            const question = d.guild.quest.questions[d.user[msg.author.id].quests[0].question]
             const answers = this.getSeededAnswers(msg.author.id, activeGuild, question.answers)
             if (!answers) return
 
             const prefixes = this.getSeededPrefixes(answers)
             const index = prefixes.indexOf(msg.content.toLowerCase())
             if (index !== -1) {
-              this.advance(answers[index], msg.author.id, activeGuild)
+              await this.advance(answers[index], msg.author.id, activeGuild)
             }
           } catch (err) {
             logger.error(err)
@@ -107,9 +108,9 @@ export default class EverythingHandler {
         if (msg.content === '!reset') {
           commandUsed = true
 
-          const data = await this.getData(msg.guild)
-          if (!data) return
-          delete data.userData[msg.member.id]
+          const d = await this.getData(msg.guild)
+          if (!d) return
+          delete d.user[msg.member.id]
           return
         }
         if (msg.content.startsWith('!addcom')) {
@@ -184,10 +185,10 @@ export default class EverythingHandler {
         }
       }
 
-      const data = await this.getData(msg.guild)
-      if (!data) return
+      const d = await this.getData(msg.guild)
+      if (!d) return
 
-      let userData = data.userData[msg.member.id]
+      let userData = d.user[msg.member.id]
       if (userData) {
         if (msg.content === '!quiz') {
           const quests = userData.quests
@@ -204,14 +205,14 @@ export default class EverythingHandler {
               }
             }
           } else {
-            delete data.userData[msg.member.id]
+            delete d.user[msg.member.id]
           }
         }
       }
       if (maybeCommand && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
 
       // If in main channel (#welcome)
-      if (data.botChannels.includes(msg.channel.id)) {
+      if (d.guild.botChannels.includes(msg.channel.id)) {
         if (!userData) {
           // Start quest if somehow never was caught with onGuildMemberAdd
           this.onGuildMemberAdd(msg.member)
@@ -220,17 +221,17 @@ export default class EverythingHandler {
           // Start quest if somehow never started
           this.start(msg.member)
         }
-        userData = data.userData[msg.member.id]
+        userData = d.user[msg.member.id]
         if (userData) {
-          if (userData.quests[0].question === data.quest.startQuestion) {
-            const question = data.quest.questions[data.userData[msg.member.id].quests[0].question]
+          if (userData.quests[0].question === d.guild.quest.startQuestion) {
+            const question = d.guild.quest.questions[d.user[msg.member.id].quests[0].question]
             const answers = this.getSeededAnswers(msg.member.id, msg.guild.id, question.answers)
             if (!answers) return
 
             const prefixes = this.getSeededPrefixes(answers)
             const index = prefixes.indexOf(msg.content.toLowerCase())
             if (index !== -1) {
-              this.advance(answers[index], msg.member.id, msg.member.guild.id, msg.channel instanceof TextChannel ? msg.channel : undefined)
+              await this.advance(answers[index], msg.member.id, msg.member.guild.id, msg.channel instanceof TextChannel ? msg.channel : undefined)
             }
           }
         }
@@ -257,12 +258,13 @@ export default class EverythingHandler {
     }
   }
 
-  private advance(answer: Answer, memberId: MemberId, guildId: GuildId, textChannel?: TextChannel) {
+  private async advance(answer: Answer, memberId: MemberId, guildId: GuildId, textChannel?: TextChannel) {
     const data = this.getDataBasic(guildId)
     if (data) {
       logger.botInfo(`Advancing quest for: ${memberId} in guild ${guildId}`)
 
-      const quest = data.userData[memberId].quests[0]
+      const quest = data.user[memberId].quests[data.user[memberId].quests.length - 1]
+      const oldQuest = deepClone(quest)
       if (answer.points) {
         if (!quest.points) quest.points = {}
         for (const faction in answer.points) {
@@ -272,7 +274,7 @@ export default class EverythingHandler {
 
       if (answer.reply) {
         if (answer.replyInGuildChannel && textChannel) {
-          textChannel?.send(`${this.getRngVal(answer.reply)}\n\n`)
+          textChannel.send(`${this.getRngVal(answer.reply)}\n\n`)
         } else {
           this.whisper(`${this.getRngVal(answer.reply)}\n\n`, memberId)
         }
@@ -284,7 +286,14 @@ export default class EverythingHandler {
       } else {
         if (!answer.target) return
         quest.question = this.getRngVal(answer.target)
-        this.displayQuestion(data.quest.questions[quest.question], memberId)
+        try {
+          await this.displayQuestion(data.guild.quest.questions[quest.question], memberId)
+        } catch (err) {
+          data.user[memberId].quests[data.user[memberId].quests.length - 1] = oldQuest
+          if (textChannel) {
+            textChannel.send(`<@${memberId}> I couldn't send you a response. Make sure you have whispers enabled from server members! (settings -> Privacy&Safety -> Allow direct...)`)
+          }
+        }
       }
     }
   }
@@ -303,7 +312,7 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    this.whisper(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
+    await this.whisper(`${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, memberId)
   }
 
   private async displayQuestionInChannel(question: Question, member: GuildMember, channel: TextChannel) {
@@ -313,15 +322,11 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    channel.send(`<@${member.id}>${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`)
+    channel.send(`<@${member.id}> ${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`)
   }
 
   private async whisper(msg: string, userId: UserId) {
-    try {
-      await (await this.client.fetchUser(userId, true)).send(msg)
-    } catch (err) {
-      logger.error(err)
-    }
+    return (await this.client.fetchUser(userId, true)).send(msg)
   }
 
   /** Lowercase prefixes */
@@ -331,11 +336,11 @@ export default class EverythingHandler {
 
   private getSeededAnswers(memberId: MemberId, guildId: GuildId, answers: Question['answers']) {
     const res: Answer[] = []
-    const data = this.getDataBasic(guildId)
-    if (!data) return
+    const d = this.getDataBasic(guildId)
+    if (!d) return
     for (const answer of answers) {
       if (Array.isArray(answer)) {
-        const rand = Math.floor(prand(this.getPrandSeed(data.userData[memberId].quests[0].startTime, memberId), 0, answer.length + 0.999))
+        const rand = Math.floor(prand(this.getPrandSeed(d.user[memberId].quests[0].startTime, memberId), 0, answer.length + 0.999))
         res.push(answer[rand])
       } else {
         res.push(answer)
@@ -371,22 +376,30 @@ export default class EverythingHandler {
   }
 
   private async getData(guild: Discord.Guild): Promise<CombinedGuildData> {
-    let guildData = this.data.getData<StaticData>(guild.id, 'guildData')
+    let guildData = this.data.getData<GuildData>(guild.id, 'guildData')
     let userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
-    if (!guildData) {
-      guildData = await this.data.load<StaticData>(guild.id, 'guildData')
-    }
-    if (!userData) {
-      userData = await this.data.load<GuildUserData>(guild.id, 'guildUserData', {})
-    }
-    if (!guildData || !userData) throw new Error('Didnt load eShrug')
-    return { userData, ...guildData }
+    let dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
+    if (guildData && userData && dynData) return { user: userData, guild: guildData, dyn: dynData }
+
+    const promises: Array<Promise<any>> = []
+    if (!guildData) promises.push(this.data.load<GuildData>(guild.id, 'guildData'))
+    if (!userData) promises.push(this.data.load<GuildUserData>(guild.id, 'guildUserData', {}))
+    if (!dynData) promises.push(this.data.load<GuildDynamicData>(guild.id, 'guildDynamicData', { reorderTime: 0 }))
+    await Promise.all(promises)
+
+    guildData = this.data.getData<GuildData>(guild.id, 'guildData')
+    userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
+    dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
+
+    if (!guildData || !userData || !dynData) throw new Error('Didnt load eShrug')
+    return { user: userData, guild: guildData, dyn: dynData }
   }
   private getDataBasic(guildId: GuildId): CombinedGuildData | undefined {
-    const guildData = this.data.getData<StaticData>(guildId, 'guildData')
+    const guildData = this.data.getData<GuildData>(guildId, 'guildData')
     const userData = this.data.getData<GuildUserData>(guildId, 'guildUserData')
-    if (!guildData || !userData) return
-    return { userData, ...guildData }
+    const dynData = this.data.getData<GuildDynamicData>(guildId, 'guildDynamicData')
+    if (!guildData || !userData || !dynData) return
+    return { user: userData, guild: guildData, dyn: dynData }
   }
 
   private async getCommandData(guild: Discord.Guild): Promise<CommandData> {
@@ -472,7 +485,7 @@ export default class EverythingHandler {
     return quest.faction
   }
 
-  private getFactionRoles(factions: StaticData['factions']) {
+  private getFactionRoles(factions: GuildData['factions']) {
     const res = []
     for (const faction in factions) res.push(factions[faction].role)
     return res
@@ -493,27 +506,27 @@ export default class EverythingHandler {
 
     const data = this.getDataBasic(guildId)
     if (data) {
-      const userData = data.userData[memberId]
+      const userData = data.user[memberId]
       if (userData.quests.length === 0 || userData.quests[0].endTime) {
-        userData.quests.push({ question: this.getRngVal(data.quest.startQuestion), startTime: Date.now(), attempts: 1 })
+        userData.quests.push({ question: this.getRngVal(data.guild.quest.startQuestion), startTime: Date.now(), attempts: 1 })
       } else {
         const quest = userData.quests[0]
         quest.attempts++
-        quest.question = this.getRngVal(data.quest.startQuestion)
+        quest.question = this.getRngVal(data.guild.quest.startQuestion)
         quest.startTime = Date.now()
         delete quest.points
       }
       userData.quests[0].startTime = Date.now()
 
-      this.editRoles(member, [], data.questingRoles)
+      this.editRoles(member, [], data.guild.questingRoles)
 
-      const channel = guild.channels.find('id', data.botChannels[0])
+      const channel = guild.channels.find('id', data.guild.botChannels[0])
       if (!(channel instanceof TextChannel)) {
         logger.warn('No suitable channel found for channel answer')
         return
       }
 
-      const question = this.getRngVal(data.quest.questions[this.getRngVal(data.quest.startQuestion)])
+      const question = this.getRngVal(data.guild.quest.questions[this.getRngVal(data.guild.quest.startQuestion)])
 
       this.displayQuestionInChannel(question, member, channel)
     }
@@ -522,9 +535,9 @@ export default class EverythingHandler {
   private async skip(memberId: MemberId, guildId: GuildId) {
     logger.botInfo(`Skipped quest for: ${memberId} in guild ${guildId}`)
 
-    const data = this.getDataBasic(guildId)
-    if (data) {
-      const userData = data.userData[memberId]
+    const d = this.getDataBasic(guildId)
+    if (d) {
+      const userData = d.user[memberId]
       const quest = userData.quests[0]
       quest.result = 'skip'
       quest.endTime = Date.now()
@@ -535,9 +548,9 @@ export default class EverythingHandler {
 
       let remove: string[] = []
       let add: string[] = []
-      remove = [...data.questingRoles, ...data.joinRoles]
+      remove = [...d.guild.questingRoles, ...d.guild.joinRoles]
 
-      if (userData.quests.every(v => !v.result || v.result === 'skip')) add = data.skipRoles
+      if (userData.quests.every(v => !v.result || v.result === 'skip')) add = d.guild.skipRoles
 
       this.editRoles(member, remove, add)
     }
@@ -546,9 +559,9 @@ export default class EverythingHandler {
   private async finish(memberId: MemberId, guildId: GuildId) {
     logger.botInfo(`Finished quest for: ${memberId} in guild ${guildId}`)
 
-    const data = this.getDataBasic(guildId)
-    if (data) {
-      const userData = data.userData[memberId]
+    const d = this.getDataBasic(guildId)
+    if (d) {
+      const userData = d.user[memberId]
       const quest = userData.quests[0]
       quest.result = 'finish'
       quest.endTime = Date.now()
@@ -557,17 +570,17 @@ export default class EverythingHandler {
       delete this.globalData[memberId]
 
       const member = this.client.guilds.get(guildId)?.member(memberId)
-      const factionRoles = this.getFactionRoles(data.factions)
+      const factionRoles = this.getFactionRoles(d.guild.factions)
 
-      const remove: string[] = [...factionRoles, ...data.questingRoles, ...data.skipRoles, ...data.joinRoles]
+      const remove: string[] = [...factionRoles, ...d.guild.questingRoles, ...d.guild.skipRoles, ...d.guild.joinRoles]
       const add: string[] = []
 
-      if (quest.faction) add.push(data.factions[quest.faction].role)
-      add.concat(data.finishRoles)
+      if (quest.faction) add.push(d.guild.factions[quest.faction].role)
+      add.concat(d.guild.finishRoles)
 
       this.editRoles(member, remove, add)
 
-      const faction: Faction = data.factions[fact || '']
+      const faction: Faction = d.guild.factions[fact || '']
       if (fact && faction) {
         if (fact && faction.confirmationMessage) {
           this.whisper(faction.confirmationMessage, memberId)
