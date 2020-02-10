@@ -201,7 +201,7 @@ export default class EverythingHandler {
               } else if (quest.result === 'finish') {
                 msg.channel.send('You already did the quest')
               } else {
-                msg.channel.send('You are already in the process of doing the quest')
+                msg.channel.send('You are already in the process of doing the quest. Try typing 1 in #welcome')
               }
             }
           } else {
