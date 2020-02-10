@@ -6,3 +6,6 @@ data/*
 bin/
 tempCodeRunnerFile.js
 tsconfig.tsbuildinfo
+data/606473545249325066/factionData.json
+data/606473545249325066/guildDynamicData.json
+data/606473545249325066/guildUserData.json
