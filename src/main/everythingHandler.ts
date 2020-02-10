@@ -10,7 +10,7 @@ export default class EverythingHandler {
   private data: Data
   private globalData!: GlobalQuestData
   private rl: RateLimiter
-  private commandKeys: {[guild: string]: {[command: string]: CommandData['commands'][number]}}
+  private commandKeys: { [guild: string]: { [command: string]: CommandData['commands'][number] } }
   constructor(client: Discord.Client, data: Data) {
     this.client = client
     this.data = data
@@ -177,13 +177,14 @@ export default class EverythingHandler {
 
       const cmdKeys = this.getCommandKeys(msg.guild.id)
       if (cmdKeys) {
+        var input = msg.content.toLowerCase()
         for (const key in cmdKeys) {
-          if (msg.content.indexOf(' ')) {
-            if (msg.content.startsWith(key)) {
+          if (input.indexOf(' ')) {
+            if (input.startsWith(key)) {
               msg.channel.send(cmdKeys[key].text)
               return
             }
-          } else if (msg.content.startsWith(`${key} `)) {
+          } else if (input.startsWith(`${key} `)) {
             msg.channel.send(cmdKeys[key].text)
             return
           }
@@ -254,10 +255,10 @@ export default class EverythingHandler {
 
     for (const commandKey in commands) {
       const command = commands[commandKey]
-      cmdKeys[commandKey] = command
+      cmdKeys[commandKey.toLowerCase()] = command
       if (command.alias) {
         for (const alias of command.alias) {
-          cmdKeys[alias] = command
+          cmdKeys[alias.toLowerCase()] = command
         }
       }
     }
@@ -432,10 +433,10 @@ export default class EverythingHandler {
     const points = quest.points
     if (points) {
       const maxRarePoints = 5
-      const rareFactionPoints: {[faction: string]: number} = {}
+      const rareFactionPoints: { [faction: string]: number } = {}
       const staticData = this.data.getData<FactionData>(guildId, 'factionData')
       if (staticData) {
-        const populations: {[faction: string]: number} = {}
+        const populations: { [faction: string]: number } = {}
         let population = 0
 
         for (const faction in staticData.factions) {
