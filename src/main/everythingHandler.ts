@@ -178,8 +178,10 @@ export default class EverythingHandler {
       const cmdKeys = this.getCommandKeys(msg.guild.id)
       if (cmdKeys) {
         const input = msg.content.toLowerCase()
-        if (cmdKeys[input]) msg.channel.send(cmdKeys[input].text)
-        return
+        if (cmdKeys[input]) {
+          msg.channel.send(cmdKeys[input].text)
+          return
+        }
       }
 
       const data = await this.getData(msg.guild)
