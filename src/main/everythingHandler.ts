@@ -64,6 +64,7 @@ export default class EverythingHandler {
   }
 
   private async onMessage(msg: Discord.Message) {
+    if (!msg.member) return
     if (msg.author.id === this.client.user.id) {
       logger.botChat(`[${msg.channel.type}]>BOT: ${msg.content}`)
       return
