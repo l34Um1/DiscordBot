@@ -64,7 +64,6 @@ export default class EverythingHandler {
   }
 
   private async onMessage(msg: Discord.Message) {
-    if (!msg.member) return
     if (msg.author.id === this.client.user.id) {
       logger.botChat(`[${msg.channel.type}]>BOT: ${msg.content}`)
       return
@@ -91,6 +90,7 @@ export default class EverythingHandler {
         }
       }
     } else if (msg.channel.type === 'text') {
+      if (!msg.member) return
       const words = msg.content.split(' ')
       const maybeCommand = Boolean(words[0].match(/^!\S/))
       let commandUsed = false
