@@ -82,6 +82,7 @@ export default class EverythingHandler {
         }
       }
     } else if (msg.channel.type === 'text') {
+      if (!msg.member) return
       const words = msg.content.split(' ')
       const maybeCommand = Boolean(words[0].match(/^!\S/))
       let commandUsed = false
@@ -193,7 +194,12 @@ export default class EverythingHandler {
               } else if (quest.result === 'finish') {
                 msg.channel.send('You already did the quest')
               } else {
-                msg.channel.send('You are already in the process of doing the quest. Try typing 1 in #welcome')
+                if (quest.question === d.guild.quest.startQuestion) {
+                  this.start(msg.member)
+                } else {
+                  this.displayQuestion(d.guild.quest.questions[quest.question], msg.member.id)
+                  msg.channel.send('You are already in the process of doing the quest. The current question has been whispered to you again.')
+                }
               }
             }
           } else {

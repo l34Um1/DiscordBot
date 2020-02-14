@@ -35,7 +35,7 @@ type CombinedGuildData = {
 }
 
 interface GuildDynamicData {
-  reorderTime: number
+  reorderTime: number,
 }
 
 interface GuildUserData {
@@ -46,7 +46,7 @@ interface GuildUserData {
       startTime: number
       endTime?: number
       attempts: number
-      points?: {[faction: string]: number}
+      points?: { [faction: string]: number }
       faction?: string
     }>
   }
@@ -119,7 +119,7 @@ interface GuildData {
 
 interface Quest {
   /** Start question id */
-  readonly startQuestion: Randomizable<string>
+  readonly startQuestion: string
   /** Message shown to the user when they reach an invalid or missing question */
   readonly deadEndMessage: Randomizable<string>
   /** Object containing all the questions */
@@ -128,8 +128,8 @@ interface Quest {
     readonly [questionId: string]: {
       /** Shown text, array of strings for random starting quests */
       readonly text: Randomizable<string>
-      /** Array of answer objects. Use arrays of arrays for randomized answers (experimental) */
-      readonly answers: Array<Randomizable<{
+      /** Array of answer objects */
+      readonly answers: Array<{
         /** Shown text */
         readonly text: string
         /**
@@ -154,7 +154,7 @@ interface Quest {
          * Leave empty for automatic prefixing.  
          */
         readonly prefix?: string
-      }>>
+      }>
     }
   }
 }
