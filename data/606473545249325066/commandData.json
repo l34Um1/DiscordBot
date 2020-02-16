@@ -65,7 +65,7 @@
         "text": "The Mystic Vanguard is the only dominant areligious faction in the world, believing that mortals should be able to reach, or even surpass the divinity of the dragons. The Mystic Vanguard is most associated with the Ambition mana and Thua the Fundament.",
         "alias": ["!mv"]
     },
-    "!!boundless spire": {
+    "!boundless spire": {
         "text": "A gigantic cathedral with a steeple that reaches past the clouds. It serves as the main seat of the Congregation in Drachoria. "
     },
     "!oration": {
@@ -83,7 +83,7 @@
         "text": "Paladins are the military force of the Congregation, serving as both its guards and crusaders. All paladins first serve as protectors.",
         "alias": ["!paladin"]
     },
-    "!!archpriests": {
+    "!archpriests": {
         "text": "Throughout most of the year, archpriests have two jobs: to research theology through prayer and study of the Chronicles, and to be the voice of the Congregation on the international scale, regularly meeting with leaders and delivering speeches. The current high archpriest is Glissathain.",
         "alias": ["!archpriest"]
     },
@@ -122,7 +122,7 @@
         "text": "Jaekka's Devoted believe that life is defined by its wisdom and compassion.",
         "alias": ["!jd beliefs"]
     },
-    "!!jaekkas devoted goals": {
+    "!jaekkas devoted goals": {
         "text": "Jaekka’s Devoted are a fairly relaxed and removed group, regarding Arholt’s global affairs. However, they still hold their morals and theology very dearly, and will share them with any interested in listening.",
         "alias": ["!jd goals"]
     },
