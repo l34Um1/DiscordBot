@@ -15,7 +15,7 @@
     },
     "!liches": {
         "text": "Liches are persons whose consciousnesses are relocated into another physical host: either a new body or an object. The first lich, Ix’kar, transformed in 11 AG.",
-        "alias": ["!lich"]
+        "alias": ["!lich", "!lichs"]
     },
     "!ontophages": {
         "text": "Formed by the Blind Star chroma, ontophages are beasts of varying and often incomprehensible forms. Their defining characteristic is that they consume objects’ relationality, rendering them imperceptible and unknowable.",
@@ -59,7 +59,7 @@
     },
     "!jaekkas devoted": {
         "text": "Jaekka's Devoted is an incredibly traditional faction that adheres strictly and exclusively to the teachings of Jaekka herself and generally keeps out of public affairs. Jaekka's Devoted is most associated with Devotion mana and Novask the Scholar.",
-        "alias": ["!jd"]
+        "alias": ["!jd", "jaekka's devoted"]
     },
     "!mystic vanguard": {
         "text": "The Mystic Vanguard is the only dominant areligious faction in the world, believing that mortals should be able to reach, or even surpass the divinity of the dragons. The Mystic Vanguard is most associated with the Ambition mana and Thua the Fundament.",
@@ -112,7 +112,8 @@
         "text": "Each year, Jaekka's Devoted celebrate Primordium: the commemoration of the supposed day that Jaekka created humans. Many of those who are able to travel to Bluecrest Monastery to celebrate the holiday with many of the other members of the Devoted, and in recent years the celebration is known for attracting many of the Devoted’s most talented mages to put on dazzling, spectacular displays of magic."
     },
     "!keeper": {
-        "text": "The Keepers are permanent residents of the Bluecrest Monastery. As its chief scholars, they are responsible for leading the weekly cogitations and tend to many of the managerial functions of the monastery itself; they greet any pilgrims that visit and refer them for appropriate housing, and on the rare occasion that a prominent public figure asks to meet with the Devoted, they typically speak with a Keeper."
+        "text": "The Keepers are permanent residents of the Bluecrest Monastery. As its chief scholars, they are responsible for leading the weekly cogitations and tend to many of the managerial functions of the monastery itself; they greet any pilgrims that visit and refer them for appropriate housing, and on the rare occasion that a prominent public figure asks to meet with the Devoted, they typically speak with a Keeper.",
+        "alias": ["!keepers"]
     },
     "!contemplative": {
         "text": "Contemplatives are monks that choose not to live in the monastery. Instead, they move to a different region—often their hometown, but sometimes a location to which they feel a particular calling—and establish very small abbeys under their governance.",
@@ -120,11 +121,11 @@
     },
     "!jaekkas devoted beliefs": {
         "text": "Jaekka's Devoted believe that life is defined by its wisdom and compassion.",
-        "alias": ["!jd beliefs"]
+        "alias": ["!jd beliefs", "!jaekka's devoted beliefs"]
     },
     "!jaekkas devoted goals": {
         "text": "Jaekka’s Devoted are a fairly relaxed and removed group, regarding Arholt’s global affairs. However, they still hold their morals and theology very dearly, and will share them with any interested in listening.",
-        "alias": ["!jd goals"]
+        "alias": ["!jd goals", "!jaekka's devoted goals"]
     },
     "!our burden": {
         "text": "Published by Varrish philosopher Pavem Idom, Our Burden is an essay written four years after the Valather Incident to address the growing dangers of the magical world and the social need not only to limit natural destruction, but for people to manage and limit themselves so as to avoid man-made catastrophe."
@@ -142,7 +143,8 @@
         "alias": ["!convocation"]
     },
     "!the expedition": {
-        "text": "Since the rumor of Jaekka’s Throne, the Stewards have vigorously attempted to claim it. This effort has become known as the Expedition, with the church’s warriors pouring in to battle on its behalf."
+        "text": "Since the rumor of Jaekka’s Throne, the Stewards have vigorously attempted to claim it. This effort has become known as the Expedition, with the church’s warriors pouring in to battle on its behalf.",
+        "alias": ["!expedition"]
     },
     "!stewards of fate goals": {
         "text": "The Stewards are the most actively invested faction in how the citizens of Arholt live their lives. This is not because of an explicit interest in controlling others, but because the Stewards harbour genuine concern for the world and believe that the only reliable path to stability lies in managing the powers and interests of Arholt’s people.",
@@ -162,7 +164,7 @@
     },
     "!mystic vanguard goals": {
         "text": "The Vanguard is passionate about respecting the autonomy and liberty of others, and uses its growing power to try to protect the relevant rights of others in this field. Members tend to remain passive in local politics until the law begins to trend towards stronger social regulation, at which point they become a formidable force.",
-        "alias": ["!mvbeliefs"]
+        "alias": ["!mv goals"]
     },
     "!Apotheosis Treatise": {
         "text": "The Treatise was written by the Vanguard’s founder, Thirim Na, and details the Vanguard argument for the advancement of mortals above the divine in response to the disappearance of Ballath from the Valather subcontinent."
@@ -173,7 +175,7 @@
     },
     "!journey to thua": {
         "text": "Members of the Mystic Vanguard frequently visit Thua specifically as part of a traditional journey made by aspiring myrmidons.",
-        "alias": ["!mvbeliefs"]
+        "alias": ["!mv beliefs"]
     },
     "!meetings": {
         "text": "Vanguard meetings are very straightforward. Once per week on an unfixed day, Vanguards gather to discuss their personal lives, community issues, the global political scene, and to study magic and sciences together."
@@ -297,67 +299,85 @@
         "text": "The name of the world created by the God-Beast."
     },
     "!the nexus": {
-        "text": "The Nexus is a chroma that changes spatial dimensionality. It is located about six kilometres off the eastern coast of Sorag, Varr. It is a primarily Bloom chroma."
+        "text": "The Nexus is a chroma that changes spatial dimensionality. It is located about six kilometres off the eastern coast of Sorag, Varr. It is a primarily Bloom chroma.",
+        "alias": ["!nexus"]
     },
     "!the nexus discovery": {
-        "text": "The Nexus was originally discovered in 21 AG when a group of Varrish sailors went out to investigate a very small, pale chroma floating over the water and their boat, as well as everything and everyone, disappeared on the approach."
+        "text": "The Nexus was originally discovered in 21 AG when a group of Varrish sailors went out to investigate a very small, pale chroma floating over the water and their boat, as well as everything and everyone, disappeared on the approach.",
+        "alias": ["!nexus discovery"]
     },
     "!the nexus portal": {
-        "text": "After several scholars from the Stewards and Maliron University visited the area, they concluded that the chroma had added a fourth spatial dimension to the area, and that the items were disappearing when they entered regions where an unknown force pushed the entity along the fourth-dimensional axis. Eventually, mages began to find ways to work with this four-dimensional space, bending traditional space across the fourth axis to create low-maintenance, low-danger portals. A small artificial island—about the size of one city block—was constructed about the chroma. This structure, known as the Nexus, connects all of the major land masses, with most nations containing multiple portals. Only Ballath does not host a portal, being suspicious of such magics, though it is still easily accessible by Valath and the northern Azletsu Kingdom."
+        "text": "After several scholars from the Stewards and Maliron University visited the area, they concluded that the chroma had added a fourth spatial dimension to the area, and that the items were disappearing when they entered regions where an unknown force pushed the entity along the fourth-dimensional axis. Eventually, mages began to find ways to work with this four-dimensional space, bending traditional space across the fourth axis to create low-maintenance, low-danger portals. A small artificial island—about the size of one city block—was constructed about the chroma. This structure, known as the Nexus, connects all of the major land masses, with most nations containing multiple portals. Only Ballath does not host a portal, being suspicious of such magics, though it is still easily accessible by Valath and the northern Azletsu Kingdom.",
+        "alias": ["!nexus portal"]
     },
     "!the blind star": {
-        "text": "The Blind Star is a chroma that deforms conceptual relationality. It is located in the northern Garani desert. It is a mostly Blight chroma."
+        "text": "The Blind Star is a chroma that deforms conceptual relationality. It is located in the northern Garani desert. It is a mostly Blight chroma.",
+        "alias": ["!blind star"]
     },
     "!the blind star discovery": {
-        "text": "The Blind Star appeared in 91 AM: fairly recently. Since then, it has slowly begun to overtake the environment around itself, devouring the perceptual possibilities of the region around it."
+        "text": "The Blind Star appeared in 91 AM: fairly recently. Since then, it has slowly begun to overtake the environment around itself, devouring the perceptual possibilities of the region around it.",
+        "alias": ["!blind star discovery"]
     },
     "!the blind star bleaching": {
-        "text": "By “perceptual possibilities,” one means that though the chroma does not affect the physical being of an object, a given object’s personal concept vanishes; one may look at an object, and that object still exists, though one cannot gain an understanding of that object and thus cannot perceive it. The Blind Star spreads this effect around itself, “bleaching” the environment and creating a region that is almost impossible to navigate, as it cannot be comprehended."
+        "text": "By “perceptual possibilities,” one means that though the chroma does not affect the physical being of an object, a given object’s personal concept vanishes; one may look at an object, and that object still exists, though one cannot gain an understanding of that object and thus cannot perceive it. The Blind Star spreads this effect around itself, “bleaching” the environment and creating a region that is almost impossible to navigate, as it cannot be comprehended.",
+        "alias": ["!blind star bleaching"]
     },
     "!The Verdant Star": {
-        "text": "The Verdant Star is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments."
+        "text": "The Verdant Star is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments.",
+        "alias": ["!Verdant Star"]
     },
     "!Navelegh": {
         "text": "The Tai'ak name for the Verdant Star. Lit.: \"The Elder that Awakens\"."
     },
     "!The Verdant Star merge": {
-        "text": "The Verdant Star was, originally, a pair of adjacent chromas: one Bloom, encouraging growth, and one Blight, imbuing objects with will, at the bottom of Blooming Bay. However, in 202 AG, the two merged and formed a chroma prone to both natures."
+        "text": "The Verdant Star was, originally, a pair of adjacent chromas: one Bloom, encouraging growth, and one Blight, imbuing objects with will, at the bottom of Blooming Bay. However, in 202 AG, the two merged and formed a chroma prone to both natures.",
+        "alias": ["!Verdant Star Merge"]
     },
     "!The Japraitian Fault Line": {
-        "text": "The Japraitian Fault Line is a gargantuan chroma that functions as a teleporter. It is the cause for the Worldseam, and is located all along the base of its ravine."
+        "text": "The Japraitian Fault Line is a gargantuan chroma that functions as a teleporter. It is the cause for the Worldseam, and is located all along the base of its ravine.",
+        "alias": ["!Japraitian Fault Line"]
     },
     "!The Worldseam": {
-        "text": "The Worldseam began to appear shortly after Jaekka’s abdication, bisecting the then-whole Garani-Japraitian landmass. It slowly began to push the Isthor continent westwards, resulting in a series of increasingly intense earthquakes until 201 AG, when the continent split from Liowa and began its trek into the southwest. During this time, the ravine along the fault line deepened until it reached the source: the chroma itself."
+        "text": "The Worldseam began to appear shortly after Jaekka’s abdication, bisecting the then-whole Garani-Japraitian landmass. It slowly began to push the Isthor continent westwards, resulting in a series of increasingly intense earthquakes until 201 AG, when the continent split from Liowa and began its trek into the southwest. During this time, the ravine along the fault line deepened until it reached the source: the chroma itself.",
+        "alias": ["!Worldseam"]
     },
     "!Lainn's Forge": {
-        "text": "Lainn’s Forge is a chroma that appears as a massive column of fire around a now-hidden pale turquoise core. It is located in northern Svellsteim. It is a Bloom chroma."
+        "text": "Lainn’s Forge is a chroma that appears as a massive column of fire around a now-hidden pale turquoise core. It is located in northern Svellsteim. It is a Bloom chroma.",
+        "alias": ["!Lainns Forge"]
     },
     "!Lainn": {
         "text": "Appearing in 30 AG, Lainn’s Forge initially presented itself as many thick ribbons of fire orbiting a mass of turquoise motes about two metres across. Lainn, a smith living in a small village in northern Svellsteim, built his home and work station around the chroma, using it as a never-ending source of heat."
     },
     "!Lainn's Forge Growth": {
-        "text": "Lainn’s Forge began to grow. Generationally, the apparatus containing the Forge was rebuilt to accommodate its size until 93 AM, when Lainn’s descendants contracted a group of wizards from the God Beast’s Congregation to permanently halt the Forge’s growth. By this point, the Forge had grown into a column nearly nine metres across and twelve metres tall, and its owners had turned the facilities around it into a public resource, accessible by a fee. In response, the surrounding town boomed as it became known as the best place in Svellsteim for smithing."
+        "text": "Lainn’s Forge began to grow. Generationally, the apparatus containing the Forge was rebuilt to accommodate its size until 93 AM, when Lainn’s descendants contracted a group of wizards from the God Beast’s Congregation to permanently halt the Forge’s growth. By this point, the Forge had grown into a column nearly nine metres across and twelve metres tall, and its owners had turned the facilities around it into a public resource, accessible by a fee. In response, the surrounding town boomed as it became known as the best place in Svellsteim for smithing.",
+        "alias": ["!Lainns Forge Growth"]
     },
     "!The Carrion Star": {
-        "text": "The Carrion Star is a chroma that feeds on will by recycling and reanimating living things. It is located in a forest northwest of Krahncastle. It is a Blight chroma."
+        "text": "The Carrion Star is a chroma that feeds on will by recycling and reanimating living things. It is located in a forest northwest of Krahncastle. It is a Blight chroma.",
+        "alias": ["!Carrion Star"]
     },
     "!The Carrion Star Will": {
-        "text": "The Carrion Star is one of the most conscious chromas in Arholt. The chroma consumes will and thereby kills the living things around it. However, it also constantly reanimates the nearby corpses, infusing them again with small amounts of will to bring them back to life."
+        "text": "The Carrion Star is one of the most conscious chromas in Arholt. The chroma consumes will and thereby kills the living things around it. However, it also constantly reanimates the nearby corpses, infusing them again with small amounts of will to bring them back to life.",
+        "alias": ["!Carrion Star Will"]
     },
     "!The Carrion Star Reanimation": {
-        "text": "As life begins to recover, its will multiplies itself and it becomes increasingly conscious, only for the Star to harvest the will again. Consequently, the Star is surrounded by half-dead things, largely mindless, stuck in a constant cycle of death and reanimation. The only life which is not affected by this is crows, into which the chroma infuses itself, turning them into its representatives in the world, and the Egon Graf, the Harbinger: a human assassin infected by the chroma, enhanced by it in exchange for bringing corpses back to the Star for harvest."
+        "text": "As life begins to recover, its will multiplies itself and it becomes increasingly conscious, only for the Star to harvest the will again. Consequently, the Star is surrounded by half-dead things, largely mindless, stuck in a constant cycle of death and reanimation. The only life which is not affected by this is crows, into which the chroma infuses itself, turning them into its representatives in the world, and the Egon Graf, the Harbinger: a human assassin infected by the chroma, enhanced by it in exchange for bringing corpses back to the Star for harvest.",
+        "alias": ["!Carrion Star Reanimation"]
     },
     "!The Lion": {
-        "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood."
+        "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood.",
+        "alias": ["!Lion"]
     },
     "!help": {
         "text": "Ask things of me if you wish. I cannot always promise an answer, but I shall try my best to enlighten you."
     },
     "!whoami": {
-        "text": "I am the Mediator. I help those who wish to discover more about this world. I've lived a long time, and over my years, I have accumulated a lot of knowledge. Some of these things are a pleasure to know, others... not so much."
+        "text": "I am the Mediator. I help those who wish to discover more about this world. I've lived a long time, and over my years, I have accumulated a lot of knowledge. Some of these things are a pleasure to know, others... not so much.",
+        "alias": ["!who am i"]
     },
     "!the mediator": {
-        "text": "That's me. Hello!"
+        "text": "That's me. Hello!",
+        "alias": ["!mediator"]
     }
   }
 }
