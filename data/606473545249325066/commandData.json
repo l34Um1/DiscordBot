@@ -13,7 +13,7 @@
         "text": "The first of Jaekka's sentient creations, not including the Dragons. They are neither essential nor immortal, and after seeing the angst that humans experienced when faced by their own mortality, Jaekka chose not to create any more sentient creatures, to spare them this unpleasant part of existence.",
         "alias": ["!human"]
     },
-    "!!lichs": {
+    "!liches": {
         "text": "Liches are persons whose consciousnesses are relocated into another physical host: either a new body or an object. The first lich, Ix’kar, transformed in 11 AG.",
         "alias": ["!lich"]
     },
