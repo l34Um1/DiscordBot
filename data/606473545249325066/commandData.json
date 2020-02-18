@@ -1,24 +1,24 @@
 {
   "commands": {
     "!tai'ak": {
-      "text": "A race of sentient plant people, imbued by the magic of the Verdant Star. Adept farmers, they melded the local wildlife to their needs and quickly became a dominant force within the Blooming Bay."
+        "text": "A race of sentient plant people, imbued by the magic of the Verdant Star. Adept farmers, they melded the local wildlife to their needs and quickly became a dominant force within the Blooming Bay."
     },
     "!graeoln": {
-      "text": "Formerly a small colony of humans, morphed by a chroma into moth-like creatures. They changed slowly at first, but eventually were classified as their own race. They behave somewhat moth-like, and their fascination with bright and glowy objects has lead them to worship the sun and moon, although neither celestial body holds any proven power."
+        "text": "Formerly a small colony of humans, morphed by a chroma into moth-like creatures. They changed slowly at first, but eventually were classified as their own race. They behave somewhat moth-like, and their fascination with bright and glowy objects has lead them to worship the sun and moon, although neither celestial body holds any proven power."
     },
     "!arrak": {
-      "text": "Unlike the Graeoln, the Arrak did not morph over time, but were transformed in one fell swoop. Considerably larger and stronger than humans, they were transformed by Dryvenn the Hound, a blightmage, in an effort to drive invading forces out of Arrix."
+        "text": "Unlike the Graeoln, the Arrak did not morph over time, but were transformed all at once into a people of half-dogs, half-humans. Considerably larger and stronger than normal humans, they were transformed by the blightmage Dryvenn the Hound in an effort to drive invading forces out of Arrix."
     },
       "!humans": {
         "text": "The first of Jaekka's sentient creations, not including the Dragons. They are neither essential nor immortal, and after seeing the angst that humans experienced when faced by their own mortality, Jaekka chose not to create any more sentient creatures, to spare them this unpleasant part of existence.",
         "alias": ["!human"]
     },
-    "!!lichs": {
+    "!liches": {
         "text": "Liches are persons whose consciousnesses are relocated into another physical host: either a new body or an object. The first lich, Ix’kar, transformed in 11 AG.",
         "alias": ["!lich"]
     },
     "!ontophages": {
-        "text": "Formed by the Blind Star chroma, ontophages are beasts of varying and often incomprehensible forms. Their defining characteristic is that they consume objects’ relationality, rendering them imperceptible and unknowable.",
+        "text": "The great Garani being-eaters. Monsters born in the Blind Star. Stay away from them.",
         "alias": ["!ontophage"]
     },
     "!golems": {
@@ -34,7 +34,7 @@
         "alias": ["!dragon"]
     },
     "!drakes": {
-        "text": "Servants of Iganash, baptised in his dragonfire. Their flesh melts away and is replaced by scales, and they are imbued with his essence, binding them to him. They are subserviant to Iganash, but still have free will, although it does pain them to go against Iganash's wishes.",
+        "text": "Servants of Iganash, baptised in his dragonfire. Our flesh melts away and is replaced by scales, and we are imbued with his essence, binding ourselves to him. A common question we receive is whether or not we are free. We are—Iganash does not force us to do anything—but remember that we are, in part, him; our motives are the same.",
         "alias": ["!drake"]
     },
     "!beasts": {
@@ -59,13 +59,13 @@
     },
     "!jaekkas devoted": {
         "text": "Jaekka's Devoted is an incredibly traditional faction that adheres strictly and exclusively to the teachings of Jaekka herself and generally keeps out of public affairs. Jaekka's Devoted is most associated with Devotion mana and Novask the Scholar.",
-        "alias": ["!jd"]
+        "alias": ["!jd", "jaekka's devoted"]
     },
     "!mystic vanguard": {
         "text": "The Mystic Vanguard is the only dominant areligious faction in the world, believing that mortals should be able to reach, or even surpass the divinity of the dragons. The Mystic Vanguard is most associated with the Ambition mana and Thua the Fundament.",
         "alias": ["!mv"]
     },
-    "!!boundless spire": {
+    "!boundless spire": {
         "text": "A gigantic cathedral with a steeple that reaches past the clouds. It serves as the main seat of the Congregation in Drachoria. "
     },
     "!oration": {
@@ -83,16 +83,16 @@
         "text": "Paladins are the military force of the Congregation, serving as both its guards and crusaders. All paladins first serve as protectors.",
         "alias": ["!paladin"]
     },
-    "!!archpriests": {
+    "!archpriests": {
         "text": "Throughout most of the year, archpriests have two jobs: to research theology through prayer and study of the Chronicles, and to be the voice of the Congregation on the international scale, regularly meeting with leaders and delivering speeches. The current high archpriest is Glissathain.",
         "alias": ["!archpriest"]
     },
     "!glissathain": {
-        "text": "The exuberant archpriest from Shimmervale. She is popular for her energetic speaking style and committed advocacy for the Congregation’s conquest of the Throne.",
+        "text": "The exuberant High Archpriest from Shimmervale. She is popular for her energetic speaking style and committed advocacy for the Congregation’s conquest of the Throne.",
         "alias": ["!high archpriest"]
     },
     "!priests": {
-        "text": "The priests are responsible for the delivery of monthly orations, with each of them taking one of the three-hour shifts. Additionally, the priests are responsible for the management of their church’s academic functions.",
+        "text": "Spiritual leaders in the God Beast's Congregation and the Stewards of Fate. The Devoted monks are often likened to priests, though they eschew the power dynamic that the term implies.",
         "alias": ["!priest"]
     },
     "!commune": {
@@ -112,19 +112,20 @@
         "text": "Each year, Jaekka's Devoted celebrate Primordium: the commemoration of the supposed day that Jaekka created humans. Many of those who are able to travel to Bluecrest Monastery to celebrate the holiday with many of the other members of the Devoted, and in recent years the celebration is known for attracting many of the Devoted’s most talented mages to put on dazzling, spectacular displays of magic."
     },
     "!keeper": {
-        "text": "The Keepers are permanent residents of the Bluecrest Monastery. As its chief scholars, they are responsible for leading the weekly cogitations and tend to many of the managerial functions of the monastery itself; they greet any pilgrims that visit and refer them for appropriate housing, and on the rare occasion that a prominent public figure asks to meet with the Devoted, they typically speak with a Keeper."
+        "text": "The Keepers are permanent residents of the Bluecrest Monastery. As its chief scholars, they are responsible for leading the weekly cogitations and tend to many of the managerial functions of the monastery itself; they greet any pilgrims that visit and refer them for appropriate housing, and on the rare occasion that a prominent public figure asks to meet with the Devoted, they typically speak with a Keeper.",
+        "alias": ["!keepers"]
     },
     "!contemplative": {
-        "text": "Contemplatives are monks that choose not to live in the monastery. Instead, they move to a different region—often their hometown, but sometimes a location to which they feel a particular calling—and establish very small abbeys under their governance.",
+        "text": "Contemplatives are Devoted monks that choose not to live in the monastery. Instead, they move to a different region: often their hometown, but sometimes a location to which they feel a particular calling—and establish very small abbeys under their governance.",
         "alias": ["!contemplatives"]
     },
     "!jaekkas devoted beliefs": {
-        "text": "Jaekka's Devoted believe that life is defined by its wisdom and compassion.",
-        "alias": ["!jd beliefs"]
+        "text": "Jaekka's Devoted believe that the good life life is defined by its wisdom and compassion. All they strive for is to live in accordance with the Five Words.",
+        "alias": ["!jd beliefs", "!jaekka's devoted beliefs"]
     },
-    "!!jaekkas devoted goals": {
+    "!jaekkas devoted goals": {
         "text": "Jaekka’s Devoted are a fairly relaxed and removed group, regarding Arholt’s global affairs. However, they still hold their morals and theology very dearly, and will share them with any interested in listening.",
-        "alias": ["!jd goals"]
+        "alias": ["!jd goals", "!jaekka's devoted goals"]
     },
     "!our burden": {
         "text": "Published by Varrish philosopher Pavem Idom, Our Burden is an essay written four years after the Valather Incident to address the growing dangers of the magical world and the social need not only to limit natural destruction, but for people to manage and limit themselves so as to avoid man-made catastrophe."
@@ -138,18 +139,19 @@
         "alias": ["!declamation"]
     },
     "!convocations": {
-        "text": "Between their monthly declamations, the Stewards host convocations once per month on Friday evenings. At these convocations, members meet within their temple with their priests for an extended meeting. Functionally, convocations are also used to impassion the members of the church, and are where most paragons are recruited. Despite the often-heavy topics of convocation, the meetings are often also treated as social gatherings. Attendees frequently bring food in a potluck style and eat together while discussing the topics at hand.",
+        "text": "Between their monthly declamations, the Stewards host convocations once per month on Fash evenings. At these convocations, members meet within their temple with their priests for an extended meeting. Functionally, convocations are also used to impassion the members of the church, and are where most paragons are recruited. Despite the often-heavy topics of convocation, the meetings are often also treated as social gatherings. Attendees frequently bring food in a potluck style and eat together while discussing the topics at hand.",
         "alias": ["!convocation"]
     },
     "!the expedition": {
-        "text": "Since the rumor of Jaekka’s Throne, the Stewards have vigorously attempted to claim it. This effort has become known as the Expedition, with the church’s warriors pouring in to battle on its behalf."
+        "text": "Since the rumor of Jaekka’s Throne, the Stewards have vigorously attempted to claim it. This effort has become known as the Expedition, with the church’s warriors pouring in to battle on its behalf.",
+        "alias": ["!expedition"]
     },
     "!stewards of fate goals": {
         "text": "The Stewards are the most actively invested faction in how the citizens of Arholt live their lives. This is not because of an explicit interest in controlling others, but because the Stewards harbour genuine concern for the world and believe that the only reliable path to stability lies in managing the powers and interests of Arholt’s people.",
         "alias": ["!sof goals"]
     },
     "!overseers": {
-        "text": "Overseers are the regional directors of the Stewards. Rather than tending to an individual temple, they operate out of an Overseer’s Headquarters, typically located in a major regional city.",
+        "text": "Overseers are the regional directors of the Stewards. Rather than tending to an individual temple, they operate out of an overseer’s headquarters, typically located in a major regional city.",
         "alias": ["!overseer"]
     },
     "!paragons": {
@@ -162,7 +164,7 @@
     },
     "!mystic vanguard goals": {
         "text": "The Vanguard is passionate about respecting the autonomy and liberty of others, and uses its growing power to try to protect the relevant rights of others in this field. Members tend to remain passive in local politics until the law begins to trend towards stronger social regulation, at which point they become a formidable force.",
-        "alias": ["!mvbeliefs"]
+        "alias": ["!mv goals"]
     },
     "!Apotheosis Treatise": {
         "text": "The Treatise was written by the Vanguard’s founder, Thirim Na, and details the Vanguard argument for the advancement of mortals above the divine in response to the disappearance of Ballath from the Valather subcontinent."
@@ -172,8 +174,7 @@
         "alias": ["!myrmidons"]
     },
     "!journey to thua": {
-        "text": "Members of the Mystic Vanguard frequently visit Thua specifically as part of a traditional journey made by aspiring myrmidons.",
-        "alias": ["!mvbeliefs"]
+        "text": "Members of the Mystic Vanguard sometimes visit Thua as part of a traditional journey made by aspiring myrmidons. The trek across Valstov is tough and Anginn is merciless, but those who survive the adventure always find it worthwile."
     },
     "!meetings": {
         "text": "Vanguard meetings are very straightforward. Once per week on an unfixed day, Vanguards gather to discuss their personal lives, community issues, the global political scene, and to study magic and sciences together."
@@ -183,17 +184,17 @@
         "alias": ["!executor"]
     },
     "!chroma": {
-        "text": "Rifts in reality where the basic properties of existence are warping and changing.",
+        "text": "Chromas are rifts in reality where the basic properties of existence are warping and changing.",
         "alias": ["!chromas"]
     },
     "!reality": {
-        "text": "Our world, held together by the Hygd."
+        "text": "The intersection of Arholt and the hygd, where existence meets essence."
     },
     "!hygd": {
-        "text": "Where the abstracted concepts and notions of being are stored, it has significant control over being in the material world."
+        "text": "A place inside all places, where we find all meanings, all definitions, all relationships, all souls. Describing the hygd always proves challenging; it simply is what is."
     },
     "!throne": {
-        "text": "If you believe the rumors: A celestial object created to channel the creative energies of our Eternal Mother."
+        "text": "A brush... a key... a knife... a lens... the intersection of all things and the point from which the God Beast made our world."
     },
     "!mana": {
         "text": "Ways for the mortals of the world to manipulate and use the powers of the Chromas for their own purposes, known as Magic. "
@@ -202,7 +203,7 @@
         "text": "Magic created by chromas that tend to be incredibly stable and constant in their effects."
     },
     "!blight": {
-        "text": "Magic created by chromas that are highly instable and volatile, meaning their effects are often erratic or destructive."
+        "text": "Magic created by chromas that are highly unstable and volatile, meaning their effects are often erratic or destructive."
     },
     "!enchantments": {
         "text": "Objects that have been magically programmed to conduct tasks using Bloom magics."
@@ -215,14 +216,14 @@
         "text": "Devotion, ambition, insight and valor."
     },
     "!methods": {
-        "text": "Meditation, ascenscion, analysis and binding.",
+        "text": "Meditation, Ascension, Analysis and Binding.",
         "alias": ["!method"]
     },
     "!devotion": {
         "text": "Devotion mana is attained by peaceful meditation with a chroma, cooperating with it peacefully as a spritiual comrade. The process used to harvest devotion mana is called meditation."
     },
     "!ambition": {
-        "text": "Ambition mana is attained by meditative conflict with a chroma, bending it to the will of the user. The process used to harvest ambition mana is called ascenscion."
+        "text": "Ambition mana is attained by meditative conflict with a chroma, bending it to the will of the user. The process used to harvest ambition mana is called ascension."
     },
     "!insight": {
         "text": "Insight mana is attained by academic study of a chroma, with the goal of understanding it completely in a scientific manner. The process used to harvest insight mana is called analysis."
@@ -233,11 +234,11 @@
     "!meditation": {
         "text": "Meditation functions by dissolving the boundaries of one’s identity and allowing the essence of the chroma to meld into it."
     },
-    "!ascenscion": {
-        "text": "Ascendancy functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own."
+    "!ascension": {
+        "text": "Ascension functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own."
     },
     "!analysis": {
-        "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning its properties within both. "
+        "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning to direct its powers in both. "
     },
     "!binding": {
         "text": "Binding functions by study of a chroma’s essential composition in the hygd and, upon apprehending it, forging a biconditional link between the binder’s will and the chroma."
@@ -252,28 +253,28 @@
         "text": "When a creature possesses so much will that they are able to change the forms of the objects that exist within the physical plane around them."
     },
     "!sulhanna": {
-        "text": "The artist of artists, painter of new life. "
+        "text": "A gardener. A friend. An Artist. A god."
     },
     "!iganash": {
-        "text": "The Conqueror, the king. Stay on his good side."
+        "text": "The Conqueror, the King. Stay on his good side."
     },
     "!conqueror": {
-        "text": "Iganash, the one and only King. He resides in his Fortress to observe our mortal foolishness."
+        "text": "Iganash, the highest King. He resides in his Fortress to observe, and to direct those who seek his help and guidance."
     },
     "!artist": {
-        "text": "If you are one, maybe Sulhanna will favour you, and bring you into her Orchard."
+        "text": "The painter in the garden: Sulhanna, surrounded by her muses and beautiful things."
     },
     "!orchard": {
-        "text": "Only the most talented are taken into the Orchard, to play for The Artist."
+        "text": "Both a garden and a workshop, the Orchard houses all the Artist's strange creations."
     },
     "!thua": {
         "text": "Willpower given form."
     },
     "!willpower": {
-        "text": "Thua. She is willpower. If you make the grueling journey to visit her in her Refuge, you may receive her blessing."
+        "text": "You speak, and the universe listens. You command, and reality obeys. This is the second tautology: will IS power."
     },
     "!refuge": {
-        "text": "A cavern high up in the mountains, surrounded by the glass taiga of the Valstov Wastes. Many have ventured to seek blessing, fewer have returned."
+        "text": "A cavern high up in the mountains, surrounded by the glass taiga of the Valstov Wastes. Many have ventured to seek blessing; not as many have returned. "
     },
     "!fortress": {
         "text": "An enormous castle high upon Mt. Kungstarn. Iganash resides there, along with a few of his drakes."
@@ -282,82 +283,321 @@
         "text": "The most worthy may be baptised in dragonfire and imbued with a part of their deity, in order to serve them to the utmost of their ability."
     },
     "!sanctuary": {
-        "text": "Nobody living has ever seen it, or at least if they have seen it, they haven't come back to tell us about it..."
+        "text": "No living human has ever seen it. Or, if they have, they haven't come back..."
     },
     "!novask": {
-        "text": "Nobody has seen him in years, but every so often, his Attendants will deliver his new scriptures to us. He resides in his Sanctuary, far below the sea."
+        "text": "The Scholar. Nobody has seen him in years, but every so often, his Attendants deliver new scriptures to us. He resides in his Sanctuary, far below the sea."
     },
     "!jaekka": {
-        "text": "Our eternal Mother. "
+        "text": "Our Mother. I hope she comes back."
     },
     "!jatuum": {
         "text": "?"
     },
     "!arholt": {
-        "text": "The name of the world created by the God-Beast."
+        "text": "The name of the world created by the God Beast."
     },
     "!the nexus": {
-        "text": "The Nexus is a chroma that changes spatial dimensionality. It is located about six kilometres off the eastern coast of Sorag, Varr. It is a primarily Bloom chroma."
+        "text": "The Nexus is a chroma that changes spatial dimensionality. It is located about six kilometres off the eastern coast of Sorag, Varr. It is a primarily Bloom chroma.",
+        "alias": ["!nexus"]
     },
     "!the nexus discovery": {
-        "text": "The Nexus was originally discovered in 21 AG when a group of Varrish sailors went out to investigate a very small, pale chroma floating over the water and their boat, as well as everything and everyone, disappeared on the approach."
+        "text": "The Nexus was originally discovered in 21 AG when a group of Varrish sailors went out to investigate a very small, pale chroma floating over the water and their boat, as well as everything and everyone, disappeared on the approach.",
+        "alias": ["!nexus discovery"]
     },
     "!the nexus portal": {
-        "text": "After several scholars from the Stewards and Maliron University visited the area, they concluded that the chroma had added a fourth spatial dimension to the area, and that the items were disappearing when they entered regions where an unknown force pushed the entity along the fourth-dimensional axis. Eventually, mages began to find ways to work with this four-dimensional space, bending traditional space across the fourth axis to create low-maintenance, low-danger portals. A small artificial island—about the size of one city block—was constructed about the chroma. This structure, known as the Nexus, connects all of the major land masses, with most nations containing multiple portals. Only Ballath does not host a portal, being suspicious of such magics, though it is still easily accessible by Valath and the northern Azletsu Kingdom."
+        "text": "After several scholars from the Stewards and Maliron University visited the area, they concluded that the chroma had added a fourth spatial dimension to the area, and that the items were disappearing when they entered regions where an unknown force pushed the entity along the fourth-dimensional axis. Eventually, mages began to find ways to work with this four-dimensional space, bending traditional space across the fourth axis to create low-maintenance, low-danger portals. A small artificial island—about the size of one city block—was constructed about the chroma. This structure, known as the Nexus, connects all of the major land masses, with most nations containing multiple portals. Only Ballath does not host a portal, being suspicious of such magics, though it is still easily accessible by Valath and the northern Azletsu Kingdom.",
+        "alias": ["!nexus portal"]
     },
     "!the blind star": {
-        "text": "The Blind Star is a chroma that deforms conceptual relationality. It is located in the northern Garani desert. It is a mostly Blight chroma."
+        "text": "The Blind Star is a chroma that deforms conceptual relationality. It is located in the northern Garani desert. It is a mostly Blight chroma.",
+        "alias": ["!blind star"]
     },
     "!the blind star discovery": {
-        "text": "The Blind Star appeared in 91 AM: fairly recently. Since then, it has slowly begun to overtake the environment around itself, devouring the perceptual possibilities of the region around it."
+        "text": "The Blind Star appeared in 91 AM: fairly recently. Since then, it has slowly begun to overtake the environment around itself, devouring the perceptual possibilities of the region around it.",
+        "alias": ["!blind star discovery"]
     },
     "!the blind star bleaching": {
-        "text": "By “perceptual possibilities,” one means that though the chroma does not affect the physical being of an object, a given object’s personal concept vanishes; one may look at an object, and that object still exists, though one cannot gain an understanding of that object and thus cannot perceive it. The Blind Star spreads this effect around itself, “bleaching” the environment and creating a region that is almost impossible to navigate, as it cannot be comprehended."
+        "text": "By “perceptual possibilities,” one means that though the chroma does not affect the physical being of an object, a given object’s personal concept vanishes; one may look at an object, and that object still exists, though one cannot gain an understanding of that object and thus cannot perceive it. The Blind Star spreads this effect around itself, “bleaching” the environment and creating a region that is almost impossible to navigate, as it cannot be comprehended.",
+        "alias": ["!blind star bleaching"]
     },
     "!The Verdant Star": {
-        "text": "The Verdant Star is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments."
+        "text": "The Verdant Star, or Nalevegh, is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments. ",
+        "alias": ["!Verdant Star"]
     },
-    "!Navelegh": {
+    "!Nalevegh": {
         "text": "The Tai'ak name for the Verdant Star. Lit.: \"The Elder that Awakens\"."
     },
     "!The Verdant Star merge": {
-        "text": "The Verdant Star was, originally, a pair of adjacent chromas: one Bloom, encouraging growth, and one Blight, imbuing objects with will, at the bottom of Blooming Bay. However, in 202 AG, the two merged and formed a chroma prone to both natures."
+        "text": "The Verdant Star was, originally, a pair of adjacent chromas: one Bloom, encouraging growth, and one Blight, imbuing objects with will, at the bottom of Blooming Bay. However, in 202 AG, the two merged and formed a chroma prone to both natures.",
+        "alias": ["!Verdant Star Merge"]
     },
     "!The Japraitian Fault Line": {
-        "text": "The Japraitian Fault Line is a gargantuan chroma that functions as a teleporter. It is the cause for the Worldseam, and is located all along the base of its ravine."
+        "text": "The Japraitian Fault Line is a gargantuan chroma that functions as a teleporter. It is the cause for the Worldseam, and is located all along the base of its ravine.",
+        "alias": ["!Japraitian Fault Line"]
     },
     "!The Worldseam": {
-        "text": "The Worldseam began to appear shortly after Jaekka’s abdication, bisecting the then-whole Garani-Japraitian landmass. It slowly began to push the Isthor continent westwards, resulting in a series of increasingly intense earthquakes until 201 AG, when the continent split from Liowa and began its trek into the southwest. During this time, the ravine along the fault line deepened until it reached the source: the chroma itself."
+        "text": "The Worldseam began to appear shortly after Jaekka’s abdication, bisecting the then-whole Garani-Japraitian landmass. It slowly began to push the Isthor continent westwards, resulting in a series of increasingly intense earthquakes until 201 AG, when the continent split from Liowa and began its trek into the southwest. During this time, the ravine along the fault line deepened until it reached the source: the chroma itself.",
+        "alias": ["!Worldseam"]
     },
     "!Lainn's Forge": {
-        "text": "Lainn’s Forge is a chroma that appears as a massive column of fire around a now-hidden pale turquoise core. It is located in northern Svellsteim. It is a Bloom chroma."
+        "text": "Lainn’s Forge is a chroma that appears as a massive column of fire around a now-hidden pale turquoise core. It is located in northern Svellsteim. It is a Bloom chroma.",
+        "alias": ["!Lainns Forge"]
     },
     "!Lainn": {
         "text": "Appearing in 30 AG, Lainn’s Forge initially presented itself as many thick ribbons of fire orbiting a mass of turquoise motes about two metres across. Lainn, a smith living in a small village in northern Svellsteim, built his home and work station around the chroma, using it as a never-ending source of heat."
     },
     "!Lainn's Forge Growth": {
-        "text": "Lainn’s Forge began to grow. Generationally, the apparatus containing the Forge was rebuilt to accommodate its size until 93 AM, when Lainn’s descendants contracted a group of wizards from the God Beast’s Congregation to permanently halt the Forge’s growth. By this point, the Forge had grown into a column nearly nine metres across and twelve metres tall, and its owners had turned the facilities around it into a public resource, accessible by a fee. In response, the surrounding town boomed as it became known as the best place in Svellsteim for smithing."
+        "text": "Lainn’s Forge began to grow. Generationally, the apparatus containing the Forge was rebuilt to accommodate its size until 93 AM, when Lainn’s descendants contracted a group of wizards from the God Beast’s Congregation to permanently halt the Forge’s growth. By this point, the Forge had grown into a column nearly nine metres across and twelve metres tall, and its owners had turned the facilities around it into a public resource, accessible by a fee. In response, the surrounding town boomed as it became known as the best place in Svellsteim for smithing.",
+        "alias": ["!Lainns Forge Growth"]
     },
     "!The Carrion Star": {
-        "text": "The Carrion Star is a chroma that feeds on will by recycling and reanimating living things. It is located in a forest northwest of Krahncastle. It is a Blight chroma."
+        "text": "The Carrion Star is a chroma that feeds on will by recycling and reanimating living things. It is located in a forest northwest of Krahncastle. It is a Blight chroma.",
+        "alias": ["!Carrion Star"]
     },
     "!The Carrion Star Will": {
-        "text": "The Carrion Star is one of the most conscious chromas in Arholt. The chroma consumes will and thereby kills the living things around it. However, it also constantly reanimates the nearby corpses, infusing them again with small amounts of will to bring them back to life."
+        "text": "The Carrion Star is one of the most conscious chromas in Arholt. The chroma consumes will and thereby kills the living things around it. However, it also constantly reanimates the nearby corpses, infusing them again with small amounts of will to bring them back to life.",
+        "alias": ["!Carrion Star Will"]
     },
     "!The Carrion Star Reanimation": {
-        "text": "As life begins to recover, its will multiplies itself and it becomes increasingly conscious, only for the Star to harvest the will again. Consequently, the Star is surrounded by half-dead things, largely mindless, stuck in a constant cycle of death and reanimation. The only life which is not affected by this is crows, into which the chroma infuses itself, turning them into its representatives in the world, and the Egon Graf, the Harbinger: a human assassin infected by the chroma, enhanced by it in exchange for bringing corpses back to the Star for harvest."
+        "text": "As life begins to recover, its will multiplies itself and it becomes increasingly conscious, only for the Star to harvest the will again. Consequently, the Star is surrounded by half-dead things, largely mindless, stuck in a constant cycle of death and reanimation. The only life which is not affected by this is crows, into which the chroma infuses itself, turning them into its representatives in the world, and the Egon Graf, the Harbinger: a human assassin infected by the chroma, enhanced by it in exchange for bringing corpses back to the Star for harvest.",
+        "alias": ["!Carrion Star Reanimation"]
     },
     "!The Lion": {
-        "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood."
+        "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood.",
+        "alias": ["!Lion"]
     },
     "!help": {
         "text": "Ask things of me if you wish. I cannot always promise an answer, but I shall try my best to enlighten you."
     },
     "!whoami": {
-        "text": "I am the Mediator. I help those who wish to discover more about this world. I've lived a long time, and over my years, I have accumulated a lot of knowledge. Some of these things are a pleasure to know, others... not so much."
+        "text": "I am the Mediator. I help those who wish to discover more about this world. I've lived a long time, and over my years, I have accumulated a lot of knowledge. Some of these things are a pleasure to know, others... not so much.",
+        "alias": ["!who am i"]
     },
     "!the mediator": {
-        "text": "That's me. Hello!"
+        "text": "That's me. Hello!",
+        "alias": ["!mediator"]
+    },
+    "!Dryvenn": {
+        "text": "Dryvenn, Hound of the Ashen Wood, was a socially outcast blightmage from Arrix. Though the townsfolk disowned Dryvenn for her practices in volatile and mutative spells, when Krahncastle invaded, they had nobody else to turn to. "
+    },
+    "!Ix'kar": {
+        "text": "Ix'kar was one of the first alchemists, living in a time before most knew how to wield magic. Fearing death, he performed a daring experiment: binding his own soul and moving it into a new stone body of his own making. In doing this, he became Arholt's first lich."
+    },
+    "!hygd location": {
+        "text": "Where would you expect to find the 'dogness' of a hound? How could you walk to a place that defines the shine of gold? How could I draw a map to your soul?"
+    },
+    "!protectors": {
+        "text": "The majority of Congregation paladins are protectors: guardians of their churches and communities. Rarely, a protectors is handpicked by an archpriest to become a Knight of the Congregation."
+    },
+    "!knight of the congregation": {
+        "text": "A paladin leader operating in direct service of an archpriest. Knights are renowned not only for their skill in battle, but for their distinct ingenuity."
+    },
+    "!missionary": {
+        "text": "They aren't too common these days. The God Beast's Congregation still sends some out now and then to help grow their numbers, but most disagreement these days happens in town halls, or between tavern patrons, or very rarely, and very dreadfully, on the battlefield."
+    },
+    "!morality": {
+        "text": "A hotly contested topic. All that we have to go off of are Jaekka's Five Words, and they don't give much guidance."
+    },
+    "!five words": {
+        "text": "The beginning. The only command that Jaekka ever gave humanity, and the beginning of the disagreement between what would become the God Beast's Congregation and Jaekka's Devoted. The Devoted write them as, \"Love, and live well together.\""
+    },
+    "!grapes": {
+        "text": "A favourite of the Devoted, I hear. They have some gorgeous vineyards on the slope of Bluecrest Peak."
+    },
+    "!mortality": {
+        "text": "The Vanguard seems to think that it's some sort of enemy or insult. I think that it's just our lot in life."
+    },
+    "!muse": {
+        "text": "The most talented painters, bards, poets, and dancers of Arholt, all gathered to inspire and be inspired by the Artist."
+    },
+    "!tautology": {
+        "text": "Analytic truth. A circle of meaning. Fact by speech."
+    },
+    "!attendants": {
+        "text": "Leviathan squids who act as guardians and messengers to Novask, the Scholar. They transport his written works to the surface once he's finished them. "
+    },
+    "!scriptures": {
+        "text": "Novask's scriptures are called the Chronicles - they detail the history of the world and serve as many people's holy books.",
+        "alias": ["!Chronicles"]
+    },
+    "!god beast": {
+        "text": "God Beast. World Mother. Lakharegh. Jaekka."
+    },
+    "!gleamglass": {
+        "text": "A mineral primarily found in the Cinder mountains of the Azletsu Republic. Its most notable trait is that it refracts light very intensely, casting out colorful prismatic patterns when illuminated."
+    },
+    "!bluecrest": {
+        "text": "Bluecrest peak is a mountain to the east of Shimmervale, and is where Jaekka's Devoted have established their monastery. It is so named because of the significant deposits of gleamglass at the mountain's peak, which refract a gentle blue light across Shimmervale during the weeks surrounding the summer solstice. "
+    },
+    "!temple": {
+        "text": "The Stewards of Fate perform their spiritual functions in stone temples, usually suited to hold no more than a couple hundred people. Executive functions, however, are addressed in overseers' headquarters."
+    },
+    "!soul": {
+        "text": "If Arholt is ink on a page, then the hygd is where we find the meaning of the words. Your name has been written in ink and become a word: a body. Your soul is the meaning of that word."
+    },
+    "!dragons number": {
+        "text": "There are five dragons. There is Jaekka, and her five children: Thua, the Fundament; Sulhanna, the Artist; Novask, the Scholar; and Iganash, the Conqueror."
+    },
+    "!faction": {
+        "text": "The God Beast's Congregation and Jaekka's Devoted were the first factions of Arholt, first brought together by shared piety and then split by differing orthodoxies. With the advent of magic came the Stewards of Fate, seeking order; and the Mystic Vanguard, seeking transcendence. "
+    },
+    "!religion": {
+        "text": "The existence of dragons and divinity is a rote fact of the world. Whether and how people choose to worship them, however, is called religion."
+    },
+    "!faith": {
+        "text": "Only recently has faith become entwined with religion. Before her abdication, Jaekka was a constant of the world: knowable, reliable, real. But now, we can only hope and pray that she will return—if we want her to."
+    },
+    "!abdication": {
+        "text": "We don't know why. We don't know to where. And we don't know when, if ever, she will return."
+    },
+    "!goddess": {
+        "text": "Sulhanna, the Artist. Thua, the Fundament. Jaekka."
+    },
+    "!body": {
+        "text": "A body, like any other thing, is a manifestation of essence in the hygd. "
+    },
+    "!bloocan": {
+        "text": "A wild Bloom creature, often brought into existence by natural spirits wandering through the jungles of southeastern Garanain and western Japrait."
+    },
+    "!willhund": {
+        "text": "Primal echoes of Thua, scattered across Valstov."
+    },
+    "!kungstarn": {
+        "text": "A colossal mountain in central Varr, where Iganash has made his home.",
+        "alias": ["!Mt. Kungstarn"]
+    },
+    "!Worldseam's Eye": {
+        "text": "A small gap in the Worldseam between the Azletsu Republic and Varr, which allows skilled captains to travel between the east and the west without needing to use magic."
+    },
+    "!Ballath": {
+        "text": "When the eastern half of Valath reappeared, the differences in culture and dialect led locals to decide that it needed a new name. With cooperation from the western Valathers, they decided upon \"Ballath:\" a pronunciation of 'Valath' unique to their older accent.",
+        "alias": ["!Ballather"]
+    },
+    "!Valath": {
+        "text": "A small island nation north of the Azletsu Republic, most known for being the epicenter of the Valather incident. Valath has an alliance with the Svell based partly in cultural ties and a shared desire for security against possible annexation from the AR.",
+        "alias": ["!Valather"]
+    },
+    "!Garanain": {
+        "text": "Garanain is an oligarchy south of the Azletsu Republic and federally administrated by lords that possess sovereignty over their local domains, limited only by nationwide resolutions passed by their collective council. Garanain used to also govern all of modern-day Japrait and New Azletsu, but when the Japraitian fault line split the continent, several cities declared independence and Garanain had no means of recourse.",
+        "alias": ["!Garani"]
+    },
+    "!Azletsu Kingdom": {
+        "text": "A constitutional monarchy to the north of Garanain. The Azletsu Republic is Arholt's wealthiest nation, having acquired massive amounts of treasure from its capital and major trade hub, Shimmervale, and from its annex of Drachoria with the conquest of Skarn. ",
+        "alias": ["!Azletsu"]
+    },
+    "!Svellsteim": {
+        "text": "Svellsteim is a frigid nation to the far north of the Azletsu Republic. Though the Svell are a fairly modest people, they have been gaining wealth and attention since the discovery of Lainn's Forge.",
+        "alias": ["!Svell"]
+    },
+    "!Varr": {
+        "text": "Homeland of the Stewards of Fate and Iganash, the Conqueror, Varr is arguably the most ordered nation in the world. Situated in the world's northwest, Varr is primarily a nation of mountains, plains, and forests. Varr's queens also claim dominion over Tolopea, though their legal grip is not nearly as tight on the island.",
+        "alias": ["!Varrish"]
+    },
+    "!Japrait": {
+        "text": "Japrait the name of the collective security alliance between many of the city-states that declared independence from Garanain when Isthor split from Liowa. Its two most significant members are Baingrove and Krahncastle. ",
+        "alias": ["!Japrait"]
+    },
+    "!Krahncastle": {
+        "text": "Krahncastle is a powerful city-state in eastern Japrait, and the first to declare its independence from Garanain. During a border dispute with New Azletsu, Krahncastle invaded the small town Arrix. It didn't go well."
+    },
+    "!Baingrove": {
+        "text": "Baingrove is a city-state in western Japrait, famed for its unique architecture and proximity to Sulhanna's Orchard. The city's wealth, access to high quantities of both Bloom and Blight magic, and high diversity of species make it very very attractive to members of the Mystic Vanguard."
+    },
+    "!New Azletsu": {
+        "text": "Though many cities declared their complete independence when the Japraitian Fault Line split Garanain, a comparatively small swath of land on the new continent instead declared loyalty to its longtime economic and cultural neighbour: the Azletsu Republic. The AR accepted this arrangement, and the cities unified under the common national title of New Azletsu. "
+    },
+    "!Valstov": {
+        "text": "Brutal and desolate, the Valstov wastes were designed to be a crucible suited for only the most dedicated survivors. Thua has made her home in this antarctic, glass-covered island, and challenges the strong of heart to seek her out in her Refuge."
+    },
+    "!Tolopea": {
+        "text": "Varr has yet to succeed in bringing law to Tolopea. Instead, the southern island is clunkily administered by local bureaucrats and petty lords, caught in a cultural crossfire between the legalistic Varrish and the neighboring Vanguards of Baingrove. "
+    },
+    "!Skarn": {
+        "text": "Once an independent democracy, Skarn was the eastern neighbor of the Azletsu Kingdom and the home of Drachoria. Many, many years ago, however, the Azletsu conquered Skarn, dismantling its government though leaving its culture intact."
+    },
+    "!Isthor": {
+        "text": "The southwestern continent, containing Japrait and New Azletsu."
+    },
+    "!Liowa": {
+        "text": "The eastern supercontinent, containing the Azletsu Republic and Garanain."
+    },
+    "!Arrix": {
+        "text": "There was a time when almost nobody had ever heard of Arrix. It was nothing but an insignificant town along the border of New Azletsu and Krahncastle's territory. But when Krahncastle invaded, the people of Arrix refused to surrender quietly, and after several days of occupation, voluntarily became the Arrak and drove the Krahncastle invaders out."
+    },
+    "!Drachoria": {
+        "text": "Drachoria is the former capital of Skarn and the home of the Boundless Spire."
+    },
+    "!Shimmervale": {
+        "text": "Shimmervale is the capital of the Azletsu Republic. It houses the Republic's royal family and senate, and is only a few days' walk to the west of Bluecrest Peak."
+    },
+    "!cinder mountains": {
+        "text": "The mountain range reaching from Shimmervale's eastern border nearly to Drachoria. Much of the central section of the mountain range has collapsed into Helanthaflora Basin."
+    },
+    "!Helanthaflora Basin": {
+        "text": "Though Helanthaflora Basin used to be part of the Cinder mountains, violent chromatic activity has since shattered the mountains and caused them to sink into the ground. From the cracks seeps intense and highly variable magic, leading to wildlife mutations, changes in fundamental laws like time and gravity, and more. Helanthaflora Basin is home to the Graeoln.",
+        "alias": ["!Helanthaflora"]
+    },
+    "!Silversteppe": {
+        "text": "One of the seven districts of the Azletsu Republic, known for its wide plains and profitable silver mines."
+    },
+    "!Smouldering Hills": {
+        "text": "One of the seven districts of the Azletsu Republic, known for its positioning in the middle of the cinder mountains and the rich coal deposits within."
+    },
+    "!Sanctus": {
+        "text": "One of the seven districts of the Azletsu Republic and a former territory of Skarn, known for housing the famed city Drachoria."
+    },
+    "!Fymoor": {
+        "text": "One of the seven districts of the Azletsu Republic, known for its cool bogs and trade ports near Ballath and Valath."
+    },
+    "!Altsfield": {
+        "text": "One of the seven districts of the Azletsu Republic and a former territory of Skarn, known for its tranquil meadows and multicultural border towns near the Garani border."
+    },
+    "!Blue Lights": {
+        "text": "A phenomenon unique to the Cerulean Valley in the Azletsu Kingdom, whereby light filtered through the gleamglass deposits in Bluecrest Peak cast a gentle blue light across huge swaths of land, covering entire cities.",
+        "alias": ["!Blue Lights of Summer"]
+    },
+    "!Cerluean Valley": {
+        "text": "One of the seven districts of the Azletsu Republic, known for housing Shimmervale and the famous Blue Lights of Summer."
+    },
+    "!Eyrie ": {
+        "text": "One of the seven districts of the Azletsu Republic, known for its rocky taiga and easy access to both the Valather islands and Svellsteim."
+    },
+    "!Lakharegh": {
+        "text": "The Tai'ak's name for Jaekka. Lit.: The Elder Dreamer."
+    },
+    "!Thunegh": {
+        "text": "The Tai'ak's name for Thua. Lit.: The Elder Will."
+    },
+    "!Axxtaregh": {
+        "text": "The Tai'ak's name for Novask. Lit.: The Elder Scribe."
+    },
+    "!Sievegh": {
+        "text": "The Tai'ak's name for Sulhanna. Lit.: the Elder Painter."
+    },
+    "!Iganegh": {
+        "text": "The Tai'ak's name for Iganash. Lit.: The Elder Conqueror."
+    },
+    "!Sunday": {
+        "text": "The first day of the week."
+    },
+    "!Modor": {
+        "text": "The second day of the week."
+    },
+    "!Tuum": {
+        "text": "The third day of the week."
+    },
+    "!Vask": {
+        "text": "The fourth day of the week."
+    },
+    "!Thuro": {
+        "text": "The fifth day of the week."
+    },
+    "!Fash": {
+        "text": "The sixth day of the week."
+    },
+    "!Sulna": {
+        "text": "The seventh day of the week."
     }
   }
 }
