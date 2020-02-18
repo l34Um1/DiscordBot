@@ -28,7 +28,7 @@ export default class EverythingHandler {
 
     this.client.on('guildMemberAdd', this.onGuildMemberAdd.bind(this))
     this.client.on('message', this.onMessage.bind(this))
-    this.client.on('guildCreate', this.onGuildAdd.bind(this))
+    this.client.on('guildCreate', this.onGuildCreate.bind(this))
   }
 
   private async onGuildMemberAdd(member: Discord.GuildMember) {
@@ -40,27 +40,19 @@ export default class EverythingHandler {
     this.start(member)
   }
 
-  private async onGuildAdd(guild: Guild) {
-    const func = () => {
-      if (!guild.available) {
-        clearInterval(interval)
-        return
-      }
+  private async onGuildCreate(guild: Guild) {
+    logger.botInfo(`Guild added: ${guild.name}`)
 
-      const staticData = this.data.getData<FactionData>(guild.id, 'factionData')
-      if (!staticData) return
-      for (const faction in staticData.factions) {
-        const role = this.getDataBasic(guild.id)?.guild.factions[faction].role
-        if (!role) continue
+    const staticData = this.data.getData<FactionData>(guild.id, 'factionData')
+    if (!staticData) return
+    for (const faction in staticData.factions) {
+      const role = this.getDataBasic(guild.id)?.guild.factions[faction]?.role
+      if (!role) continue
 
-        const count = guild.roles.get(role)?.members.size
-        if (typeof count === 'undefined') continue
-        staticData.factions[faction].count = count
-      }
+      const count = guild.roles.get(role)?.members.size
+      if (typeof count === 'undefined') continue
+      staticData.factions[faction].count = count
     }
-    func()
-
-    const interval = setInterval(func, 60 * 60 * 1000)
   }
 
   private async onMessage(msg: Discord.Message) {
@@ -589,7 +581,7 @@ export default class EverythingHandler {
       const faction: Faction = d.guild.factions[fact || '']
       if (fact && faction) {
         if (fact && faction.confirmationMessage) {
-          this.whisper(faction.confirmationMessage, memberId)
+          this.whisper(this.getRngVal(faction.confirmationMessage), memberId)
         }
 
         if (fact && faction.newcomerMessage && faction.mainChannel) {
@@ -597,7 +589,7 @@ export default class EverythingHandler {
           const channel = guild?.channels.get(faction.mainChannel)
 
           if (channel instanceof TextChannel) {
-            channel.send(faction.newcomerMessage)
+            channel.send(this.getRngVal(faction.newcomerMessage))
           }
         }
       }
