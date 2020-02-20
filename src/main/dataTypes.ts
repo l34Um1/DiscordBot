@@ -31,7 +31,7 @@ type UserData = GuildUserData[string]
 type CombinedGuildData = {
   user: GuildUserData
   dyn: GuildDynamicData
-  guild: GuildData
+  readonly guild: GuildData
 }
 
 interface GuildDynamicData {
@@ -93,8 +93,8 @@ interface GuildData {
   readonly finishRoles: RoleId[]
   /** Granted when skipping a quest. The skip role is removed if the member has finished any quests */
   readonly skipRoles: RoleId[]
-  /** Whether or not to randomize faction role order every day */
-  readonly dailyRandomizeOrder: boolean
+  /** Roles to shuffle daily */
+  readonly shuffleRoles: RoleId[]
   /** Factions */
   readonly factions: {
     /** String used to refer to this faction ("usa") */

@@ -7,20 +7,19 @@ import deepClone from './lib/deepClone'
 
 import Discord, { TextChannel } from 'discord.js'
 
+const REORDER_INTERVAL = 24 * 60 * 60 * 1000
+
 export default class EverythingHandler {
   private client: Discord.Client
   private data: Data
   private globalData!: GlobalQuestData
-  private rl: RateLimiter
   private commandKeys: { [guild: string]: { [command: string]: CommandData['commands'][number] } }
+  private reorderTimeouts: { [guild: string]: NodeJS.Timeout }
   constructor(client: Discord.Client, data: Data) {
     this.client = client
     this.data = data
-    this.rl = new RateLimiter({
-      duration: 0,
-      delay: 1000,
-    })
     this.commandKeys = {}
+    this.reorderTimeouts = {}
     this.init()
   }
 
@@ -223,10 +222,11 @@ export default class EverythingHandler {
                   const add: string[] = []
                   if (last.faction) add.push(d.guild.factions[last.faction].role)
                   add.concat(d.guild.finishRoles)
-                  this.editRoles(msg.member, remove, add)
-                  msg.channel.send('You already did the quest. Roles refreshed.')
+
+                  const res = this.editRoles(msg.member, remove, add)
+                  msg.channel.send(`You already did the quest.${res ? ' Roles reassigned.' : ''}`)
                 } else {
-                  msg.channel.send('You already did the quest. Could not refresh roles.')
+                  msg.channel.send('You already did the quest.')
                 }
               } else if (last.question === d.guild.quest.startQuestion) {
                 this.start(msg.member)
@@ -380,8 +380,8 @@ export default class EverythingHandler {
     return res
   }
 
-  private editRoles(member: Discord.GuildMember | undefined, remove: string[], add: string[]) {
-    if (!member || !(add.length + remove.length)) return
+  private editRoles(member: Discord.GuildMember | undefined, remove: string[], add: string[]): boolean {
+    if (!member || !(add.length + remove.length)) return false
     logger.apiDebug(`${member.guild.name} Editing roles of ${member.displayName} (removing: ${remove.join()}, adding ${add.join()})`)
 
     const original = member.roles
@@ -390,8 +390,9 @@ export default class EverythingHandler {
       if (roles.includes(role)) continue
       roles.push(role)
     }
-
+    if (!roles.length) return false
     member.setRoles(roles)
+    return true
   }
 
   /**
@@ -406,11 +407,47 @@ export default class EverythingHandler {
     return startTime + memberId
   }
 
+  private async reorderRoles(guild: Guild, roleIds: string[]) {
+    if (!guild.available) return
+
+    const roles = guild.roles.filterArray(v => roleIds.includes(v.id))
+    const shuffled = shuffle(roles.map(v => v.position))
+    const boths = roles.map((v, i) => { return { role: v, pos: shuffled[i] } })
+
+    boths.sort((a, b) => a.pos - b.pos)
+
+    for (const both of boths) await both.role.setPosition(both.pos)
+    logger.channelInfo(`Reordered roles of ${guild.name}`)
+
+    function shuffle<T>(a: T[]) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+       ;[a[i], a[j]] = [a[j], a[i]]
+      }
+      return a
+    }
+  }
+
   private async getData(guild: Discord.Guild): Promise<CombinedGuildData> {
     let guildData = this.data.getData<GuildData>(guild.id, 'guildData')
     let userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
     let dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
-    if (guildData && userData && dynData) return { user: userData, guild: guildData, dyn: dynData }
+
+    if (guildData && userData && dynData) {
+      if (guildData.shuffleRoles?.length && !this.reorderTimeouts[guild.id]) {
+        this.reorderTimeouts[guild.id] = setTimeout(() => {
+          const guildData = this.data.getData<GuildData>(guild.id, 'guildData')
+          const dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
+          this.reorderTimeouts[guild.id].unref()
+          delete this.reorderTimeouts[guild.id]
+          if (!guildData || !dynData) return
+
+          this.reorderRoles(guild, guildData.shuffleRoles)
+          dynData.reorderTime = Date.now()
+        }, REORDER_INTERVAL - (Date.now() - dynData.reorderTime))
+      }
+      return { user: userData, guild: guildData, dyn: dynData }
+    }
 
     const promises: Array<Promise<any>> = []
     if (!guildData) promises.push(this.data.load<GuildData>(guild.id, 'guildData'))
