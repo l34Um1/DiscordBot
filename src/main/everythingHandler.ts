@@ -1,10 +1,11 @@
-import Discord, { TextChannel } from 'discord.js'
 
 import prand from './lib/pseudoRandom'
 import Data from './data'
 import logger from './logger'
 import RateLimiter from './lib/rateLimiter'
 import deepClone from './lib/deepClone'
+
+import Discord, { TextChannel } from 'discord.js'
 
 export default class EverythingHandler {
   private client: Discord.Client
@@ -33,7 +34,27 @@ export default class EverythingHandler {
 
   private async onGuildMemberAdd(member: Discord.GuildMember) {
     const d = await this.getData(member.guild) as CombinedGuildData | undefined
-    if (!d || d.user[member.id]) return
+    if (!d) return
+
+    // Member has left and rejoins the guild. Give roles again
+    if (d.user[member.id]) {
+      try {
+        const quests = d.user[member.id].quests
+        if (!quests?.length) return
+
+        const last = quests[quests.length - 1]
+        if (!last.faction || last.result !== 'finish') return
+
+        const add: string[] = []
+        if (last.faction) add.push(d.guild.factions[last.faction].role)
+        add.concat(d.guild.finishRoles)
+
+        this.editRoles(member, [], add)
+      } catch (err) {
+        logger.error(err)
+      }
+      return
+    }
 
     d.user[member.id] = { quests: [] }
     if (d.guild.joinRoles) this.editRoles(member, [], d.guild.joinRoles)
@@ -83,6 +104,7 @@ export default class EverythingHandler {
       }
     } else if (msg.channel.type === 'text') {
       if (!msg.member) return
+
       const words = msg.content.split(' ')
       const maybeCommand = Boolean(words[0].match(/^!\S/))
       let commandUsed = false
@@ -126,6 +148,7 @@ export default class EverythingHandler {
           cmdData.commands[name] = { text }
           this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command created')
+          return
         }
         if (msg.content.startsWith('!editcom')) {
           commandUsed = true
@@ -146,6 +169,7 @@ export default class EverythingHandler {
           cmdData.commands[name] = { text }
           this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command modified')
+          return
         }
         if (msg.content.startsWith('!delcom')) {
           commandUsed = true
@@ -166,6 +190,7 @@ export default class EverythingHandler {
           delete cmdData.commands[name]
           this.updateCommandKeys(msg.guild.id, cmdData.commands)
           msg.channel.send('Command deleted')
+          return
         }
       }
 
@@ -187,19 +212,27 @@ export default class EverythingHandler {
           const quests = userData.quests
           commandUsed = true
           if (quests.length) {
-            const quest = quests[quests.length - 1]
-            if (quest) {
-              if (quest.result === 'skip') {
+            const last = quests[quests.length - 1]
+            if (last) {
+              if (last.result === 'skip') {
                 quests.pop()
-              } else if (quest.result === 'finish') {
-                msg.channel.send('You already did the quest')
-              } else {
-                if (quest.question === d.guild.quest.startQuestion) {
-                  this.start(msg.member)
+              } else if (last.result === 'finish') {
+                if (last.faction) {
+                  const factionRoles = this.getFactionRoles(d.guild.factions)
+                  const remove: string[] = [...factionRoles, ...d.guild.questingRoles, ...d.guild.skipRoles, ...d.guild.joinRoles]
+                  const add: string[] = []
+                  if (last.faction) add.push(d.guild.factions[last.faction].role)
+                  add.concat(d.guild.finishRoles)
+                  this.editRoles(msg.member, remove, add)
+                  msg.channel.send('You already did the quest. Roles refreshed.')
                 } else {
-                  this.displayQuestion(d.guild.quest.questions[quest.question], msg.member.id)
-                  msg.channel.send('You are already in the process of doing the quest. The current question has been whispered to you again.')
+                  msg.channel.send('You already did the quest. Could not refresh roles.')
                 }
+              } else if (last.question === d.guild.quest.startQuestion) {
+                this.start(msg.member)
+              } else {
+                this.displayQuestion(d.guild.quest.questions[last.question], msg.member.id)
+                msg.channel.send('You are already in the process of doing the quest. The current question has been whispered to you again.')
               }
             }
           } else {

@@ -35,7 +35,7 @@ type CombinedGuildData = {
 }
 
 interface GuildDynamicData {
-  reorderTime: number,
+  reorderTime: number
 }
 
 interface GuildUserData {
@@ -101,7 +101,7 @@ interface GuildData {
     readonly [name: string]: {
       /** Full name ("United States of America") */
       readonly title: RoleId
-      /** Roles granted when user is selected for this faction */
+      /** Role granted when user is selected for this faction */
       readonly role: RoleId
 
       /** The main channel of a faction */
