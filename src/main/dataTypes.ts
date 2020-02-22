@@ -32,6 +32,7 @@ type CombinedGuildData = {
   user: GuildUserData
   dyn: GuildDynamicData
   readonly guild: GuildData
+  cmdData: CommandData
 }
 
 interface GuildDynamicData {
@@ -73,10 +74,17 @@ interface CommandData {
   /** The channel which the bot reads for commands */
   readonly commands: {
     [command: string]: {
-      /** The message sent */
-      text: string
-      /** Commands which also call this message */
-      alias?: string[]
+      /** The message sent. Use an array for random ouput */
+      text?: Randomizable<string>
+      /**
+       * Clone the output of a command. Use an array to select a random command.  
+       * This command acts **identically** to the cloned command!
+       */
+      clone?: Randomizable<string>
+      /** Only allow use of this command in these channels */
+      requireChannel?: string[]
+      /** Ignores this command in these channel */
+      ignoreChannel?: string[]
     }
   }
 }

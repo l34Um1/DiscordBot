@@ -1,11 +1,15 @@
 
+import { exec as _exec } from 'child_process'
+import util from 'util'
+
 import prand from './lib/pseudoRandom'
 import Data from './data'
 import logger from './logger'
-import RateLimiter from './lib/rateLimiter'
 import deepClone from './lib/deepClone'
 
 import Discord, { TextChannel } from 'discord.js'
+
+const exec = util.promisify(_exec)
 
 const REORDER_INTERVAL = 24 * 60 * 60 * 1000
 
@@ -75,7 +79,7 @@ export default class EverythingHandler {
     }
   }
 
-  private async onMessage(msg: Discord.Message) {
+  private async onMessage(msg: Discord.Message): Promise<void> {
     if (msg.author.id === this.client.user.id) {
       logger.botChat(`[${msg.channel.type}]>BOT: ${msg.content}`)
       return
@@ -105,105 +109,74 @@ export default class EverythingHandler {
       if (!msg.member) return
 
       const words = msg.content.split(' ')
-      const maybeCommand = Boolean(words[0].match(/^!\S/))
+      const exclaimedWord = Boolean(words[0].match(/^!\S/))
       let commandUsed = false
-      const cmdData = await this.getCommandData(msg.guild)
+
+      const d = await this.getData(msg.guild)
+      if (!d) return
+
       if (msg.member.hasPermission('ADMINISTRATOR')) {
         if (msg.content === '!save') {
           commandUsed = true
           this.data.saveAllSync()
           return
         }
+
         if (msg.content === '!exit') {
           commandUsed = true
           process.send?.({ cmd: 'AUTO_RESTART', val: false })
           process.exit()
         }
+
         if (msg.content === '!reset') {
           commandUsed = true
-
-          const d = await this.getData(msg.guild)
-          if (!d) return
           delete d.user[msg.member.id]
           return
         }
-        if (msg.content.startsWith('!addcom')) {
-          commandUsed = true
-          if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
-            msg.channel.send('Invalid format. Format is: "!addcom {command name} {response text}"')
+
+        if (msg.content === '!update') {
+          if (!process.send) {
+            msg.channel.send('Process manager is not available')
             return
           }
 
-          const name = words[1]
-          const text = words.slice(2).join(' ')
-          if (!cmdData) {
-            msg.channel.send('Data is not available. Try again later')
+          if (!await this.exec('git pull origin master')) {
+            msg.channel.send('An error occurred while updating repository')
             return
           }
-          if (cmdData.commands[name]) {
-            msg.channel.send('Command already exists. Use !editcom if you intended to edit it')
-            return
-          }
-          cmdData.commands[name] = { text }
-          this.updateCommandKeys(msg.guild.id, cmdData.commands)
-          msg.channel.send('Command created')
-          return
-        }
-        if (msg.content.startsWith('!editcom')) {
-          commandUsed = true
-          if (!msg.content.match(/^[^ ]+ [^ ]+ [^ ].*/)) {
-            msg.channel.send('Invalid format. Format is: "!editcom {command name} {response text}"')
+          if (!await this.exec('tsc')) {
+            msg.channel.send('An error occurred during compilation')
             return
           }
 
-          const name = words[1]
-          const text = words.slice(2).join(' ')
-          if (!cmdData) {
-            msg.channel.send('Data is not available. Try again later')
-            return
-          }
-          if (!cmdData.commands[name]) {
-            msg.channel.send('Command does not exist. Creating as a new command')
-          }
-          cmdData.commands[name] = { text }
-          this.updateCommandKeys(msg.guild.id, cmdData.commands)
-          msg.channel.send('Command modified')
-          return
-        }
-        if (msg.content.startsWith('!delcom')) {
-          commandUsed = true
-          if (!msg.content.match(/^[^ ]+ [^ ]/)) {
-            msg.channel.send('Invalid format. Format is: "!delcom {command name}"')
-            return
-          }
+          process.send({ cmd: 'AUTO_RESTART_NEXT', val: true })
 
-          const name = words[1]
-          if (!cmdData) {
-            msg.channel.send('Data is not available. Try again later')
-            return
-          }
-          if (!cmdData.commands[name]) {
-            msg.channel.send('Command does not exist. Note that hardcoded aliases cannot be edited')
-            return
-          }
-          delete cmdData.commands[name]
-          this.updateCommandKeys(msg.guild.id, cmdData.commands)
-          msg.channel.send('Command deleted')
-          return
+          await msg.channel.send('Restarting...')
+          process.exit()
         }
       }
 
-      const cmdKeys = this.getCommandKeys(msg.guild.id)
-      if (cmdKeys) {
-        const input = msg.content.toLowerCase()
-        if (cmdKeys[input]) {
-          msg.channel.send(cmdKeys[input].text)
-          return
+
+      const commands = d.cmdData.commands
+      let commandKey = msg.content.toLowerCase().trim()
+      for (let i = 0; i < 100; i++) {
+        const command = commands[commandKey]
+        if (command) {
+          if (command.text) {
+            if (command.requireChannel && !command.requireChannel.includes(msg.channel.id)) break
+            if (command.ignoreChannel && command.ignoreChannel.includes(msg.channel.id)) break
+            msg.channel.send(this.getRngVal(command.text))
+            commandUsed = true
+            break
+          }
+          if (command.clone) {
+            commandKey = this.getRngVal(command.clone)
+          } else {
+            break
+          }
         }
       }
 
-      const d = await this.getData(msg.guild)
-      if (!d) return
 
       let userData = d.user[msg.member.id]
       if (userData) {
@@ -240,7 +213,7 @@ export default class EverythingHandler {
           }
         }
       }
-      if (maybeCommand && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
+      if (exclaimedWord && !commandUsed) msg.channel.send('Hm... I\'m not familiar with that. Try something else.')
 
       // If in main channel (#welcome)
       if (d.guild.botChannels.includes(msg.channel.id)) {
@@ -269,23 +242,14 @@ export default class EverythingHandler {
       }
     }
   }
-  private getCommandKeys(guildId: string): EverythingHandler['commandKeys'][string] | undefined {
-    return this.commandKeys[guildId]
-  }
 
-  private updateCommandKeys(guildId: string, commands: CommandData['commands']) {
-    this.commandKeys[guildId] = {}
-
-    const cmdKeys = this.commandKeys[guildId]
-
-    for (const commandKey in commands) {
-      const command = commands[commandKey]
-      cmdKeys[commandKey.toLowerCase()] = command
-      if (command.alias) {
-        for (const alias of command.alias) {
-          cmdKeys[alias.toLowerCase()] = command
-        }
-      }
+  private async exec(cmd: string) {
+    try {
+      console.log(await exec(cmd))
+      return true
+    } catch (err) {
+      console.error(err)
+      return false
     }
   }
 
@@ -432,8 +396,9 @@ export default class EverythingHandler {
     let guildData = this.data.getData<GuildData>(guild.id, 'guildData')
     let userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
     let dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
+    let commandData = this.data.getData<CommandData>(guild.id, 'commandData')
 
-    if (guildData && userData && dynData) {
+    if (guildData && userData && dynData && commandData) {
       if (guildData.shuffleRoles?.length && !this.reorderTimeouts[guild.id]) {
         this.reorderTimeouts[guild.id] = setTimeout(() => {
           const guildData = this.data.getData<GuildData>(guild.id, 'guildData')
@@ -446,37 +411,32 @@ export default class EverythingHandler {
           dynData.reorderTime = Date.now()
         }, REORDER_INTERVAL - (Date.now() - dynData.reorderTime))
       }
-      return { user: userData, guild: guildData, dyn: dynData }
+      return { user: userData, guild: guildData, dyn: dynData, cmdData: commandData }
     }
 
     const promises: Array<Promise<any>> = []
     if (!guildData) promises.push(this.data.load<GuildData>(guild.id, 'guildData'))
     if (!userData) promises.push(this.data.load<GuildUserData>(guild.id, 'guildUserData', {}))
     if (!dynData) promises.push(this.data.load<GuildDynamicData>(guild.id, 'guildDynamicData', { reorderTime: 0 }))
+    if (!commandData) promises.push(this.data.load<CommandData>(guild.id, 'commandData', { commands: {} }))
     await Promise.all(promises)
 
     guildData = this.data.getData<GuildData>(guild.id, 'guildData')
     userData = this.data.getData<GuildUserData>(guild.id, 'guildUserData')
     dynData = this.data.getData<GuildDynamicData>(guild.id, 'guildDynamicData')
+    commandData = this.data.getData<CommandData>(guild.id, 'commandData')
 
-    if (!guildData || !userData || !dynData) throw new Error('Didnt load eShrug')
-    return { user: userData, guild: guildData, dyn: dynData }
+    if (!guildData || !userData || !dynData || !commandData) throw new Error('Didnt load eShrug')
+    return { user: userData, guild: guildData, dyn: dynData, cmdData: commandData }
   }
+
   private getDataBasic(guildId: GuildId): CombinedGuildData | undefined {
     const guildData = this.data.getData<GuildData>(guildId, 'guildData')
     const userData = this.data.getData<GuildUserData>(guildId, 'guildUserData')
     const dynData = this.data.getData<GuildDynamicData>(guildId, 'guildDynamicData')
-    if (!guildData || !userData || !dynData) return
-    return { user: userData, guild: guildData, dyn: dynData }
-  }
-
-  private async getCommandData(guild: Discord.Guild): Promise<CommandData> {
-    let cmdData = this.data.getData<CommandData>(guild.id, 'commandData')
-    if (!cmdData) {
-      cmdData = await this.data.load<CommandData>(guild.id, 'commandData', { commands: {} })
-      if (cmdData) this.updateCommandKeys(guild.id, cmdData.commands)
-    }
-    return cmdData
+    const commandData = this.data.getData<CommandData>(guildId, 'commandData')
+    if (!guildData || !userData || !dynData || !commandData) return
+    return { user: userData, guild: guildData, dyn: dynData, cmdData: commandData }
   }
 
   private async updateStaticData(guildId: string, quest: UserData['quests'][number]) {
