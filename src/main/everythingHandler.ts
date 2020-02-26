@@ -415,10 +415,10 @@ export default class EverythingHandler {
     }
 
     const promises: Array<Promise<any>> = []
-    if (!guildData) promises.push(this.data.load<GuildData>(guild.id, 'guildData'))
-    if (!userData) promises.push(this.data.load<GuildUserData>(guild.id, 'guildUserData', {}))
-    if (!dynData) promises.push(this.data.load<GuildDynamicData>(guild.id, 'guildDynamicData', { reorderTime: 0 }))
-    if (!commandData) promises.push(this.data.load<CommandData>(guild.id, 'commandData', { commands: {} }))
+    if (!guildData) promises.push(this.data.load<GuildData>(guild.id, 'guildData', { noSave: true }))
+    if (!userData) promises.push(this.data.load<GuildUserData>(guild.id, 'guildUserData', { defaultData: {} }))
+    if (!dynData) promises.push(this.data.load<GuildDynamicData>(guild.id, 'guildDynamicData', { defaultData: { reorderTime: 0 } }))
+    if (!commandData) promises.push(this.data.load<CommandData>(guild.id, 'commandData', { defaultData: { commands: {} }, noSave: true }))
     await Promise.all(promises)
 
     guildData = this.data.getData<GuildData>(guild.id, 'guildData')
@@ -439,24 +439,22 @@ export default class EverythingHandler {
     return { user: userData, guild: guildData, dyn: dynData, cmdData: commandData }
   }
 
-  private async updateStaticData(guildId: string, quest: UserData['quests'][number]) {
-    let staticData = this.data.getData<FactionData>(guildId, 'factionData')
-    if (!staticData) {
-      staticData = await this.data.load<FactionData>(guildId, 'factionData', { factions: {} })
-    }
+  private async updateFactionData(guildId: string, quest: UserData['quests'][number]) {
+    let factionData = this.data.getData<FactionData>(guildId, 'factionData')
+    if (!factionData) factionData = await this.data.load<FactionData>(guildId, 'factionData', { defaultData: { factions: {} } })
     if (quest.points) {
       for (const faction in quest.points) {
-        if (!staticData.factions[faction]) {
-          staticData.factions[faction] = { points: 0, count: 0, questPoints: 0 }
+        if (!factionData.factions[faction]) {
+          factionData.factions[faction] = { points: 0, count: 0, questPoints: 0 }
         }
-        staticData.factions[faction].questPoints += quest.points[faction]
+        factionData.factions[faction].questPoints += quest.points[faction]
       }
     }
     if (quest.faction) {
-      if (!staticData.factions[quest.faction]) {
-        staticData.factions[quest.faction] = { points: 0, count: 0, questPoints: 0 }
+      if (!factionData.factions[quest.faction]) {
+        factionData.factions[quest.faction] = { points: 0, count: 0, questPoints: 0 }
       }
-      staticData.factions[quest.faction].count++
+      factionData.factions[quest.faction].count++
     }
   }
 
@@ -624,7 +622,7 @@ export default class EverythingHandler {
         }
       }
 
-      await this.updateStaticData(guildId, quest)
+      await this.updateFactionData(guildId, quest)
     }
   }
 }

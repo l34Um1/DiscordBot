@@ -5,6 +5,15 @@ import * as afs from './lib/atomicFS'
 import defaultKeys from './lib/defaultKeys'
 import logger from './logger'
 
+interface LoadOptions<T> {
+  /** If the file doesn't exist, create it with this data */
+  defaultData?: T
+  /** Sets all undefined keys in the returned data that exist in `defaultData` to the corresponding value in `defaultData` */
+  defineUndefined?: boolean
+  /** Disable saving of the data */
+  noSave?: boolean
+}
+
 export default class Data extends EventEmitter {
   /** This data changes when events happen */
   public data: { [group: string]: { [name: string]: { [x: string]: any } } }
@@ -12,8 +21,10 @@ export default class Data extends EventEmitter {
   public dataPath: string
   /** Reserved data names. No data can be loaded or autoloaded with one of these names */
   private reserved: readonly string[]
-  /** Loading data to these files are blocked and throws */
-  private blocks: { [group: string]: { [name: string]: true } }
+  /** Loading data is blocked and throws */
+  private blockLoads: { [group: string]: { [name: string]: true } }
+  /** Saving data is blocked and throws */
+  private blockSaves: { [group: string]: { [name: string]: true } }
   private autoLoads: Array<{ name: string, defaultData?: object, setDefaults?: boolean }>
 
   constructor(dataRoot: string, reserved = ['']) {
@@ -25,7 +36,8 @@ export default class Data extends EventEmitter {
 
     this.reserved = reserved
 
-    this.blocks = {}
+    this.blockLoads = {}
+    this.blockSaves = {}
     this.autoLoads = []
   }
 
@@ -71,10 +83,12 @@ export default class Data extends EventEmitter {
         const data = this.getData(group, name)
         if (typeof data === 'object') {
           try {
-            const path = `${this.dataPath}/${group}/${name}.json`
-            const tempPath = `${this.dataPath}/${group}/${name}_temp.json`
-            fs.writeFileSync(tempPath, JSON.stringify(data, null, 0))
-            fs.renameSync(tempPath, path)
+            if (!this.blockSaves[group][name]) {
+              const path = `${this.dataPath}/${group}/${name}.json`
+              const tempPath = `${this.dataPath}/${group}/${name}_temp.json`
+              fs.writeFileSync(tempPath, JSON.stringify(data, null, 0))
+              fs.renameSync(tempPath, path)
+            }
           } catch (err) {
             logger.error(`Failed to save ${group}\\${name}:`)
             logger.error(err)
@@ -99,11 +113,12 @@ export default class Data extends EventEmitter {
       return false
     }
     try {
+      if (this.blockSaves[group][name]) throw new Error('Saving is blocked for this data type')
       await afs.writeFile(`${this.dataPath}/${group}/${name}.json`, JSON.stringify(data, null, 0))
       if (unload) this.delData(group, name)
       return true
     } catch (err) {
-      logger.warn(`Could not save ${name}:`, err)
+      logger.warn(`Could not save ${group}\\${name}:`, err)
       return false
     }
   }
@@ -114,24 +129,24 @@ export default class Data extends EventEmitter {
    * @param name File name
    * @param save Save before reloading
    */
-  public async reload(group: string | number, name: string, save: boolean = false) {
+  public async reload<T>(group: string | number, name: string, save: boolean = false) {
     if (save) await this.save(group, name)
-    if (!this.getData(group, name)) throw new Error(`${name} cannot be reloaded as it is not loaded`)
+    if (!this.getData(group, name)) throw new Error(`${group}\\${name} cannot be reloaded as it is not loaded`)
     this.delData(group, name)
-    return this.load(group, name)
+    return this.load<T>(group, name)
   }
 
   /**
    * Loads a file in `Data.dataPath`/`group`/`name`
    * @param name File name
-   * @param defaultData If the file doesn't exist, create it with this data
-   * @param setDefaults Sets all undefined keys in the returned data that exist in `defaultData` to the value of `defaultData`
+   * @param opts Options
    */
-  public async load<T>(group: string | number, name: string, defaultData?: T, setDefaults = false): Promise<T> {
+  public async load<T>(group: string | number, name: string, opts: LoadOptions<T> = {}): Promise<T> {
     if (!this.data[group]) this.data[group] = {}
     if (String(group).length === 0 || name.length === 0) throw new Error('group and name must not be zero-length')
     if (this.reserved.includes(name)) throw new Error(`${name} is reserved for internal functions`)
     if (this.getData(group, name)) throw new Error(`${name} has already been loaded by another source`)
+    if (opts.noSave) this.blockSave(group, name)
     this.blockLoad(group, name)
 
     const file = `${this.dataPath}/${group}/${name}.json`
@@ -139,7 +154,7 @@ export default class Data extends EventEmitter {
       await afs.access(file, fs.constants.F_OK)
     } catch (err) {
       if (err.code !== 'ENOENT') throw err
-      if (defaultData) {
+      if (opts.defaultData) {
         const pathOnly = file.slice(0, file.lastIndexOf('/'))
         try { // Ensure directory exists
           await afs.access(file, fs.constants.F_OK)
@@ -148,7 +163,7 @@ export default class Data extends EventEmitter {
           await afs.mkdir(pathOnly, { recursive: true })
         }
 
-        const result = this.setData(group, name, defaultData)
+        const result = this.setData(group, name, opts.defaultData)
         this.emit('load', group, name, result)
         this.save(group, name).catch((err) => { throw err })
         return result
@@ -164,7 +179,7 @@ export default class Data extends EventEmitter {
       throw new Error(`${file} is corrupted: ${err.name as string}`)
     }
     if (typeof data !== 'object') throw new Error(`Wrong data type in file: ${typeof data}`)
-    if (setDefaults) defaultKeys(data, defaultData || {})
+    if (opts.defineUndefined) defaultKeys(data, opts.defaultData || {})
     if (typeof data !== 'object') throw new Error(`Data became corrupted: ${typeof data}`)
 
     const result = this.setData(group, name, data)
@@ -175,17 +190,29 @@ export default class Data extends EventEmitter {
   /** Delete the data */
   private delData(group: string | number, name: string) {
     this.blockLoad(group, name, true)
+    this.blockSave(group, name, true)
     if (this.data[group]) delete this.data[group][name]
   }
 
   /** Blocks or unblocks the loading of a data type. Attempting to load a blocked data type will throw as a duplicate */
   private blockLoad(group: string | number, name: string, unblock = false) {
     if (unblock) {
-      if (!this.blocks[group]) return
-      delete this.blocks[group][name]
+      if (!this.blockLoads[group]) return
+      delete this.blockLoads[group][name]
     } else {
-      if (!this.blocks[group]) this.blocks[group] = {}
-      this.blocks[group][name] = true
+      if (!this.blockLoads[group]) this.blockLoads[group] = {}
+      this.blockLoads[group][name] = true
+    }
+  }
+
+  /** Blocks or unblocks the saving of a data type. Attempting to save a blocked data type will throw */
+  private blockSave(group: string | number, name: string, unblock = false) {
+    if (unblock) {
+      if (!this.blockSaves[group]) return
+      delete this.blockSaves[group][name]
+    } else {
+      if (!this.blockSaves[group]) this.blockSaves[group] = {}
+      this.blockSaves[group][name] = true
     }
   }
 }

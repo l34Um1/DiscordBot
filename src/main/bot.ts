@@ -1,4 +1,3 @@
-import Discord from 'discord.js'
 
 import Data from './data'
 import deepClone from './lib/deepClone'
@@ -8,6 +7,8 @@ import ParamValidator from './paramValidator'
 import { getArgs } from './argRules'
 import logger, { options as logOpts } from './logger'
 import EverythingHandler from './everythingHandler'
+
+import Discord from 'discord.js'
 
 export interface BotOptions {
   masters: readonly number[]

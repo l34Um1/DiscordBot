@@ -152,12 +152,15 @@ function makeLogger<T extends { [cat: string]: Category }>(cats: T, path: string
 }
 
 /**
- * The used options object. Properties are free to be changed.
+ * The used options object. Properties are intended to be changed.
  */
 export const options: Options = {
   noSave: false,
 }
 
+/**
+ * The used logging categories. Edit them here.
+ */
 export const categories = {
   error: { saved: true, handler: console.error },
   warn: { handler: console.error, color: 'yellow' },
@@ -194,10 +197,14 @@ const logger = makeLogger(categories, './data/logs/', options)
  * `debug`: Debugging info.  
  *
  * `raw`: Raw irc messages.  
- * `strange`: Unhandled irc messages. Provide a reason in first arg.  
  * `chat`: Chat messages by any user. {channel} user: msg  
+ * `strange`: Unhandled irc messages. Provide a reason in first arg.  
  * `botChat`: Chat messages sent by the bot.  
- * `api`: Twitch API shenanigans.  
+ * `whispers`: Just like chat .  
+ * 
+ * `apiError`: API errors.  
+ * `apiInfo`: API info.  
+ * `apiDebug`: API debugging info.  
  *
  * `botInfo`: Generic info about the bot (as a user of twitch).  
  * `userInfo`: Generic info about users.  

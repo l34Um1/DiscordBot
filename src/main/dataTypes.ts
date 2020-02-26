@@ -32,7 +32,7 @@ type CombinedGuildData = {
   user: GuildUserData
   dyn: GuildDynamicData
   readonly guild: GuildData
-  cmdData: CommandData
+  readonly cmdData: CommandData
 }
 
 interface GuildDynamicData {
