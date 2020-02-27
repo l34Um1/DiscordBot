@@ -265,7 +265,7 @@
       "clone": "!executors"
     },
     "!chroma": {
-      "text": "Chromas are rifts in reality where the basic properties of existence are warping and changing."
+      "text": "There are all sorts of metaphors for chromas. Punctures that push through both Arholt and the hygd, letting properties from each bleed through and change each other's properties. Cysts on reality's flesh, where properties build and swirl in an anomalous bubble. The list goes on. But, truth be told, we have no words to describe the whole of what they are. Transdimensional rifts tend to defy description that way. All that matters is that they're here, and since they've arrived, the world has never been the same."
     },
     "!chromas": {
       "clone": "!chroma"
@@ -280,7 +280,7 @@
       "text": "A brush... a key... a knife... a lens... the intersection of all things and the point from which the God Beast made our world."
     },
     "!mana": {
-      "text": "Ways for the mortals of the world to manipulate and use the powers of the Chromas for their own purposes, known as Magic. "
+      "text": "Mana is potential energy of being. It can be harvested from chromas via meditation, analysis, binding, or ascension."
     },
     "!bloom": {
       "text": "Magic created by chromas that tend to be incredibly stable and constant in their effects."
@@ -288,23 +288,11 @@
     "!blight": {
       "text": "Magic created by chromas that are highly unstable and volatile, meaning their effects are often erratic or destructive."
     },
-    "!enchantments": {
-      "text": "Objects that have been magically programmed to conduct tasks using Bloom magics."
-    },
     "!magic": {
-      "text": "Manipulating chromatic energy using one of the primary methods of engagement."
+      "text": "Magic is the transformation of the universe. Mana is the energy that lets you lift reality to a precipice: a point where truth teeters back and forth. Magic is what we call it when we push reality down a new path. "
     },
     "!magics": {
       "clone": "!magic"
-    },
-    "!engagement": {
-      "text": "Devotion, ambition, insight and valor."
-    },
-    "!methods": {
-      "text": "Meditation, Ascension, Analysis and Binding."
-    },
-    "!method": {
-      "clone": "!methods"
     },
     "!devotion": {
       "text": "Devotion mana is attained by peaceful meditation with a chroma, cooperating with it peacefully as a spritiual comrade. The process used to harvest devotion mana is called meditation."
@@ -319,16 +307,16 @@
       "text": "Valor mana is attained by directly controlling the direction of a chroma’s magical output, akin to taming a wild animal. The process used to harvest valor mana is called binding."
     },
     "!meditation": {
-      "text": "Meditation functions by dissolving the boundaries of one’s identity and allowing the essence of the chroma to meld into it."
+      "text": "Meditation functions by dissolving the boundaries of one’s identity and allowing the essence of the chroma to meld into it. The type of mana gained from meditation is colloquially called devotion."
     },
     "!ascension": {
-      "text": "Ascension functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own."
+      "text": "Ascension functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own. The type of mana gained from ascension is colloquially called ambition."
     },
     "!analysis": {
-      "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning to direct its powers in both. "
+      "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning to direct its powers in both.The type of mana gained from analysis is colloquially called insight."
     },
     "!binding": {
-      "text": "Binding functions by study of a chroma’s essential composition in the hygd and, upon apprehending it, forging a biconditional link between the binder’s will and the chroma."
+      "text": "Binding functions by study of a chroma’s essential composition in the hygd and, upon apprehending it, forging a direct link between the binder’s will and the chroma. The type of mana gained from binding is colloquially called valor."
     },
     "!mage": {
       "text": "A mage is one who can harness the power of Chromas by harvesting and using mana to create magic, and shaping the world to their will."
@@ -743,6 +731,108 @@
     },
     "!sulna": {
       "text": "The seventh day of the week."
+    },
+    "!blightmage": {
+      "text": "Common parlance for a sorcerer specializing in Blight magic."
+    },
+    "!bloomwitch": {
+      "text": "Common parlance for a sorcerer specializing in Bloom magic."
+    },
+    "!dawn": {
+      "text": "We rise, and it is beautiful."
+    },
+    "!dusk": {
+      "text": "We fall, and it is glorious."
+    },
+    "!reanimation": {
+      "text": "A frightful thing to see. "
+    },
+    "!abyss": {
+      "text": "One of the many without, or the one within? Both dreadful, surely, but I know which I'd rather fall into."
+    },
+    "!afterlife": {
+      "text": "I'm not the best person to ask about that. You'd want to ask one of the Devoted's monks, maybe? Or just sit with the question. I'm sure you'll reach a fine conclusion. "
+    },
+    "!arcane": {
+      "text": "The unknown depths of mysticism."
+    },
+    "!arcanum": {
+      "clone": "!arcane"
+    },
+    "!automaton": {
+      "text": "Usually they're enchanted objects that carry out simple tasks for the ones who enchanted them. However with today's goings-on, some automatons have become a bit more... autonomous, and have wandered off and started their own lives. Fascinating, no?"
+    },
+    "!autonomy": {
+      "text": "Life's greatest trick. Abusable, but sacred."
+    },
+    "!baptism": {
+      "text": "Grahdaza Hima revived the term. Of her transformation, she writes, \"I feel the weight of a world upon me. My mouth opens. I taste the stars. I drink of them, and so I swallow divinity. This is my baptism. I am reborn.\""
+    },
+    "!baptised": {
+      "clone": "!baptism"
+    },
+    "!bot": {
+      "text": "Another name for automatons, although some self-aware automatons find the term insulting. An interesting conundrum, don't you think?"
+    },
+    "!conflict": {
+      "text": "The beginning of so many things, and the end of almost all."
+    },
+    "!corruption": {
+      "text": "Always a problem among people, but only recently a problem with the world."
+    },
+    "!curse": {
+      "text": "Some people do quite nasty things with magic. Curses—either on objects or living things—are living manifestations of hate, corrupting the host and spreading their vile energies to everything nearby."
+    },
+    "!death": {
+      "text": "Oh dear. Oh dear... that is the question, I suppose. One of the only questions worth answering. "
+    },
+    "!deity": {
+      "text": "Well, it depends who you ask. If you asked a member of the Vanguard, they might tell you there's no such thing. However, ask the Congregation and they'll pull out a whole song and dance about each dragon and how amazing they are. "
+    },
+    "!demon": {
+      "text": "Oh goodness me, no. We don't have any demons around here, at least I should hope we don't!"
+    },
+    "!emotion": {
+      "text": "Even Jaekka seems a bit confused by this one. All we know is that we have them, and they have us, and they are beautiful."
+    },
+    "!end": {
+      "text": "Time's only promise."
+    },
+    "!essence": {
+      "text": "When we look at something, how do we know what it is? When we read a word, how do we know what it means? The ink, the sight, the sound, the experience—all of these are just arrows that point towards the essence of an object."
+    },
+    "!infinity": {
+      "text": "Really. You want me to describe infinity. With words. Surely you see the problem here."
+    },
+    "!luck": {
+      "text": "You're welcome to believe in it. We all need to trust in something. I myself hold confidence in the Conqueror."
+    },
+    "!dark magic": {
+      "text": "Some like to refer to Blight magic as 'dark,' but it seems more like a rhetorical strategy than anything else. There's nothing inherently dark or evil about Blight—at least, no more than Bloom—it's just often not a great idea to use it."
+    },
+    "!moon": {
+      "text": "Although it has no power, the Graeoln still worship it. I don't really understand it, but it seems to make them happy."
+    },
+    "!sun": {
+      "text": "Jaekka created the sun to warm Arholt and to help us sustain life here. If it was cold and dark, I don't imagine things would do as well."
+    },
+    "!fungi": {
+      "text": "There are plenty of different kinds in Arholt. Some look similar, but depending on the kind, they either make you see things, kill you, or are perfectly safe to eat. I don't really trust them, to be honest. "
+    },
+    "!portal": {
+      "text": "There's one set up just on the coastline south of here. The Nexus. It really helps with the young ones coming to visit me. Normally you'd need several months to journey between the continents, but now... Poof! You're here!"
+    },
+    "!miracle": {
+      "text": "They do seem rather common these days. Perhaps we need a new word."
+    },
+    "!spark": {
+      "text": "An old word for chromas. As they became more and more powerful, the name changed to reflect their complexity."
+    },
+    "!undead": {
+      "text": "I've heard stories. Horrid stories. Stories that don't bear repeating. "
+    },
+    "!physical plane": {
+      "text": "We're in it. This is the physical plane, dear. Not much to answer to that question!"
     }
   }
 }
