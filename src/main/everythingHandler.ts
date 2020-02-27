@@ -364,7 +364,7 @@ export default class EverythingHandler {
    * @returns If `randomizable` is an array, a random element in that array, otherwise, `randomizable` is returned
    */
   private getRngVal<T>(randomizable: Randomizable<T>): T extends any[] ? T[number] : T {
-    return (Array.isArray(randomizable) ? randomizable[Math.random() * randomizable.length - 1] : randomizable) as T extends any[] ? T[number] : T
+    return (Array.isArray(randomizable) ? randomizable[Math.floor(Math.random() * randomizable.length - 1) + 1] : randomizable) as T extends any[] ? T[number] : T
   }
 
   private getPrandSeed(startTime: number, memberId: MemberId) {
