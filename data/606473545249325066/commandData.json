@@ -405,19 +405,19 @@
     "!the japraitian fault line": {
       "text": "The Japraitian Fault Line is a gargantuan chroma that functions as a teleporter. It is the cause for the Worldseam, and is located all along the base of its ravine."
     },
-    "!Japraitian Fault Line": {
+    "!japraitian fault line": {
       "clone": "!the japraitian fault line"
     },
     "!the worldseam": {
       "text": "The Worldseam is a massive split between the Garani and Isthor oceans, bissecting the world. Nearly a mile across, ships have almost no hope of crossing over it, and for each trade vessel that has fallen in while trying to navigate the Worldseam's Eye, even more have been shredded by the surrounding geysers that eject all of the oceanwater that falls into the Japraitian Fault Line."
     },
-    "!Worldseam": {
+    "!worldseam": {
       "clone": "!the worldseam"
     },
     "!lainn's forge": {
       "text": "Lainn’s Forge is a chroma that appears as a massive column of fire around a now-hidden pale turquoise core. It is located in northern Svellsteim. It is a Bloom chroma."
     },
-    "!Lainns Forge": {
+    "!lainns forge": {
       "clone": "!lainn's forge"
     },
     "!lainn": {
@@ -426,19 +426,19 @@
     "!lainn's forge growth": {
       "text": "Lainn’s Forge began to grow. Generationally, the apparatus containing the Forge was rebuilt to accommodate its size until 93 AM, when Lainn’s descendants contracted a group of wizards from the God Beast’s Congregation to permanently halt the Forge’s growth. By this point, the Forge had grown into a column nearly nine metres across and twelve metres tall, and its owners had turned the facilities around it into a public resource, accessible by a fee. In response, the surrounding town boomed as it became known as the best place in Svellsteim for smithing."
     },
-    "!Lainns Forge Growth": {
+    "!lainns forge growth": {
       "clone": "!lainn's forge growth"
     },
-    "!Carrion Star": {
+    "!carrion star": {
       "text": "The Carrion Star is a chroma that feeds on creatures' will, then breathes just enough back into them to bring them back to life. As the creature recovers, its will grows again, only to be harvested once more. The cycle repeats endlessly. The Carrion Star is a Blight chroma, and its location is unknown."
     },
-    "!Carrion Star Will": {
+    "!carrion star will": {
       "text": "The Carrion Star is one of the most conscious chromas in Arholt. The few survivors who have seen it claim to hear voices emanating from its surface and the nearby wildlife, and when guards move to find it, it always disappears."
     },
     "!the lion": {
       "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood."
     },
-    "!Lion": {
+    "!lion": {
       "clone": "!the lion"
     },
     "!help": {
@@ -498,19 +498,16 @@
     "!tautology": {
       "text": "Analytic truth. A circle of meaning. Fact by speech."
     },
-    "!scholar": {
-      "text": "The great serpent of the deep: the embodiment of wisdom. Supposedly."
-    },
     "!attendants": {
-      "clone": "!scholar"
+      "text": "Gigantic squids made by Novask to serve him. For the most part they just guard the Sanctuary and help him document world history, but sometimes they bring transcripts of the Chronicles to the surface in exchange for human literature and tales of the surface."
     },
     "!attendant": {
-      "clone": "!scholar"
+      "clone": "!attendants"
     },
     "!scriptures": {
       "text": "Novask's scriptures are called the Chronicles - they detail the history of the world and serve as many people's holy books."
     },
-    "!Chronicles": {
+    "!chronicles": {
       "clone": "!scriptures"
     },
     "!god beast": {
@@ -558,7 +555,7 @@
     "!kungstarn": {
       "text": "A colossal mountain in central Varr, where Iganash has made his home."
     },
-    "!Mt. Kungstarn": {
+    "!mt. kungstarn": {
       "clone": "!kungstarn"
     },
     "!worldseam's eye": {
@@ -567,44 +564,44 @@
     "!ballath": {
       "text": "When the eastern half of Valath reappeared, the differences in culture and dialect led locals to decide that it needed a new name. With cooperation from the western Valathers, they decided upon \"Ballath:\" a pronunciation of 'Valath' unique to their older accent."
     },
-    "!Ballather": {
+    "!ballather": {
       "clone": "!ballath"
     },
     "!valath": {
       "text": "A small island nation north of the Azletsu Republic, most known for being the epicenter of the Valather incident. Valath has an alliance with the Svell based partly in cultural ties and a shared desire for security against possible annexation from the AR."
     },
-    "!Valather": {
+    "!valather": {
       "clone": "!valath"
     },
     "!garanain": {
       "text": "Garanain is an oligarchy south of the Azletsu Republic and federally administrated by lords that possess sovereignty over their local domains, limited only by nationwide resolutions passed by their collective council. Garanain used to also govern all of modern-day Japrait and New Azletsu, but when the Japraitian fault line split the continent, several cities declared independence and Garanain had no means of recourse."
     },
-    "!Garani": {
+    "!garani": {
       "clone": "!garanain"
     },
     "!azletsu kingdom": {
-      "text": "A constitutional monarchy to the north of Garanain. The Azletsu Republic is Arholt's wealthiest nation, having acquired massive amounts of treasure from its capital and major trade hub, Shimmervale, and from its annex of Drachoria with the conquest of Skarn."
+      "text": "A constitutional monarchy to the north of Garanain. The Azletsu Republic is Arholt's wealthiest nation, having acquired massive amounts of treasure from its capital and major trade hub, Shimmervale, and from its annex of Drachoria with the conquest of Skarn. It is divided into seven disctricts: the Cerulean Valley, the Smouldering Hills, the Eyrie, Fymoor, Silversteppe, Altsfield, and Sanctus."
     },
-    "!Azletsu": {
+    "!azletsu": {
+      "clone": "!azletsu kingdom"
+    },
+    "!azletsu republic": {
       "clone": "!azletsu kingdom"
     },
     "!svellsteim": {
       "text": "Svellsteim is a frigid island nation to the far north of the Azletsu Republic. Though the Svell are a fairly modest people, they have been gaining wealth and attention since the discovery of Lainn's Forge."
     },
-    "!Svell": {
+    "!svell": {
       "clone": "!svellsteim"
     },
     "!varr": {
       "text": "Homeland of the Stewards of Fate and Iganash, the Conqueror, Varr is arguably the most ordered nation in the world. Situated in the world's northwest, Varr is primarily a nation of mountains, plains, and forests. Varr's queens also claim dominion over Tolopea, though their legal grip is not nearly as tight on the island."
     },
-    "!Varrish": {
+    "!varrish": {
       "clone": "!varr"
     },
     "!japrait": {
       "text": "Japrait is the name of the collective security alliance between many of the city-states that declared independence from Garanain when Isthor split from Liowa. Its two most significant members are Baingrove and Krahncastle."
-    },
-    "!Japrait": {
-      "clone": "!japrait"
     },
     "!krahncastle": {
       "text": "Krahncastle is a powerful city-state in eastern Japrait, and the first to declare its independence from Garanain. During a border dispute with New Azletsu, Krahncastle invaded the small town Arrix. It didn't go well."
@@ -645,7 +642,7 @@
     "!helanthaflora basin": {
       "text": "Though Helanthaflora Basin used to be part of the Cinder mountains, violent chromatic activity has since shattered the mountains and caused them to sink into the ground. From the cracks seeps intense and highly variable magic, leading to wildlife mutations, changes in fundamental laws like time and gravity, and more. Helanthaflora Basin is home to the Graeoln."
     },
-    "!Helanthaflora": {
+    "!helanthaflora": {
       "clone": "!helanthaflora basin"
     },
     "!silversteppe": {
@@ -666,10 +663,10 @@
     "!blue lights": {
       "text": "A phenomenon unique to the Cerulean Valley in the Azletsu Kingdom, whereby light filtered through the gleamglass deposits in Bluecrest Peak cast a gentle blue light across huge swaths of land, covering entire cities."
     },
-    "!Blue Lights of Summer": {
+    "!blue lights of summer": {
       "clone": "!blue lights"
     },
-    "!cerluean valley": {
+    "!cerulean valley": {
       "text": "One of the seven districts of the Azletsu Republic, known for housing Shimmervale and the famous Blue Lights of Summer."
     },
     "!eyrie ": {
@@ -924,31 +921,31 @@
     "!representative": {
       "text": "I myself am a representative of Iganash, having received his blessing. I carry within me a part of him, which means I'm not fond of mess or chaos, so please make sure your boots are clean before you come into the library next time!"
     },
-    "believe": {
+    "!believe": {
       "text": "I believe in the power of the dragons, and the power of order and knowledge."
     },
-    "fog": {
+    "!fog": {
       "text": "One of my favourite kinds of weather, a foggy morning. The world takes on such a mysterious quality when it's foggy, don't you think? Like anything could be just ahead."
     },
-    "rose": {
+    "!rose": {
       "text": "They used to be much more common, but a true rose is a rarity in Arholt. They warped much faster than other flowers, and created new species. I haven't seen one in, oh, sixty years or so? I wonder if they even still exist at all..."
     },
-    "compass": {
+    "!compass": {
       "text": "They used to be used all the time, although not so much any more, as some chromas warp Arholt's magnetic field, and the compasses basically become useless. One must be adept at map-reading to be able to travel nowadays!"
     },
     "!zebra": {
       "text": "My neighbors owned a few... One time, I was feeding one a lump of sugar, and another noticed and came cantering over at full speed, only to bite my hand! That zebra was... Unpleasant."
     },
-    "bath": {
+    "!bath": {
       "text": "Ooh, goodness, you've given me an excellent idea for what I'll do tonight... A hot soak sounds absolutely perfect for my old bones!"
     },
-    "meal": {
+    "!meal": {
       "text": "I'm quite looking forward to my next one, now that you bring it up..."
     },
     "!goldfish": {
       "text": "We didn't have goldfish when I was younger, but a large pond full of giant koi carp. They were beautiful, but not very tasty. Their flesh is far too oily."
     },
-    "ants": {
+    "!ants": {
       "text": "I'm not a fan to be honest, although I won't bother them if they don't bother me. That's my philosophy for many aspects of life, actually."
     },
     "!bite": {
@@ -963,10 +960,10 @@
     "!toad": {
       "text": "Charming little things. I feel quite a kinship to them, as I'm also stout and look grumpy when I'm not paying attention."
     },
-    "stew": {
+    "!stew": {
       "text": "The best stew is definitely rabbit stew. My mother used to make it, and sprinkle fresh herbs over the top of it. Whenever I smell mushrooms frying in butter it always takes me back..."
     },
-    "language": {
+    "!language": {
       "text": "Well I'm speaking Common, but there are plenty of other languages in Arholt. I attempted learning Tai'ak a few years back, but all I remember is \"Shii'te kaluga vor duv-talal'ak qu duzé\", which means \"My hat is not made of bees\"."
     },
     "!tastes": {
@@ -1023,7 +1020,7 @@
     "!snail": {
       "text": "I once found a recipe for a snail pie while leafing through an old cookbook. On the next page was a recipe for cinnamon and butterscotch pie, and I decided to make that one instead, as you would imagine!"
     },
-    "zephyr": {
+    "!zephyr": {
       "text": "What a gorgeous word. A shame that one doesn't hear it in conversation very often!"
     },
     "!shop": {
@@ -1050,7 +1047,7 @@
     "!dress": {
       "text": "This? I would class this as a robe, more than a dress. I was not fond of dresses as a youngling, as I often got them caught on fence posts or tree branches when I was climbing them. I don't climb many trees these days, so these robes suit me just fine."
     },
-    "lettuce": {
+    "!lettuce": {
       "text": "Blech, no thank you. I'd rather just go outside and eat grass like a cow than eat a salad."
     },
     "!cattle": {
@@ -1113,7 +1110,7 @@
     "!rice": {
       "text": "Delicious. I love some nice spiced rice. Spiced rice is quite nice. Oh wait, quite doesn't rhyme with spice. Oh dear."
     },
-    "berry": {
+    "!berry": {
       "text": "Some are delicious, but never eat berries you aren't familiar with! Some are a beautiful decoration for a cake, and others will make you violently ill, or even kill you."
     },
     "!rabbit": {
@@ -1125,7 +1122,7 @@
     "!volcano": {
       "text": "We have a few volcanos by the Fortress. They're no longer active, but they heat up the nearby hot springs, which are incredible to bathe in. I can't think of anything more relaxing than sitting in a hot spring and drinking some Bluecrest Reserve..."
     },
-    "star": {
+    "!star": {
       "text": "One of Jaekka's most beautiful gifts to us, the ability to look up at the night sky and observe the stars."
     },
     "!parent": {
@@ -1171,18 +1168,18 @@
       "text": "Yes, I do prefer them to pens. Oh, or do you mean the Quill of Flachain? She's a legendary war-bard. She writes songs for the warriors to battle to, and dirges for her fallen comrades."
     },
     "!pear": {
-      "text": "My, my, my mouth is already watering, thinking about pear cakes... They're wonderfully soft and tender."
+      "text": "My, my... my mouth is already watering, thinking about pear cakes... They're wonderfully soft and tender. "
     },
     "!cult of jaekka": {
-      "text": "The Cult of Jaekka was a primeval religion, predating all of the factions and much of written history, dedicated to honouring and learning from the God Beast. Though no contemporary organisations refer to themselves as the Cult of Jaekka, with Jaekka's Devoted abandoning the name and the God Beast's Congregation having changed their name long ago, the Cult's simple principles of kindness, reverence, creativity, and respect for the Five Words continue to influence society."
+      "text": "The Cult of Jaekka was a primeval religion, predating all of the factions and much of written history, dedicated to honouring and learning from the God Beast. Though no contemporary organisations refer to themselves as the Cult of Jaekka, with Jaekka's Devoted having split off from the main Cult and the God Beast's Congregation having changed their name long ago, the Cult's simple principles of kindness, reverence, creativity, and respect for the Five Words continue to influence society."
     },
     "!church": {
       "text": "The God Beast's Congregation and the Stewards of Fate have churches where some members pray and worship. Churches often also serve as social and political centres, though, where members meet up to discuss their agendas, plan for the future, or just eat and chat."
     },
-    "!Illuminator": {
+    "!illuminator": {
       "text": "An unofficially official title among the Stewards. The Illuminator is as much a spiritual guide as a soldier, leading the paragons and serving as the friendly face of the Stewards. Well, friendlier than the High Overseer at least."
     },
-    "!High overseer": {
+    "!high overseer": {
       "text": "The overseer of the overseers. The Stewards' ultimate administrative boss. The High Overseer isn't nearly as popular or well-known as the Illuminator, but they're the one in charge."
     },
     "!chaos": {
@@ -1197,17 +1194,17 @@
     "!declamations": {
       "clone": "!declamation"
     },
-    "!Pavem Idom": {
+    "!pavem idom": {
       "text": "Pavem Idom was a Varrish philosopher, best known for publishing the Stewards' founding document: *Our Burden*. She was particularly concerned by the mounting disorder in Arholt, both by chromas' destabilisation of nature and by the sense of empowerment that many criminals experienced when they learned magic. "
     },
     "!chapter": {
       "text": "The Mystic Vanguard regionally organises itself into democratic chapters and avoids any sort of worldwide centralisation."
     },
-    "!Thirim Na": {
+    "!thirim na": {
       "text": "Thirim Na was an author from Iganara, and the accidental founder of the Mystic Vanguard. In response to what she perceived as overcaution and offensive paternalism by Pavem Idom in *Our Burden*, Na wrote the *Apotheosis Treatise*, which quickly became her defining work."
     },
     "!faction": {
-      "text": "We have four of them - Jaekka's Devoted, the Mystic Vanguard, the Stewards of Fate, and the God Beast's Congregation. I don't quite fit into any one of them, but I do work alongside the Stewards quite a lot."
+      "text": "The God Beast's Congregation and Jaekka's Devoted were the first factions of Arholt, first brought together by shared piety and then split by differing orthodoxies. With the advent of magic came the Stewards of Fate, seeking order; and the Mystic Vanguard, seeking transcendence."
     },
     "!factions": {
       "clone": "!faction"
@@ -1254,16 +1251,16 @@
     "!armourer": {
       "text": "I'm familiar with one; she's called Eippe. She makes fine armour, light and strong. She's an Arrak. Fascinating history, the Arraks."
     },
-    "!Blooming Bay": {
+    "!blooming bay": {
       "text": "Blooming Bay is a body of water wrapped by a hook-shaped peninsula on the southeastern corner of Garanain. Though once only part of the Garani savannah, when the Tai'ak emerged from beneath the Bay's waters with the Verdant Star, the region rapidly blossomed into a tropical jungle. Now, the term Blooming Bay often refers to both the water and the surrounding jungle, effectively owned by the Tai'ak. The Garani government has made little effort to reclaim the land, which contained few human settlements and was only significantly used by druidic tribes."
     },
-    "!Druid": {
+    "!druid": {
       "text": "Though magical naturalists across the world are often called 'druids,' the title is most often applied to the Civatakh and the Belannu tribes of southern Garanain."
     },
-    "!Belannu": {
+    "!belannu": {
       "text": "The Belannu are Garanain's benevolent druids. Though they have little interaction with the townsfolk of Garani civilisation, during their rare visitations they will trade difficult-to-acquire natural goods and magical artifacts in exchange for unique items, and the Belannu have been known to heal, guide, and feed the lost and weary. The Belannu are also humanity's main liaison with the Tai'ak of Blooming Bay, being the only humans to regularly speak with them."
     },
-    "!Civatakh": {
+    "!civatakh": {
       "text": "The Civatakh are anti-social wizards local to the Garani savannah. They generally live and travel in very small groups, if they travel with others at all, and when approached by outsiders are evasive at best and hostile at worst."
     },
     "!taiga": {
@@ -1291,42 +1288,42 @@
       "text": "Each city has a few of them, for example the Boundless Spire in Drachoria. "
     },
     "!warpwilds": {
-      "text": "Northwestern Japrait is a strange place indeed. Famous for their beauty, the Orchid Warpwilds"
+      "text": "Northwestern Japrait is a strange place indeed. Famous for their beauty, the Orchid Warpwilds are a jungle of colossal flowers and trees. Baingrove is in the heart of the Warpwilds, and now uses them to create a unique city architecture with some buildings shaded by the petal canopy and others raised up ten or more storeys into the air!"
     },
-    "!Ashen Wood": {
+    "!ashen wood": {
       "text": "Arrix is located in the middle of a lovely little birch forest. A long, long time ago, the locals thought that the wood looked like ash. The name stuck."
     },
-    "!Iganara": {
+    "!iganara": {
       "text": "The capital city of Garanain. Though its relatively northern position, just along the border of the Garani desert, used to make it the most profitable centre for trade with the Azletsu, the emergence of the Blind Sun has dampened business in recent years and made many travelers nervous to visit."
     },
-    "!Scarlet Marsh": {
+    "!scarlet marsh": {
       "text": "Not too long after Japrait declared independence from Garanain, it found a problem growing along its southeastern coastline. Weird red fungi infested the soil, and though they seemed harmless enough, they spread quickly and ravenously. Now, a wide stretch of line along the entire southeastern coastline has been corrupted, along with all of the life within. Though some head into the marsh to adventure, to study, or to harvest rare cardinal cap mushrooms, many are lost to the hostile fauna, and many more to the toxic miasma."
     },
-    "!Varr Queen": {
+    "!varr queen": {
       "text": "For as long as it's been a unified country, Varr has been ruled by a pair of queens from the mountain fiefdoms. Currently, Idel Agtik and Eriet Stiras of Lomstre are the Varrish sovereigns."
     },
-    "!Idel Agtik": {
+    "!idel agtik": {
       "text": "Queen Agtik is a reserved and diplomatic ruler. Though she was born in Lomstre, she received her education in Sorag, not too far from here. The Varrish people look up to her as a voice of reason, and her decisions have served them well more often than not."
     },
-    "!Eriet Stiras": {
+    "!eriet stiras": {
       "text": "Queen Stiras is the older of the Varrish queens and the one with the most military knowledge, having served as the chief of Lomstre's guard prior to her appointment as queen. She mostly tends to Varr's executive matters, and though some see her refusal to quell Tolopea's disorder with marshal law as weak, others appreciate her patience and acknowledgement of how complicated the political climate is."
     },
-    "Lomstre": {
+    "lomstre": {
       "text": "Lomstre is a mid-sized valley town only a week's walk from Mt. Kungstarn. Few had heard of it and even fewer cared until the current generation of queens was appointed, with both of them hailing from Lomstre."
     },
-    "!Varr Queen Appointment": {
+    "!varr queen appointment": {
       "text": "The first Varrish queens were a pair of warrior chiefs that, with advice and equipment from Iganash, unified the scattered and feudal Varr into a single nation. Ever since, Varr has practiced a tradition of using a council of elders from each fiefdom to choose two women from Varr's central mountain villages to select the next generation of diarchs once one of the current queens dies."
     },
     "!mountains": {
       "text": "There are many mountains across Arholt, but the three most notable ranges are the cinder mountains, the Stone Cascade, and the Dragonsteeth."
     },
-    "!Teeth of the Dragons": {
+    "!dragonsteeth": {
       "text": "The mountain range bissecting Liowa and creating a border between the Azletsu Republic and Garanain is referred to as the Dragonsteeth. The mountain range receives its name both from the beauty of its silouhette—said to be the beauty of divinity in early texts—and for how brutal and unforgiving navigation through the mountains can be."
     },
-    "!Stone Cascade": {
+    "!stone cascade": {
       "text": "The mountains of central Varr are called the Stone Cascade, due to the jagged paths from which the mountains all descend from the central peak, Mt. Kungstarn."
     },
-    "!Jelau'aakh": {
+    "!jelau'aakh": {
       "text": "I do suppose that you could call me your friend. I didn't know that you spoke Tai'ak, though."
     },
     "!flora": {
@@ -1344,26 +1341,29 @@
     "!cardinal cap": {
       "text": "Cardinal caps are a special kind of mushrooms that grow in the Helanthaflora Basin. The dragon beetles eat them and either rampage around, or fall asleep. It's said that if a sentient creature eats one, the fungus' spirit talks to you and gives you commands, although nobody can actually prove this."
     },
-    "!Wishing Centaury": {
+    "!wishing centaury": {
       "text": "Wishing centauries are strange little flowers that grow over in Blooming Bay. When they blossom, they reveal a tiny little chroma hidden within their petals that lets out an unpredictable burst of magic. People like to wish for specific gifts from them, hence the name. Even once opened, the flowers can be ground into a pleasant healing mixture."
     },
-    "!Dragon Beetle": {
+    "!dragon beetle": {
       "text": "Dragon beetles are roving monstrosities indigenous to Scarlet Marsh. They destroy and devour without reason or compassion."
     },
     "!quiz": {
       "text": "Well, sometimes people come to me, unsure quite where they belong. I try to help them find their kind."
     },
+    "!pillow": {
+      "text": "I've got this beautiful purple pillow here. It was a gift from a passing Devoted monk, on his way to visit a contemplative a few miles north of here. Always so pleasant, those monks."
+    },
     "!animals": {
       "clone": "!animal"
     },
-    "!Druidic": {
-      "clone": "!Druid"
+    "!druidic": {
+      "clone": "!druid"
     },
-    "!Varrish Queens": {
-      "clone": "!Varr Queen"
+    "!varrish queens": {
+      "clone": "!varr queen"
     },
-    "!Varrish Queen Appointment": {
-      "clone": "!Varr Queen Appointment"
+    "!varrish queen appointment": {
+      "clone": "!varr queen appointment"
     },
     "!grahdaza": {
       "clone": "!grahdaza hima"
@@ -1510,7 +1510,7 @@
       "clone": "!straw"
     },
     "!berries": {
-      "clone": "berry"
+      "clone": "!berry"
     },
     "!rabbits": {
       "clone": "!rabbit"
@@ -1519,7 +1519,7 @@
       "clone": "!volcano"
     },
     "!stars": {
-      "clone": "star"
+      "clone": "!star"
     },
     "!parents": {
       "clone": "!parent"
