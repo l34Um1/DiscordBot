@@ -165,7 +165,7 @@ export default class EverythingHandler {
           if (command.text) {
             if (command.requireChannel && !command.requireChannel.includes(msg.channel.id)) break
             if (command.ignoreChannel && command.ignoreChannel.includes(msg.channel.id)) break
-            msg.channel.send(this.getRngVal(command.text))
+            msg.channel.send(this.getRngVal(command.text), { split: true })
             commandUsed = true
             break
           }
@@ -269,7 +269,7 @@ export default class EverythingHandler {
 
       if (answer.reply) {
         if (answer.replyInGuildChannel && textChannel) {
-          textChannel.send(`${this.getRngVal(answer.reply)}\n\n`)
+          textChannel.send(`${this.getRngVal(answer.reply)}\n\n`, { split: true })
         } else {
           this.whisper(`${this.getRngVal(answer.reply)}\n\n`, memberId)
         }
@@ -317,11 +317,11 @@ export default class EverythingHandler {
     const prefixes = this.getSeededPrefixes(answers)
     const answersStrs = answers.map((v: typeof answers[number], i: number) => `${prefixes[i]}) ${v.text}`)
 
-    channel.send(`<@${member.id}> ${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`)
+    channel.send(`<@${member.id}> ${this.getRngVal(question.text)}\n\n${answersStrs.join('\n\n')}\n\n`, { split: true })
   }
 
   private async whisper(msg: string, userId: UserId) {
-    return (await this.client.fetchUser(userId, true)).send(msg)
+    return (await this.client.fetchUser(userId, true)).send(msg, { split: true })
   }
 
   /** Lowercase prefixes */
@@ -386,7 +386,7 @@ export default class EverythingHandler {
     function shuffle<T>(a: T[]) {
       for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-       ;[a[i], a[j]] = [a[j], a[i]]
+          ;[a[i], a[j]] = [a[j], a[i]]
       }
       return a
     }
@@ -617,7 +617,7 @@ export default class EverythingHandler {
           const channel = guild?.channels.get(faction.mainChannel)
 
           if (channel instanceof TextChannel) {
-            channel.send(this.getRngVal(faction.newcomerMessage))
+            channel.send(this.getRngVal(faction.newcomerMessage), { split: true })
           }
         }
       }
