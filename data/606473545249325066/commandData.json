@@ -28,7 +28,7 @@
       "clone": "!ontophages"
     },
     "!golems": {
-      "text": "Golems are robots designed to complete human labour, animated by magic. When this magic is exposed directly to natural magic (chromas), golems can become sentient and fully independent. "
+      "text": "Golems are robots designed to complete human labour, animated by magic. When this magic is exposed directly to natural magic (chromas), golems can become sentient and fully independent."
     },
     "!golem": {
       "clone": "!golems"
@@ -70,19 +70,19 @@
       "clone": "!sphinxes"
     },
     "!god beasts congregation": {
-      "text": "The God Beast’s Congregation is the oldest and largest faction in the world, holding immense wealth and influence, and being nearly omnipresent in eastern society. The God Beast’s Congregation is most associated with Insight mana and Sulhanna the Artist."
+      "text": "The God Beast’s Congregation is the oldest and largest faction in the world, holding immense wealth and influence, and being nearly omnipresent in eastern society. They trace their lineage directly back to the Cult of Jaekka, though they have adapted their ideology to accomodate changing social attitudes and new philosophies. The God Beast’s Congregation is most associated with Insight mana and Sulhanna the Artist."
     },
     "!gbc": {
       "clone": "!god beasts congregation"
     },
     "!stewards of fate": {
-      "text": "The Stewards formed in response to the Valather Incident: the spacial and temporal displacement of eastern Valath from the island nation’s west. The Stewards are most associated with Valor mana and Iganash the Conqueror."
+      "text": "The Stewards formed in response to the Valather Incident: the spacial and temporal displacement of eastern Valath from the island nation’s west. After the incidident, Pavem Idom published an essay addressing the chaotic, dangerous state of the world. Her readers—mostly members of the God Beast's Congregation—formed a new faction dedicated to the protection and proliferation of order. The Stewards are most associated with Valor mana and Iganash the Conqueror."
     },
     "!sof": {
       "clone": "!stewards of fate"
     },
     "!jaekkas devoted": {
-      "text": "Jaekka's Devoted is an incredibly traditional faction that adheres strictly and exclusively to the teachings of Jaekka herself and generally keeps out of public affairs. Jaekka's Devoted is most associated with Devotion mana and Novask the Scholar."
+      "text": "Jaekka's Devoted is a traditional faction that adheres strictly and exclusively to the teachings of Jaekka herself and generally keeps out of public affairs. Countless generations ago, they split from the main Cult of Jaekka, finding the group too materialistic and hierarchical. Jaekka's Devoted are most associated with Devotion mana and Novask the Scholar."
     },
     "!jd": {
       "clone": "!jaekkas devoted"
@@ -91,13 +91,13 @@
       "clone": "!jaekkas devoted"
     },
     "!mystic vanguard": {
-      "text": "The Mystic Vanguard is the only dominant areligious faction in the world, believing that mortals should be able to reach, or even surpass the divinity of the dragons. The Mystic Vanguard is most associated with the Ambition mana and Thua the Fundament."
+      "text": "The Mystic Vanguard is the only dominant areligious faction in the world, believing that mortals should be able to reach, or even surpass the divinity of the dragons. They were inspired by the works of Thirim Na, and use his metaphysics as the basis for their philosophy. The Mystic Vanguard is most associated with the Ambition mana and Thua the Fundament."
     },
     "!mv": {
       "clone": "!mystic vanguard"
     },
     "!boundless spire": {
-      "text": "A gigantic cathedral with a steeple that reaches past the clouds. It serves as the main seat of the Congregation in Drachoria. "
+      "text": "A gigantic cathedral with a steeple that reaches past the clouds. It serves as the main seat of the Congregation in Drachoria."
     },
     "!oration": {
       "text": "The orations are monthly sermons in the church. They last from nine in the morning until nine at night and are hosted on the last Sulna (Saturday) of each month, with members of the Congregation expected to attend at least six segments per year."
@@ -151,7 +151,7 @@
       "text": "The seat of the Devoted, located on Bluecrest Peak in the Cinder Mountains. It is surrounded by forests and orchards which provide food to the monastery and the nearby mountain villages. Members of the church will often make pilgrimages there to attend Primordium or a cogitation."
     },
     "!cogitation": {
-      "text": "Each Thursday, instead of practicing the Commune, the monks of the Bluecrest Monastery use the meditation room to host a public seminar. Anyone may enter, and the purpose of each cogitation is for monks to help educate their students and to allow visitors a forum for both inquiry and challenge of the monks’ beliefs. "
+      "text": "One of Jaekka's Devoted’s most beloved traditions is the cogitation. Each Thuro, instead of practicing the Commune, the monks of the Bluecrest Monastery use the meditation room to host a public seminar. Anyone may enter, and the purpose of each cogitation is for monks to help educate their students and to allow visitors a forum for both inquiry and challenge of the monks’ beliefs."
     },
     "!primordium": {
       "text": "Each year, Jaekka's Devoted celebrate Primordium: the commemoration of the supposed day that Jaekka created humans. Many of those who are able to travel to Bluecrest Monastery to celebrate the holiday with many of the other members of the Devoted, and in recent years the celebration is known for attracting many of the Devoted’s most talented mages to put on dazzling, spectacular displays of magic."
@@ -187,19 +187,13 @@
       "clone": "!jaekkas devoted goals"
     },
     "!our burden": {
-      "text": "Published by Varrish philosopher Pavem Idom, Our Burden is an essay written four years after the Valather Incident to address the growing dangers of the magical world and the social need not only to limit natural destruction, but for people to manage and limit themselves so as to avoid man-made catastrophe."
+      "text": "*Our Burden* is an essay written four years after the Valather Incident to address the growing dangers of the magical world and the social need not only to limit natural destruction, but for people to manage and limit themselves so as to avoid man-made catastrophe."
     },
     "!stewards of fate beliefs": {
-      "text": "The Stewards of Fate believe that life is defined by its desire to create order from chaos. They follow the Chronicles written by Novask, but also an essay called Our Burden."
+      "text": "The Stewards of Fate believe that life is defined by its desire to create order from chaos. They follow the Chronicles written by Novask, but also an essay called *Our Burden*."
     },
     "!sof beliefs": {
       "clone": "!stewards of fate beliefs"
-    },
-    "!declamations": {
-      "text": "Declamations are functionally similar to the Congregation’s orations, but for two major differences. Donation is never explicitly requested by the church’s leadership, and is not part of the sermon itself in any way."
-    },
-    "!declamation": {
-      "clone": "!declamations"
     },
     "!convocations": {
       "text": "Between their monthly declamations, the Stewards host convocations once per month on Fash evenings. At these convocations, members meet within their temple with their priests for an extended meeting. Functionally, convocations are also used to impassion the members of the church, and are where most paragons are recruited. Despite the often-heavy topics of convocation, the meetings are often also treated as social gatherings. Attendees frequently bring food in a potluck style and eat together while discussing the topics at hand."
@@ -244,7 +238,7 @@
       "clone": "!mystic vanguard goals"
     },
     "!apotheosis treatise": {
-      "text": "The Treatise was written by the Vanguard’s founder, Thirim Na, and details the Vanguard argument for the advancement of mortals above the divine in response to the disappearance of Ballath from the Valather subcontinent."
+      "text": "The *Apotheosis Treatise* is Thirim Na's written response to *Our Burden*, arguing that the appearance of chromas merited fearless human advance, rather than retreat from the unknown. Famously positing that divinity was not something that belonged to the dragons, but that was attainable by any creature with enough work and wit, the *Treatise* became the founding document of the Mystic Vanguard."
     },
     "!myrmidon": {
       "text": "‘Myrmidon’ is not an official title among Vanguards. However, it is recognised in the vernacular of the Mystic Vanguard, referring to anyone who has survived a journey to Thua and returned to serve the Vanguard with their combative prowess."
@@ -265,7 +259,7 @@
       "clone": "!executors"
     },
     "!chroma": {
-      "text": "Chromas are rifts in reality where the basic properties of existence are warping and changing."
+      "text": "There are all sorts of metaphors for chromas. Punctures that push through both Arholt and the hygd, letting properties from each bleed through and change each other's properties. Cysts on reality's flesh, where properties build and swirl in an anomalous bubble. The list goes on. But, truth be told, we have no words to describe the whole of what they are. Transdimensional rifts tend to defy description that way. All that matters is that they're here, and since they've arrived, the world has never been the same."
     },
     "!chromas": {
       "clone": "!chroma"
@@ -280,7 +274,7 @@
       "text": "A brush... a key... a knife... a lens... the intersection of all things and the point from which the God Beast made our world."
     },
     "!mana": {
-      "text": "Ways for the mortals of the world to manipulate and use the powers of the Chromas for their own purposes, known as Magic. "
+      "text": "Mana is potential energy of being. It can be harvested from chromas via meditation, analysis, binding, or ascension."
     },
     "!bloom": {
       "text": "Magic created by chromas that tend to be incredibly stable and constant in their effects."
@@ -288,23 +282,11 @@
     "!blight": {
       "text": "Magic created by chromas that are highly unstable and volatile, meaning their effects are often erratic or destructive."
     },
-    "!enchantments": {
-      "text": "Objects that have been magically programmed to conduct tasks using Bloom magics."
-    },
     "!magic": {
-      "text": "Manipulating chromatic energy using one of the primary methods of engagement."
+      "text": "Magic is the transformation of the universe. Mana is the energy that lets you lift reality to a precipice: a point where truth teeters back and forth. Magic is what we call it when we push reality down a new path."
     },
     "!magics": {
       "clone": "!magic"
-    },
-    "!engagement": {
-      "text": "Devotion, ambition, insight and valor."
-    },
-    "!methods": {
-      "text": "Meditation, Ascension, Analysis and Binding."
-    },
-    "!method": {
-      "clone": "!methods"
     },
     "!devotion": {
       "text": "Devotion mana is attained by peaceful meditation with a chroma, cooperating with it peacefully as a spritiual comrade. The process used to harvest devotion mana is called meditation."
@@ -319,16 +301,16 @@
       "text": "Valor mana is attained by directly controlling the direction of a chroma’s magical output, akin to taming a wild animal. The process used to harvest valor mana is called binding."
     },
     "!meditation": {
-      "text": "Meditation functions by dissolving the boundaries of one’s identity and allowing the essence of the chroma to meld into it."
+      "text": "Meditation functions by dissolving the boundaries of one’s identity and allowing the essence of the chroma to meld into it. The type of mana gained from meditation is colloquially called devotion."
     },
     "!ascension": {
-      "text": "Ascension functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own."
+      "text": "Ascension functions by mixing one’s will with a chroma’s, much like as in meditation, but then supplanting the chroma’s will with one’s own. The type of mana gained from ascension is colloquially called ambition."
     },
     "!analysis": {
-      "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning to direct its powers in both. "
+      "text": "Analysis functions by studying a chroma’s presence in both Arholt and the hygd, thereby learning to direct its powers in both.The type of mana gained from analysis is colloquially called insight."
     },
     "!binding": {
-      "text": "Binding functions by study of a chroma’s essential composition in the hygd and, upon apprehending it, forging a biconditional link between the binder’s will and the chroma."
+      "text": "Binding functions by study of a chroma’s essential composition in the hygd and, upon apprehending it, forging a direct link between the binder’s will and the chroma. The type of mana gained from binding is colloquially called valor."
     },
     "!mage": {
       "text": "A mage is one who can harness the power of Chromas by harvesting and using mana to create magic, and shaping the world to their will."
@@ -361,19 +343,16 @@
       "text": "You speak, and the universe listens. You command, and reality obeys. This is the second tautology: will IS power."
     },
     "!refuge": {
-      "text": "A cavern high up in the mountains, surrounded by the glass taiga of the Valstov Wastes. Many have ventured to seek blessing; not as many have returned. "
-    },
-    "!fortress": {
-      "text": "An enormous castle high upon Mt. Kungstarn. Iganash resides there, along with a few of his drakes."
+      "text": "A cavern high up in the mountains, surrounded by the glass taiga of the Valstov Wastes. Many have ventured to seek blessing; not as many have returned."
     },
     "!dragonfire": {
-      "text": "The most worthy may be baptised in dragonfire and imbued with a part of their deity, in order to serve them to the utmost of their ability."
+      "text": "The worthy may be baptised in dragonfire and imbued with a part of their deity, in order to serve them to the utmost of their ability."
     },
     "!sanctuary": {
-      "text": "No living human has ever seen it. Or, if they have, they haven't come back..."
+      "text": "A library, deeper than the deepest place. Novask's home. It's nearly impossible to reach, and even if you could get there, you certainly wouldn't be in for a warm welcome."
     },
     "!novask": {
-      "text": "The Scholar. Nobody has seen him in years, but every so often, his Attendants deliver new scriptures to us. He resides in his Sanctuary, far below the sea."
+      "text": "The Scholar. Nobody has seen him in years, but every so often, his Attendants deliver new scriptures to us. He resides in his Sanctuary, far below the Garani ocean."
     },
     "!jaekka": {
       "text": "Our Mother. I hope she comes back."
@@ -402,26 +381,14 @@
     "!nexus portal": {
       "clone": "!the nexus portal"
     },
-    "!the blind star": {
-      "text": "The Blind Star is a chroma that deforms conceptual relationality. It is located in the northern Garani desert. It is a mostly Blight chroma."
+    "!the blind sun": {
+      "text": "The Blind Sun is a Blight chroma located somewhere in the Garani Desert. Even among Blight chromas, the Blind Sun is strange, not changing matter itself, but devouring its relationships. Though countless expeditions have attempted to locate the Blind Sun to tame it, travelers always become lost as they travel near it, the environment around them becoming unknowable and even the travelers' own thoughts becoming incomprehensible. It's speculated that the Blind Sun is what created the ontophages, if you believe in them."
     },
-    "!blind star": {
-      "clone": "!the blind star"
-    },
-    "!the blind star discovery": {
-      "text": "The Blind Star appeared in 91 AM: fairly recently. Since then, it has slowly begun to overtake the environment around itself, devouring the perceptual possibilities of the region around it."
-    },
-    "!blind star discovery": {
-      "clone": "!the blind star discovery"
-    },
-    "!the blind star bleaching": {
-      "text": "By “perceptual possibilities,” one means that though the chroma does not affect the physical being of an object, a given object’s personal concept vanishes; one may look at an object, and that object still exists, though one cannot gain an understanding of that object and thus cannot perceive it. The Blind Star spreads this effect around itself, “bleaching” the environment and creating a region that is almost impossible to navigate, as it cannot be comprehended."
-    },
-    "!blind star bleaching": {
-      "clone": "!the blind star bleaching"
+    "!blind sun": {
+      "clone": "!the blind sun"
     },
     "!the verdant star": {
-      "text": "The Verdant Star, or Nalevegh, is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments. "
+      "text": "The Verdant Star, or Nalevegh, is a chroma that invigorates plantlife and fungi with consciousness. Though originally located underwater in Blooming Bay, the Tai’ak have relocated it onto land in the eastern region of the bay. This chroma is driven equally by Bloom and Blight alignments."
     },
     "!Verdant Star": {
       "clone": "!the verdant star"
@@ -442,7 +409,7 @@
       "clone": "!the japraitian fault line"
     },
     "!the worldseam": {
-      "text": "The Worldseam began to appear shortly after Jaekka’s abdication, bisecting the then-whole Garani-Japraitian landmass. It slowly began to push the Isthor continent westwards, resulting in a series of increasingly intense earthquakes until 201 AG, when the continent split from Liowa and began its trek into the southwest. During this time, the ravine along the fault line deepened until it reached the source: the chroma itself."
+      "text": "The Worldseam is a massive split between the Garani and Isthor oceans, bissecting the world. Nearly a mile across, ships have almost no hope of crossing over it, and for each trade vessel that has fallen in while trying to navigate the Worldseam's Eye, even more have been shredded by the surrounding geysers that eject all of the oceanwater that falls into the Japraitian Fault Line."
     },
     "!Worldseam": {
       "clone": "!the worldseam"
@@ -462,23 +429,11 @@
     "!Lainns Forge Growth": {
       "clone": "!lainn's forge growth"
     },
-    "!the carrion star": {
-      "text": "The Carrion Star is a chroma that feeds on will by recycling and reanimating living things. It is located in a forest northwest of Krahncastle. It is a Blight chroma."
-    },
     "!Carrion Star": {
-      "clone": "!the carrion star"
-    },
-    "!the carrion star will": {
-      "text": "The Carrion Star is one of the most conscious chromas in Arholt. The chroma consumes will and thereby kills the living things around it. However, it also constantly reanimates the nearby corpses, infusing them again with small amounts of will to bring them back to life."
+      "text": "The Carrion Star is a chroma that feeds on creatures' will, then breathes just enough back into them to bring them back to life. As the creature recovers, its will grows again, only to be harvested once more. The cycle repeats endlessly. The Carrion Star is a Blight chroma, and its location is unknown."
     },
     "!Carrion Star Will": {
-      "clone": "!the carrion star will"
-    },
-    "!the carrion star reanimation": {
-      "text": "As life begins to recover, its will multiplies itself and it becomes increasingly conscious, only for the Star to harvest the will again. Consequently, the Star is surrounded by half-dead things, largely mindless, stuck in a constant cycle of death and reanimation. The only life which is not affected by this is crows, into which the chroma infuses itself, turning them into its representatives in the world, and the Egon Graf, the Harbinger: a human assassin infected by the chroma, enhanced by it in exchange for bringing corpses back to the Star for harvest."
-    },
-    "!Carrion Star Reanimation": {
-      "clone": "!the carrion star reanimation"
+      "text": "The Carrion Star is one of the most conscious chromas in Arholt. The few survivors who have seen it claim to hear voices emanating from its surface and the nearby wildlife, and when guards move to find it, it always disappears."
     },
     "!the lion": {
       "text": "The Lion appeared in central Valath, vanished with the eastern half of the island, reappeared with Ballath, and vanished entirely after a few hours. It is very poorly understood."
@@ -502,7 +457,7 @@
       "clone": "!the mediator"
     },
     "!dryvenn": {
-      "text": "Dryvenn, Hound of the Ashen Wood, was a socially outcast blightmage from Arrix. Though the townsfolk disowned Dryvenn for her practices in volatile and mutative spells, when Krahncastle invaded, they had nobody else to turn to. "
+      "text": "Dryvenn, Hound of the Ashen Wood, was a socially outcast blightmage from Arrix. Though the townsfolk disowned Dryvenn for her practices in volatile and mutative spells, when Krahncastle invaded, they had nobody else to turn to."
     },
     "!ix'kar": {
       "text": "Ix'kar was one of the first alchemists, living in a time before most knew how to wield magic. Fearing death, he performed a daring experiment: binding his own soul and moving it into a new stone body of his own making. In doing this, he became Arholt's first lich."
@@ -512,6 +467,9 @@
     },
     "!protectors": {
       "text": "The majority of Congregation paladins are protectors: guardians of their churches and communities. Rarely, a protectors is handpicked by an archpriest to become a Knight of the Congregation."
+    },
+    "!protector": {
+      "clone": "!protectors"
     },
     "!knight of the congregation": {
       "text": "A paladin leader operating in direct service of an archpriest. Knights are renowned not only for their skill in battle, but for their distinct ingenuity."
@@ -528,6 +486,9 @@
     "!grapes": {
       "text": "A favourite of the Devoted, I hear. They have some gorgeous vineyards on the slope of Bluecrest Peak."
     },
+    "!grape": {
+      "clone": "!grapes"
+    },
     "!mortality": {
       "text": "The Vanguard seems to think that it's some sort of enemy or insult. I think that it's just our lot in life."
     },
@@ -537,8 +498,14 @@
     "!tautology": {
       "text": "Analytic truth. A circle of meaning. Fact by speech."
     },
+    "!scholar": {
+      "text": "The great serpent of the deep: the embodiment of wisdom. Supposedly."
+    },
     "!attendants": {
-      "text": "Leviathan squids who act as guardians and messengers to Novask, the Scholar. They transport his written works to the surface once he's finished them. "
+      "clone": "!scholar"
+    },
+    "!attendant": {
+      "clone": "!scholar"
     },
     "!scriptures": {
       "text": "Novask's scriptures are called the Chronicles - they detail the history of the world and serve as many people's holy books."
@@ -553,7 +520,10 @@
       "text": "A mineral primarily found in the Cinder mountains of the Azletsu Republic. Its most notable trait is that it refracts light very intensely, casting out colorful prismatic patterns when illuminated."
     },
     "!bluecrest": {
-      "text": "Bluecrest peak is a mountain to the east of Shimmervale, and is where Jaekka's Devoted have established their monastery. It is so named because of the significant deposits of gleamglass at the mountain's peak, which refract a gentle blue light across Shimmervale during the weeks surrounding the summer solstice. "
+      "text": "Bluecrest peak is a mountain to the east of Shimmervale, and is where Jaekka's Devoted have established their monastery. It is so named because of the significant deposits of gleamglass at the mountain's peak, which refract a gentle blue light across Shimmervale during the weeks surrounding the summer solstice."
+    },
+    "!bluecrest peak": {
+      "clone": "!bluecrest"
     },
     "!temple": {
       "text": "The Stewards of Fate perform their spiritual functions in stone temples, usually suited to hold no more than a couple hundred people. Executive functions, however, are addressed in overseers' headquarters."
@@ -562,10 +532,7 @@
       "text": "If Arholt is ink on a page, then the hygd is where we find the meaning of the words. Your name has been written in ink and become a word: a body. Your soul is the meaning of that word."
     },
     "!dragons number": {
-      "text": "There are five dragons. There is Jaekka, and her five children: Thua, the Fundament; Sulhanna, the Artist; Novask, the Scholar; and Iganash, the Conqueror."
-    },
-    "!faction": {
-      "text": "The God Beast's Congregation and Jaekka's Devoted were the first factions of Arholt, first brought together by shared piety and then split by differing orthodoxies. With the advent of magic came the Stewards of Fate, seeking order; and the Mystic Vanguard, seeking transcendence. "
+      "text": "There are five dragons. There is Jaekka, and her four children: Thua, the Fundament; Sulhanna, the Artist; Novask, the Scholar; and Iganash, the Conqueror."
     },
     "!religion": {
       "text": "The existence of dragons and divinity is a rote fact of the world. Whether and how people choose to worship them, however, is called religion."
@@ -580,7 +547,7 @@
       "text": "Sulhanna, the Artist. Thua, the Fundament. Jaekka."
     },
     "!body": {
-      "text": "A body, like any other thing, is a manifestation of essence in the hygd. "
+      "text": "A body, like any other thing, is a manifestation of essence in the hygd."
     },
     "!bloocan": {
       "text": "A wild Bloom creature, often brought into existence by natural spirits wandering through the jungles of southeastern Garanain and western Japrait."
@@ -616,13 +583,13 @@
       "clone": "!garanain"
     },
     "!azletsu kingdom": {
-      "text": "A constitutional monarchy to the north of Garanain. The Azletsu Republic is Arholt's wealthiest nation, having acquired massive amounts of treasure from its capital and major trade hub, Shimmervale, and from its annex of Drachoria with the conquest of Skarn. "
+      "text": "A constitutional monarchy to the north of Garanain. The Azletsu Republic is Arholt's wealthiest nation, having acquired massive amounts of treasure from its capital and major trade hub, Shimmervale, and from its annex of Drachoria with the conquest of Skarn."
     },
     "!Azletsu": {
       "clone": "!azletsu kingdom"
     },
     "!svellsteim": {
-      "text": "Svellsteim is a frigid nation to the far north of the Azletsu Republic. Though the Svell are a fairly modest people, they have been gaining wealth and attention since the discovery of Lainn's Forge."
+      "text": "Svellsteim is a frigid island nation to the far north of the Azletsu Republic. Though the Svell are a fairly modest people, they have been gaining wealth and attention since the discovery of Lainn's Forge."
     },
     "!Svell": {
       "clone": "!svellsteim"
@@ -634,7 +601,7 @@
       "clone": "!varr"
     },
     "!japrait": {
-      "text": "Japrait the name of the collective security alliance between many of the city-states that declared independence from Garanain when Isthor split from Liowa. Its two most significant members are Baingrove and Krahncastle. "
+      "text": "Japrait is the name of the collective security alliance between many of the city-states that declared independence from Garanain when Isthor split from Liowa. Its two most significant members are Baingrove and Krahncastle."
     },
     "!Japrait": {
       "clone": "!japrait"
@@ -646,13 +613,13 @@
       "text": "Baingrove is a city-state in western Japrait, famed for its unique architecture and proximity to Sulhanna's Orchard. The city's wealth, access to high quantities of both Bloom and Blight magic, and high diversity of species make it very very attractive to members of the Mystic Vanguard."
     },
     "!new azletsu": {
-      "text": "Though many cities declared their complete independence when the Japraitian Fault Line split Garanain, a comparatively small swath of land on the new continent instead declared loyalty to its longtime economic and cultural neighbour: the Azletsu Republic. The AR accepted this arrangement, and the cities unified under the common national title of New Azletsu. "
+      "text": "Though many cities declared their complete independence when the Japraitian Fault Line split Garanain, a comparatively small swath of land on the new continent instead declared loyalty to its longtime economic and cultural neighbour: the Azletsu Republic. The AR accepted this arrangement, and the cities unified under the common national title of New Azletsu."
     },
     "!valstov": {
       "text": "Brutal and desolate, the Valstov wastes were designed to be a crucible suited for only the most dedicated survivors. Thua has made her home in this antarctic, glass-covered island, and challenges the strong of heart to seek her out in her Refuge."
     },
     "!tolopea": {
-      "text": "Varr has yet to succeed in bringing law to Tolopea. Instead, the southern island is clunkily administered by local bureaucrats and petty lords, caught in a cultural crossfire between the legalistic Varrish and the neighboring Vanguards of Baingrove. "
+      "text": "Varr has yet to succeed in bringing law to Tolopea. Instead, the southern island is clunkily administered by local bureaucrats and petty lords, caught in a cultural crossfire between the legalistic Varrish and the neighboring Vanguards of Baingrove."
     },
     "!skarn": {
       "text": "Once an independent democracy, Skarn was the eastern neighbor of the Azletsu Kingdom and the home of Drachoria. Many, many years ago, however, the Azletsu conquered Skarn, dismantling its government though leaving its culture intact."
@@ -743,6 +710,873 @@
     },
     "!sulna": {
       "text": "The seventh day of the week."
+    },
+    "!blightmage": {
+      "text": "Common parlance for a sorcerer specializing in Blight magic."
+    },
+    "!bloomwitch": {
+      "text": "Common parlance for a sorcerer specializing in Bloom magic."
+    },
+    "!dawn": {
+      "text": "We rise, and it is beautiful."
+    },
+    "!dusk": {
+      "text": "We fall, and it is glorious."
+    },
+    "!reanimation": {
+      "text": "A frightful thing to see."
+    },
+    "!abyss": {
+      "text": "One of the many without, or the one within? Both dreadful, surely, but I know which I'd rather fall into."
+    },
+    "!afterlife": {
+      "text": "I'm not the best person to ask about that. You'd want to ask one of the Devoted's monks, maybe? Or just sit with the question. I'm sure you'll reach a fine conclusion."
+    },
+    "!arcane": {
+      "text": "The unknown depths of mysticism."
+    },
+    "!arcanum": {
+      "clone": "!arcane"
+    },
+    "!automaton": {
+      "text": "Usually they're enchanted objects that carry out simple tasks for the ones who enchanted them. However with today's goings-on, some automatons have become a bit more... autonomous, and have wandered off and started their own lives. Fascinating, no?"
+    },
+    "!autonomy": {
+      "text": "Life's greatest trick. Abusable, but sacred."
+    },
+    "!baptism": {
+      "text": "Grahdaza Hima revived the term. Of her transformation, she writes, \"I feel the weight of a world upon me. My mouth opens. I taste the stars. I drink of them, and so I swallow divinity. This is my baptism. I am reborn.\""
+    },
+    "!baptised": {
+      "clone": "!baptism"
+    },
+    "!bot": {
+      "text": "Another name for automatons, although some self-aware automatons find the term insulting. An interesting conundrum, don't you think?"
+    },
+    "!conflict": {
+      "text": "The beginning of so many things, and the end of almost all."
+    },
+    "!corruption": {
+      "text": "Always a problem among people, but only recently a problem with the world."
+    },
+    "!curse": {
+      "text": "Some people do quite nasty things with magic. Curses—either on objects or living things—are living manifestations of hate, corrupting the host and spreading their vile energies to everything nearby."
+    },
+    "!death": {
+      "text": "Oh dear. Oh dear... that is the question, I suppose. One of the only questions worth answering."
+    },
+    "!deity": {
+      "text": "Well, it depends who you ask. If you asked a member of the Vanguard, they might tell you there's no such thing. However, ask the Congregation and they'll pull out a whole song and dance about each dragon and how amazing they are."
+    },
+    "!demon": {
+      "text": "Oh goodness me, no. We don't have any demons around here, at least I should hope we don't!"
+    },
+    "!emotion": {
+      "text": "Even Jaekka seems a bit confused by this one. All we know is that we have them, and they have us, and they are beautiful."
+    },
+    "!end": {
+      "text": "Time's only promise."
+    },
+    "!essence": {
+      "text": "When we look at something, how do we know what it is? When we read a word, how do we know what it means? The ink, the sight, the sound, the experience—all of these are just arrows that point towards the essence of an object."
+    },
+    "!infinity": {
+      "text": "Really. You want me to describe infinity. With words. Surely you see the problem here."
+    },
+    "!luck": {
+      "text": "You're welcome to believe in it. We all need to trust in something. I myself hold confidence in the Conqueror."
+    },
+    "!dark magic": {
+      "text": "Some like to refer to Blight magic as 'dark,' but it seems more like a rhetorical strategy than anything else. There's nothing inherently dark or evil about Blight—at least, no more than Bloom—it's just often not a great idea to use it."
+    },
+    "!moon": {
+      "text": "Although it has no power, the Graeoln still worship it. I don't really understand it, but it seems to make them happy."
+    },
+    "!sun": {
+      "text": "Jaekka created the sun to warm Arholt and to help us sustain life here. If it was cold and dark, I don't imagine things would do as well."
+    },
+    "!fungi": {
+      "text": "There are plenty of different kinds in Arholt. Some look similar, but depending on the kind, they either make you see things, kill you, or are perfectly safe to eat. I don't really trust them, to be honest."
+    },
+    "!portal": {
+      "text": "There's one set up just on the coastline south of here. The Nexus. It really helps with the young ones coming to visit me. Normally you'd need several months to journey between the continents, but now... Poof! You're here!"
+    },
+    "!miracle": {
+      "text": "They do seem rather common these days. Perhaps we need a new word."
+    },
+    "!spark": {
+      "text": "An old word for chromas. As they became more and more powerful, the name changed to reflect their complexity."
+    },
+    "!undead": {
+      "text": "I've heard stories. Horrid stories. Stories that don't bear repeating."
+    },
+    "!physical plane": {
+      "text": "We're in it. This is the physical plane, dear. Not much to answer to that question!"
+    },
+    "!house": {
+      "text": "When I was younger, we lived in a house on a farm - we used to go and collect the chicken eggs in the morning to eat for breakfast."
+    },
+    "!chickens": {
+      "text": "In our ranch house, we had one hen, Wendeline, who laid bright purple eggs! She was lovely, a really trusting little thing."
+    },
+    "!run": {
+      "text": "Exercise? No thank you! I'm more than happy to sit here and read a book with a nice biscuit or six."
+    },
+    "!sea": {
+      "text": "The most beautiful ocean view I've ever seen was the Garani Ocean... I was sitting in a small boat and the sun was setting. If I could have taken a picture and kept it forever, I would have. But they didn't have picdevs back in my day!"
+    },
+    "!vacation": {
+      "text": "Goodness me, no! I've not had a vacation in forty years. When you're tasked with research for one of the Great Dragons, you don't really think much about vacations. Besides, I've never felt as though I needed to get away from my work - It's always been a pleasure."
+    },
+    "!tea": {
+      "text": ["One of the greatest pleasures in life, in my opinion. There's nothing quite like sitting down by a fire with a book, and sipping a big mug of tea. I like to think that's what awaits us on the other side - Just a fireplace, a good book, and some tea.", "I'm currently drinking a cup of Whitethistle tea. It's quite sweet, and it goes well with plain biscuits. If one were to have chocolate biscuits with Whitethistle tea, I'd imagine it would be a bit too cloying."]
+    },
+    "!sand": {
+      "text": "I did some research in the northern part of Garanain once, which is a desert, and for months after I returned to Varr, I was still finding sand in amongst my belongings - in the pages of books, inside my pockets... a nightmare, really."
+    },
+    "!biscuits": {
+      "text": "Yes please! Oh, you don't have any? A shame. I'm quite partial to a Starlight Swirl, or any other kind, really. You can't really be picky with biscuits, because even a bad biscuit is still a biscuit, and therefore good."
+    },
+    "!cake": {
+      "text": ["Ooh, anything with plenty of cream will do nicely. I'm not big on those newfangled cakes with their mountains of sugar and rainbow colors - Give me a good old sponge cake with some jam and I'm a happy old bean.", "Oh! Do you have some on you? No? What a disappointment... You'll have to give me a minute to get over this."]
+    },
+    "!know": {
+      "text": "How do I know things? Well, I've spent my life trying to figure things out, talking to people, poring over old tomes for their knowledge - A life that's not for everyone, I'm well aware, but it suits me just fine."
+    },
+    "!cat": {
+      "text": "Here she is! This is little Sophie. She's become quite chubby, when we first found her she was skin and bone! We fattened her up quite nicely, and now she's a little grey fluff. I love her."
+    },
+    "!rumours": {
+      "text": "Nasty things, but always tempting."
+    },
+    "!advent": {
+      "text": "A fancy word for the most important event in any history: a beginning."
+    },
+    "!adventurer": {
+      "text": "I suppose I could once have been called an adventurer! I travelled about and researched different happenings in the world on behalf of the Conqueror. Now I prefer this library; it's very comfortable."
+    },
+    "!art": {
+      "text": ["I don't consider myself an arty person at all, no. But ask the Congregation; they worship Sulhanna the Artist. I'm sure they know much more about it than I do!", "The Congregation are very fond of it, yes. They make some beautiful things, like the huge piece of stained glass within the Boundless Spire. It's truly a sight to behold."]
+    },
+    "!artifact": {
+      "text": "I used to receive artifacts to look at all the time. Most of them were fine, but sometimes someone would bring in something cursed, and I could sense it from the next room. Powerful energy, curses."
+    },
+    "!children": {
+      "text": "Me? No, I don't have any children. I was far too busy with research! My sister has a few though, and although they're all grown up now, they were lovely when they were younger."
+    },
+    "!companion": {
+      "text": "I think life would be quite dull without them. I have a few, myself, but just a few. I've never needed more, and I used to travel around a lot anyway. Writing letters got exhausting after a while."
+    },
+    "!forbidden": {
+      "text": "In this library? Only running, shouting, and using Blight magic. Wouldn't want the books to explode now, would we?"
+    },
+    "!freedom": {
+      "text": "I like to think that everyone in this world is free to choose what they do. That's the beauty of the factions; you aren't chained to them. Find yourself, find your peers, find where you belong. Everyone is free."
+    },
+    "!wine": {
+      "text": "My favourite is the sort that comes from the Bluecrest vineyards. Those monks really know how to make a nice bottle!"
+    },
+    "!dinner": {
+      "text": "Oh, I'm flattered, but I'm a bit busy with work... Oh, you were asking about what I'm eating for dinner? Oh, probably some nice cloved pheasant and a little bit of wine."
+    },
+    "!beauty": {
+      "text": "I imagine it's a matter of perspective. They do say \"beauty is in the eye of the beholder!\". As a child I heard this as \"beauty is in the eye of the bee-holder\". I wondered why beekeepers were the ultimate judges of such a thing, but that's children for you."
+    },
+    "!how to talk to girls": {
+      "text": "Like you would talk to anyone, I expect. Be polite, don't try too hard to impress, and let them talk too."
+    },
+    "!starfruit": {
+      "text": "They grow it over in Bluecrest, and I have a penchant for jam made of it. Spread it on some freshly made bread... Mm. My mouth's watering!"
+    },
+    "!fruit": {
+      "text": "I love fruit. I have such a sweet tooth, which is why I've grown so plump in my old age!"
+    },
+    "!pet": {
+      "text": "I have one myself! She's usually curled up somewhere around the library. A little grey cat called Sophie. I found her in an alley near a hatters, and took her in. I'm so glad I did."
+    },
+    "!plants": {
+      "text": "These? They're my pot plants. They add such a lovely touch to a room, don't you agree?"
+    },
+    "!sip": {
+      "text": "Oh, please don't sip so loudly! You remind me of a Graeoln who visited me a few months back—wouldn't stop slurping her tea!"
+    },
+    "!tendency": {
+      "text": "I myself have a tendency to hum while I'm reading... I don't even realise I do it, but the librarians here keep shushing me."
+    },
+    "!cactus": {
+      "text": "I think they're a lot like Iganash. Spiky and gruff on the outside, but on the inside, they're soft. Or they care a lot about humans. I'm sorry, where was I going with this?"
+    },
+    "!cream": {
+      "text": "I'm not a great fan of coffee, but with cream, yes, I do enjoy it."
+    },
+    "!pen": {
+      "text": "I switched to quills, they're a bit easier to hold in my claws. When I had human hands, I used a lovely fountain pen with rich black ink, but now they tend to slip between my fingers."
+    },
+    "!orange": {
+      "text": "I do love a glass of freshly squeezed orange juice in the morning - it seems a little snobby, but it must be fresh. I find other kinds much too bitter."
+    },
+    "!girl": {
+      "text": "When I was a girl, I loved to read. I would hide underneath my bed instead of doing my chores. My mother was never too thrilled, but she wasn't harsh on me either. I appreciated that about her."
+    },
+    "!pollution": {
+      "text": "Thankfully we're quite rid of it - in the past, people would dump their refuse into rivers, and alchemists would pour their old potions and failed experiments into the soil. However, the Stewards put a stop to that, bless them!"
+    },
+    "!representative": {
+      "text": "I myself am a representative of Iganash, having received his blessing. I carry within me a part of him, which means I'm not fond of mess or chaos, so please make sure your boots are clean before you come into the library next time!"
+    },
+    "believe": {
+      "text": "I believe in the power of the dragons, and the power of order and knowledge."
+    },
+    "fog": {
+      "text": "One of my favourite kinds of weather, a foggy morning. The world takes on such a mysterious quality when it's foggy, don't you think? Like anything could be just ahead."
+    },
+    "rose": {
+      "text": "They used to be much more common, but a true rose is a rarity in Arholt. They warped much faster than other flowers, and created new species. I haven't seen one in, oh, sixty years or so? I wonder if they even still exist at all..."
+    },
+    "compass": {
+      "text": "They used to be used all the time, although not so much any more, as some chromas warp Arholt's magnetic field, and the compasses basically become useless. One must be adept at map-reading to be able to travel nowadays!"
+    },
+    "!zebra": {
+      "text": "My neighbors owned a few... One time, I was feeding one a lump of sugar, and another noticed and came cantering over at full speed, only to bite my hand! That zebra was... Unpleasant."
+    },
+    "bath": {
+      "text": "Ooh, goodness, you've given me an excellent idea for what I'll do tonight... A hot soak sounds absolutely perfect for my old bones!"
+    },
+    "meal": {
+      "text": "I'm quite looking forward to my next one, now that you bring it up..."
+    },
+    "!goldfish": {
+      "text": "We didn't have goldfish when I was younger, but a large pond full of giant koi carp. They were beautiful, but not very tasty. Their flesh is far too oily."
+    },
+    "ants": {
+      "text": "I'm not a fan to be honest, although I won't bother them if they don't bother me. That's my philosophy for many aspects of life, actually."
+    },
+    "!bite": {
+      "text": "I suppose if I bit you, it would hurt quite a lot... However, I won't bite! My bark is far worse, anyway."
+    },
+    "!request": {
+      "text": "Yes? You have a request? Well, out with it, dear!"
+    },
+    "!skin": {
+      "text": "Well, I don't have skin anymore, I have scales now. They're a lot more convenient, but it hurts when one comes out. I suppose it's like having a body covered in fingernails."
+    },
+    "!toad": {
+      "text": "Charming little things. I feel quite a kinship to them, as I'm also stout and look grumpy when I'm not paying attention."
+    },
+    "stew": {
+      "text": "The best stew is definitely rabbit stew. My mother used to make it, and sprinkle fresh herbs over the top of it. Whenever I smell mushrooms frying in butter it always takes me back..."
+    },
+    "language": {
+      "text": "Well I'm speaking Common, but there are plenty of other languages in Arholt. I attempted learning Tai'ak a few years back, but all I remember is \"Shii'te kaluga vor duv-talal'ak qu duzé\", which means \"My hat is not made of bees\"."
+    },
+    "!tastes": {
+      "text": "My personal taste? Well it depends on what we're talking about, but I like sweets. Sweet foods, sweet animals, and sweet people."
+    },
+    "!quilt": {
+      "text": "My mother began one as a project, once. She worked on it for six months, every evening, and then one day suddenly decided it was far too much work, and never touched it again."
+    },
+    "!disgust": {
+      "text": "The only thing that truly disgusts me is crabs, and I stand by this opinion."
+    },
+    "!lizard": {
+      "text": "Very cute. I approve of lizards. Wait, you're saying I look like a lizard? Well... You're not wrong, I suppose."
+    },
+    "!dust": {
+      "text": "I won't stand for it. I like to keep my surroundings clean and tidy, and I dust and clean my living quarters every Sulna."
+    },
+    "!basket": {
+      "text": "The nicest way to carry groceries, in my opinion. It feels very quaint to carry a basket full of fresh eggs, vegetables, and baked goods home after the market on Thuro."
+    },
+    "!stomach": {
+      "text": "Mine is currently rumbling. You wouldn't happen to have any cake on you, dear?"
+    },
+    "!bear": {
+      "text": "Oh yes, there are bears around... Generally they aren't a threat, though, especially considering you can buy talismans and other things that ward them off."
+    },
+    "!fairy": {
+      "text": "Hm, we don't have fairies as such... We have the graeoln though, and they have wings and can do magic, so I suppose you could see them as fairies? Although collectively they aren't that bright... So perhaps not."
+    },
+    "!lunch": {
+      "text": "I usually have some bread and some form of jam, and always a cup of tea. No lunch is complete without a nice hot drink to wash it down!"
+    },
+    "!sense": {
+      "text": "After things started mutating, some people's senses began to change. Some found themselves able to track things like sniffer hounds, or able to hear an owl hoot two villages over. I was not gifted with any of these, unfortunately!"
+    },
+    "!locket": {
+      "text": "I wear a locket with a picture of my sister, and my parents. I usually look at it before I go to bed. I miss them, but I know they're always with me."
+    },
+    "!liquid": {
+      "text": "Tea is by far the superior liquid, followed by coffee with lashings of cream."
+    },
+    "!income": {
+      "text": "Well, as drakes we don't receive income as such, rather a stipend that we use to live comfortably as we carry out tasks for Iganash. People are also very kind to us, which is an added benefit, I suppose!"
+    },
+    "!ice": {
+      "text": "Ice does not belong in beverages of any kind — I will not hear of it."
+    },
+    "!potato": {
+      "text": "Delicious. Jaekka's perfect food."
+    },
+    "!sugar": {
+      "text": "The best thing Jaekka invented, sugar. It makes everything so much better."
+    },
+    "!snail": {
+      "text": "I once found a recipe for a snail pie while leafing through an old cookbook. On the next page was a recipe for cinnamon and butterscotch pie, and I decided to make that one instead, as you would imagine!"
+    },
+    "zephyr": {
+      "text": "What a gorgeous word. A shame that one doesn't hear it in conversation very often!"
+    },
+    "!shop": {
+      "text": "We have plenty of shops in Varr, but the travelling merchants are by far the more interesting people to buy goods from. I once came across one who sold exotic pets — and among those pets was a giant friendly bee on a leash. It took all my self-control not to give it a loving home, but I wouldn't have had time to give it proper care as I travelled a lot."
+    },
+    "!rat": {
+      "text": "They hunt at night, they stalk at night, and they get a bad rap as pests and vermin, but I think they're quite sweet... As long as they stay far away from me."
+    },
+    "!thought": {
+      "text": "I often wonder if others think they same way I do. I chat to myself in my head, without really realising it — however I hear that some people think in only images, or in abstract concepts. How fascinating that must be!"
+    },
+    "!actor": {
+      "text": "My sister always wanted to be an actor... That is until she read a book about architecture and decided she'd much rather do that instead! "
+    },
+    "!egg": {
+      "text": "The egg yolks from Wendeline's eggs were bright purple too, but they didn't taste any different to regular eggs."
+    },
+    "!tongue": {
+      "text": "When I became a drake, one of the things I found most disconcerting was my tongue — it was suddenly pointed, and I often caught it in my teeth, which was unpleasant."
+    },
+    "!deer": {
+      "text": "Once, on a journey that took me into the forest, I came across a large stag, with large glowing antlers with vines growing through them. After I watched it for a while, it walked behind a tree and completely disappeared. I often wonder if it was a forest spirit that I found..."
+    },
+    "!dress": {
+      "text": "This? I would class this as a robe, more than a dress. I was not fond of dresses as a youngling, as I often got them caught on fence posts or tree branches when I was climbing them. I don't climb many trees these days, so these robes suit me just fine."
+    },
+    "lettuce": {
+      "text": "Blech, no thank you. I'd rather just go outside and eat grass like a cow than eat a salad."
+    },
+    "!cattle": {
+      "text": "We didn't have any cows on our ranch, which is odd, no? My parents always told me they were much too high-maintenance, so we farmed goats instead. I honestly don't know what my parents had against cows."
+    },
+    "!wish": {
+      "text": "Wishes used to be things that would rarely come true, but now that we have Blightmages and Bloomwitches, wishes coming true seems to be almost commonplace."
+    },
+    "!shoe": {
+      "text": "I don't wear them — My feet are far too large and my claws are far too long, but thanks to my scales, I don't really notice a difference!"
+    },
+    "!tooth": {
+      "text": "When I became a drake, I had to buy a new toothbrush that was about four times larger than my old one, as my teeth are now, well, massive. I am part dragon after all!"
+    },
+    "!write": {
+      "text": "I myself intended to become a fiction writer, but as I grew and learned more about the world, I realised that the truth of the world is far more interesting, more engaging, and far stranger than anything anyone could compose. So I became a researcher."
+    },
+    "!weather": {
+      "text": "I love nothing more than curling up with a good book while a thunderstorm rages outside. It's the safest and coziest feeling in the world, and I love the sound of the rain on the roof of the library."
+    },
+    "!grandfather": {
+      "text": "My grandpa was a beekeeper, and when he got old, he moved himself and all of his bees onto our ranch. Honey spread on toast is still one of my favourite foods, because it reminds me of him."
+    },
+    "!regret": {
+      "text": "I try my best to live without any."
+    },
+    "!goose": {
+      "text": "Horrible birds. They often stole things from around the ranch and generally wrought havoc. I may or may not have a small grudge against them."
+    },
+    "!marble": {
+      "text": "Oh, I know how to play marbles! I learned when I went to Iganara — my travels brought me to a village with a lot of children, and they taught me. Although, I was never very good, and they always beat me..."
+    },
+    "!honey": {
+      "text": "My grandfather was a beekeeper. I wanted to take some honey out of a hive once, and stuck my head in without smoking it out first. I got stung five times on the nose! "
+    },
+    "!agreement": {
+      "text": "I suppose becoming a drake is like an agreement between our kind and Iganash. We agree that he will give us longer lives and hardier bodies, and in turn, we will carry out his will."
+    },
+    "!insect": {
+      "text": "Some of them are small and cute, like bees. I love bees. But some are as big as a house and have murderous intent, like the Dragon Beetles."
+    },
+    "!wind": {
+      "text": "The wind here comes down off the mountains, and it's usually warm and pleasant, and quite gentle."
+    },
+    "!mask": {
+      "text": "I once encountered a small pack of children wearing red and white ones with small pointy ears. I wasn't quite sure what they were doing or where they were going, so I watched them as they passed by."
+    },
+    "!purpose": {
+      "text": "I was lucky enough to find my purpose relatively early in life — I devoted myself to research, and can't imagine anything I'm more suited to. What would you say your purpose is?"
+    },
+    "!guide": {
+      "text": "Well, that's why I'm here! To provide people with guidance. I hope I'm of use!"
+    },
+    "!noise": {
+      "text": "Nothing of that sort in here please! This is a library, and if you aren't quite, the librarian will shush you, or worse — glare at you. You don't want to be on the receiving end of Madeleine's glare, it's very intense."
+    },
+    "!straw": {
+      "text": "I have never understood how some authors write about \"comfortable beds of straw\"... They've clearly never slept on straw, as it's itchy, poky, and very strong-smelling. Not my first choice of bedding, in any case!"
+    },
+    "!rice": {
+      "text": "Delicious. I love some nice spiced rice. Spiced rice is quite nice. Oh wait, quite doesn't rhyme with spice. Oh dear."
+    },
+    "berry": {
+      "text": "Some are delicious, but never eat berries you aren't familiar with! Some are a beautiful decoration for a cake, and others will make you violently ill, or even kill you."
+    },
+    "!rabbit": {
+      "text": "Adorable, and very good in a stew. All-round excellent animals."
+    },
+    "!sheep": {
+      "text": "Very interesting animals, but if you've ever walked past a paddock full of them after it's rained, you know how badly they reek."
+    },
+    "!volcano": {
+      "text": "We have a few volcanos by the Fortress. They're no longer active, but they heat up the nearby hot springs, which are incredible to bathe in. I can't think of anything more relaxing than sitting in a hot spring and drinking some Bluecrest Reserve..."
+    },
+    "star": {
+      "text": "One of Jaekka's most beautiful gifts to us, the ability to look up at the night sky and observe the stars."
+    },
+    "!parent": {
+      "text": "My parents were farmers, they had a ranch that we lived on. My mother was called Zuani, and my father was called Bitt. They're both long gone now, and I miss them very much. But that's the life of a drake — We live much longer than normal humans, so it's our fate to see our loved ones pass before us."
+    },
+    "!turtle": {
+      "text": "Not a fan. They're condescending."
+    },
+    "!horse": {
+      "text": "Highly suspicious animals, if you ask me."
+    },
+    "!fish": {
+      "text": "Tasty, although you'll never catch me eating crab. I have many opinions on crabs, and none of them good."
+    },
+    "!crab": {
+      "text": ["Spies, criminals, and barbarians, all of them. There's a piece of ancient knowledge, passed down through my family for generations: never trust a creature that walks sideways.", "Unscrupulous, cruel, treacherous sea-fiends, emergent from the depths to rob society of its riches and drag us back beneath the shadowed waves!", "Their crime is against nature, against society, against decency, and against the dragons themselves.", "Jaekka's one and only mistake in this world.", "Evil made chitinous, sin that walks on spined legs.", "Unholy beings, cruel and barbaric. They lurk in muddied depths, unreached by even Jaekka's pure light.", "Alright, you want to talk about crabs? Let’s talk about crabs. Problem one: the legs. That’s too many legs. You don’t deserve that many legs. You’ve got that many legs and you walk SIDEWAYS? Disgraceful. Offensive. Problem two: the breathing. Alright, so not all crabs offend on this front, but this is especially targeted at intertidal crabs. Breathing in water is fine. Breathing on land is fine. Being able to breathe both in water AND on land AT YOUR WHIMSY is not fine. That is unnatural, it’s offensive, it’s horrifying, it’s unfair, and I hate it. I hate you, intertidal crabs. Get off of my shorelines and off of my world. Problem three: The eyes. Just look at their beady little traitor eyes and tell me that you do not look into the face of iniquity. Problem four: The claws. So clearly, crabs are the superior species. Right? I mean, I had to get set on fire to receive my natural armour, but Mr. Crab over here is born with a free set of plate armour! They travel freely between land and sea. They’ve got more legs than us, even if they don’t know how to use them. Their expressionless face has allowed them to play the fool, even as they obviously plot our humanity’s demise through aggressive invasion of the land. But then, BUT THEN they have the audacity to grow claws instead of hands? What is this, crabs? Is this a game to you? A mockery? A joke? Clearly, you have the upper hand, so why not develop upper hands? You can barely hold a weapon, you can’t scratch your face without poking your abyssal marble of an eye out; you can’t even snap—so what’s the big idea? You are an abomination, crab. You are Jaekka’s only mistake. You are a fiend, a monster, and a wretch, and mark my words: the glint of my blade will be the last light to grace the black caverns of your mind.", "I've never met a crab that I didn't immediately despise with every fibre of my mortal being."]
+    },
+    "!cloud": {
+      "text": "I love to cloud-watch. My most memorable experience was a cloud that looked like a cat, and then a dog, and then a hamster, and then a lemon. Yes, that was exciting."
+    },
+    "!home": {
+      "text": "My home? Well, as all drakes, my home is in the Fortress in Varr, although I would be more inclined to say that this library is currently my home! I have a small living quarters upstairs here, it's very cozy."
+    },
+    "!waves": {
+      "text": "It's a beautiful and fearsome thing, to see waves crash onto the sand. The thought is marred by the existence of crabs, though, as with all things that have to do with the ocean."
+    },
+    "!button": {
+      "text": "That was my fathers pet name for me. Ah, what a lovely memory. Thank you."
+    },
+    "!music": {
+      "text": "I appreciate all sorts, but anything with a good rhythm always makes me happy!"
+    },
+    "!surprise": {
+      "text": "I love surprises, but only ones that don't involve loud noise or crowds. I have never experienced such a duality of emotions than when I was thrown a surprise birthday party! On one hand, there was a loud bang and forty people yelling \"Happy Birthday\", which startled me almost to death, but there was also cake, which solves most problems."
+    },
+    "!opinion": {
+      "text": "I have many. So many. Ask me about anything, and I hope I can give you my opinion on it. If I don't know about it, I might need a while to jog my memory, but keep asking, I'm an old bean and sometimes I forget!"
+    },
+    "!crow": {
+      "text": "Lovely birds, although one did swoop down and steal a ribbon off my hat once, which was an interesting turn to an otherwise mundane day."
+    },
+    "!quill": {
+      "text": "Yes, I do prefer them to pens. Oh, or do you mean the Quill of Flachain? She's a legendary war-bard. She writes songs for the warriors to battle to, and dirges for her fallen comrades."
+    },
+    "!pear": {
+      "text": "My, my, my mouth is already watering, thinking about pear cakes... They're wonderfully soft and tender."
+    },
+    "!cult of jaekka": {
+      "text": "The Cult of Jaekka was a primeval religion, predating all of the factions and much of written history, dedicated to honouring and learning from the God Beast. Though no contemporary organisations refer to themselves as the Cult of Jaekka, with Jaekka's Devoted abandoning the name and the God Beast's Congregation having changed their name long ago, the Cult's simple principles of kindness, reverence, creativity, and respect for the Five Words continue to influence society."
+    },
+    "!church": {
+      "text": "The God Beast's Congregation and the Stewards of Fate have churches where some members pray and worship. Churches often also serve as social and political centres, though, where members meet up to discuss their agendas, plan for the future, or just eat and chat."
+    },
+    "!Illuminator": {
+      "text": "An unofficially official title among the Stewards. The Illuminator is as much a spiritual guide as a soldier, leading the paragons and serving as the friendly face of the Stewards. Well, friendlier than the High Overseer at least."
+    },
+    "!High overseer": {
+      "text": "The overseer of the overseers. The Stewards' ultimate administrative boss. The High Overseer isn't nearly as popular or well-known as the Illuminator, but they're the one in charge."
+    },
+    "!chaos": {
+      "text": "The opposite of order, and life's charge for destruction."
+    },
+    "!order": {
+      "text": "Everything in its proper place, sorted, harmonious."
+    },
+    "!declamation": {
+      "text": "Comparable to the Congregation's orations, declamations are the Stewards' regularly scheduled gatherings with a focus on understanding Jaekka, the dragons, and morality."
+    },
+    "!declamations": {
+      "clone": "!declamation"
+    },
+    "!Pavem Idom": {
+      "text": "Pavem Idom was a Varrish philosopher, best known for publishing the Stewards' founding document: *Our Burden*. She was particularly concerned by the mounting disorder in Arholt, both by chromas' destabilisation of nature and by the sense of empowerment that many criminals experienced when they learned magic. "
+    },
+    "!chapter": {
+      "text": "The Mystic Vanguard regionally organises itself into democratic chapters and avoids any sort of worldwide centralisation."
+    },
+    "!Thirim Na": {
+      "text": "Thirim Na was an author from Iganara, and the accidental founder of the Mystic Vanguard. In response to what she perceived as overcaution and offensive paternalism by Pavem Idom in *Our Burden*, Na wrote the *Apotheosis Treatise*, which quickly became her defining work."
+    },
+    "!faction": {
+      "text": "We have four of them - Jaekka's Devoted, the Mystic Vanguard, the Stewards of Fate, and the God Beast's Congregation. I don't quite fit into any one of them, but I do work alongside the Stewards quite a lot."
+    },
+    "!factions": {
+      "clone": "!faction"
+    },
+    "!blessing": {
+      "text": "A gift given by a dragon, bestowed onto a being and infusing them with part of the dragon's soul. Few in known history has ever been blessed by Novask, although many have been blessed by Iganash, Thua, and Sulhanna."
+    },
+    "!mind": {
+      "text": "Now that's an interesting question. Nobody seems to know. And when I say nobody, I really mean nobody."
+    },
+    "!weapons": {
+      "text": "Swords, arrows, fire, poison, the like. I myself am partial to knowledge."
+    },
+    "!jaekka children": {
+      "text": "Thua, Sulhanna, Novask, Iganash. Humanity."
+    },
+    "!elf": {
+      "text": "I read about them once, in a book. They're supposed to be very snobby and unkind to people they deem lesser than them. A very unpleasant lot, I'm glad we don't have any!"
+    },
+    "!army": {
+      "text": "Well, technically I belong to an army. The drakes are supposed to fight along with Iganash's armies in times of war, but we haven't had to do any fighting in a very long time. I like to think we've moved past that kind of brutality."
+    },
+    "!saint": {
+      "text": "Some people try to live in perfect service of a dragon, but refuse to accept its blessing. Something about 'the importance of serving authentically.' I'm not sure that I get it."
+    },
+    "!fundament": {
+      "text": "Thua. A perfect agent. An irreducible self."
+    },
+    "!wyrm": {
+      "text": "Some people like to call the dragons wyrms. I'm not sure why, but it's just as good a word as any other, I suppose."
+    },
+    "!grahdaza hima": {
+      "text": "Grahdaza Hima, the Strayed. Grahdaza Hima, High Witch of Iganara. Grahdaza Hima, Myrmidon. Grahdaza Hima, Ascendant. For all the mystery surrounding her, there is one thing we know for certain about Miss Hima; she has no shortage of epithets."
+    },
+    "!einar": {
+      "text": "The \"Illuminator\" of the Stewards of Fate. Kind enough, but a bit intense."
+    },
+    "!luna": {
+      "text": "A spry young reporter, she's been around here quite a bit. She'll pop in, eat a lot of cake, ask a lot of questions, and leave again. I've sort of gotten used to it."
+    },
+    "!clan": {
+      "text": "Not many groups identify as clans these days, but I suppose that you could count the druidic tribes. The Ghror called themselves a clan for a long time, but now they prefer to be called a nation."
+    },
+    "!armourer": {
+      "text": "I'm familiar with one; she's called Eippe. She makes fine armour, light and strong. She's an Arrak. Fascinating history, the Arraks."
+    },
+    "!Blooming Bay": {
+      "text": "Blooming Bay is a body of water wrapped by a hook-shaped peninsula on the southeastern corner of Garanain. Though once only part of the Garani savannah, when the Tai'ak emerged from beneath the Bay's waters with the Verdant Star, the region rapidly blossomed into a tropical jungle. Now, the term Blooming Bay often refers to both the water and the surrounding jungle, effectively owned by the Tai'ak. The Garani government has made little effort to reclaim the land, which contained few human settlements and was only significantly used by druidic tribes."
+    },
+    "!Druid": {
+      "text": "Though magical naturalists across the world are often called 'druids,' the title is most often applied to the Civatakh and the Belannu tribes of southern Garanain."
+    },
+    "!Belannu": {
+      "text": "The Belannu are Garanain's benevolent druids. Though they have little interaction with the townsfolk of Garani civilisation, during their rare visitations they will trade difficult-to-acquire natural goods and magical artifacts in exchange for unique items, and the Belannu have been known to heal, guide, and feed the lost and weary. The Belannu are also humanity's main liaison with the Tai'ak of Blooming Bay, being the only humans to regularly speak with them."
+    },
+    "!Civatakh": {
+      "text": "The Civatakh are anti-social wizards local to the Garani savannah. They generally live and travel in very small groups, if they travel with others at all, and when approached by outsiders are evasive at best and hostile at worst."
+    },
+    "!taiga": {
+      "text": "A cold and desolate place. Only the truly perceptive can see the beauty and majesty in a place so touched by barrenness and destruction."
+    },
+    "!fortress": {
+      "text": "I used to be based out of the Fortress! I'd go back once a year and report my findings to Iganash himself. I always looked forward to my visits so much. There's just something about the fortress that feels so... safe. Like home. Like I'm with family. Which I suppose I am, really! There aren't an awful lot of drakes, and being surrounded by my kind is a thing of beauty."
+    },
+    "!celestial": {
+      "text": "The stars and the sky, the moon and the sun. Where Jaekka came from, or so they say."
+    },
+    "!incident": {
+      "text": "Well, there's one big incident that everyone talks about: the disappearance of Ballath."
+    },
+    "!city": {
+      "text": "Oh, there are cities all over the place. The ones that come to mind are Sorag, Baingrove, Shimmervale, and Drachoria."
+    },
+    "!coin": {
+      "text": "A golden doorframe between you and power."
+    },
+    "!currency": {
+      "text": "The Azletsu Republic and Varr both have their own types of crowns, the Valathers and Ballathers use shared marks, Svellsteim uses coins called kalfter, and the Garani government mints unique coins called vows"
+    },
+    "!landmarks": {
+      "text": "Each city has a few of them, for example the Boundless Spire in Drachoria. "
+    },
+    "!warpwilds": {
+      "text": "Northwestern Japrait is a strange place indeed. Famous for their beauty, the Orchid Warpwilds"
+    },
+    "!Ashen Wood": {
+      "text": "Arrix is located in the middle of a lovely little birch forest. A long, long time ago, the locals thought that the wood looked like ash. The name stuck."
+    },
+    "!Iganara": {
+      "text": "The capital city of Garanain. Though its relatively northern position, just along the border of the Garani desert, used to make it the most profitable centre for trade with the Azletsu, the emergence of the Blind Sun has dampened business in recent years and made many travelers nervous to visit."
+    },
+    "!Scarlet Marsh": {
+      "text": "Not too long after Japrait declared independence from Garanain, it found a problem growing along its southeastern coastline. Weird red fungi infested the soil, and though they seemed harmless enough, they spread quickly and ravenously. Now, a wide stretch of line along the entire southeastern coastline has been corrupted, along with all of the life within. Though some head into the marsh to adventure, to study, or to harvest rare cardinal cap mushrooms, many are lost to the hostile fauna, and many more to the toxic miasma."
+    },
+    "!Varr Queen": {
+      "text": "For as long as it's been a unified country, Varr has been ruled by a pair of queens from the mountain fiefdoms. Currently, Idel Agtik and Eriet Stiras of Lomstre are the Varrish sovereigns."
+    },
+    "!Idel Agtik": {
+      "text": "Queen Agtik is a reserved and diplomatic ruler. Though she was born in Lomstre, she received her education in Sorag, not too far from here. The Varrish people look up to her as a voice of reason, and her decisions have served them well more often than not."
+    },
+    "!Eriet Stiras": {
+      "text": "Queen Stiras is the older of the Varrish queens and the one with the most military knowledge, having served as the chief of Lomstre's guard prior to her appointment as queen. She mostly tends to Varr's executive matters, and though some see her refusal to quell Tolopea's disorder with marshal law as weak, others appreciate her patience and acknowledgement of how complicated the political climate is."
+    },
+    "Lomstre": {
+      "text": "Lomstre is a mid-sized valley town only a week's walk from Mt. Kungstarn. Few had heard of it and even fewer cared until the current generation of queens was appointed, with both of them hailing from Lomstre."
+    },
+    "!Varr Queen Appointment": {
+      "text": "The first Varrish queens were a pair of warrior chiefs that, with advice and equipment from Iganash, unified the scattered and feudal Varr into a single nation. Ever since, Varr has practiced a tradition of using a council of elders from each fiefdom to choose two women from Varr's central mountain villages to select the next generation of diarchs once one of the current queens dies."
+    },
+    "!mountains": {
+      "text": "There are many mountains across Arholt, but the three most notable ranges are the cinder mountains, the Stone Cascade, and the Dragonsteeth."
+    },
+    "!Teeth of the Dragons": {
+      "text": "The mountain range bissecting Liowa and creating a border between the Azletsu Republic and Garanain is referred to as the Dragonsteeth. The mountain range receives its name both from the beauty of its silouhette—said to be the beauty of divinity in early texts—and for how brutal and unforgiving navigation through the mountains can be."
+    },
+    "!Stone Cascade": {
+      "text": "The mountains of central Varr are called the Stone Cascade, due to the jagged paths from which the mountains all descend from the central peak, Mt. Kungstarn."
+    },
+    "!Jelau'aakh": {
+      "text": "I do suppose that you could call me your friend. I didn't know that you spoke Tai'ak, though."
+    },
+    "!flora": {
+      "text": "The flora has begun to warp since Jaekka's abdication, for example now we have the Tai'ak. They're fully sentient, and can even do magic. I bet Jaekka will be in for a surprise when she comes back!"
+    },
+    "!fauna": {
+      "text": "The local fauna has taken on some strange properties - for example, the dragon beetles, which were once the size of a coin, can now grow to be the size of a house. They're extremely dangerous."
+    },
+    "!animal": {
+      "text": "We have plenty of them around here! I have a little cat who is usually around here in the library somewhere."
+    },
+    "!forest spirit": {
+      "text": "I once saw a forest spirit hatch a freshly laid egg in it's hand, and out came a tiny little baby bird, but that only lasted for a second. It almost immediately grew into an adult and flew off! I had to pick my jaw up off the ground, that day."
+    },
+    "!cardinal cap": {
+      "text": "Cardinal caps are a special kind of mushrooms that grow in the Helanthaflora Basin. The dragon beetles eat them and either rampage around, or fall asleep. It's said that if a sentient creature eats one, the fungus' spirit talks to you and gives you commands, although nobody can actually prove this."
+    },
+    "!Wishing Centaury": {
+      "text": "Wishing centauries are strange little flowers that grow over in Blooming Bay. When they blossom, they reveal a tiny little chroma hidden within their petals that lets out an unpredictable burst of magic. People like to wish for specific gifts from them, hence the name. Even once opened, the flowers can be ground into a pleasant healing mixture."
+    },
+    "!Dragon Beetle": {
+      "text": "Dragon beetles are roving monstrosities indigenous to Scarlet Marsh. They destroy and devour without reason or compassion."
+    },
+    "!quiz": {
+      "text": "Well, sometimes people come to me, unsure quite where they belong. I try to help them find their kind."
+    },
+    "!animals": {
+      "clone": "!animal"
+    },
+    "!Druidic": {
+      "clone": "!Druid"
+    },
+    "!Varrish Queens": {
+      "clone": "!Varr Queen"
+    },
+    "!Varrish Queen Appointment": {
+      "clone": "!Varr Queen Appointment"
+    },
+    "!grahdaza": {
+      "clone": "!grahdaza hima"
+    },
+    "!elves": {
+      "clone": "!elf"
+    },
+    "!jaekka's children": {
+      "clone": "!jaekka children"
+    },
+    "!jaekkas children": {
+      "clone": "!jaekka children"
+    },
+    "!chicken": {
+      "clone": "!chickens"
+    },
+    "!running": {
+      "clone": "!run"
+    },
+    "!ocean": {
+      "clone": "!sea"
+    },
+    "!rumors": {
+      "clone": "!rumours"
+    },
+    "!biting": {
+      "clone": "!bite"
+    },
+    "!requests": {
+      "clone": "!request"
+    },
+    "!skins": {
+      "clone": "!skin"
+    },
+    "!toads": {
+      "clone": "!toad"
+    },
+    "!taste": {
+      "clone": "!tastes"
+    },
+    "!disgusting": {
+      "clone": "!disgust"
+    },
+    "!lizards": {
+      "clone": "!lizard"
+    },
+    "!baskets": {
+      "clone": "!basket"
+    },
+    "!cakes": {
+      "clone": "!cake"
+    },
+    "!bears": {
+      "clone": "!bear"
+    },
+    "!fairies": {
+      "clone": "!fairy"
+    },
+    "!lunches": {
+      "clone": "!lunch"
+    },
+    "!senses": {
+      "clone": "!sense"
+    },
+    "!necklace": {
+      "clone": "!locket"
+    },
+    "!money": {
+      "clone": "!income"
+    },
+    "!potatoes": {
+      "clone": "!potato"
+    },
+    "!sweet": {
+      "clone": "!sugar"
+    },
+    "!snails": {
+      "clone": "!snail"
+    },
+    "!shops": {
+      "clone": "!shop"
+    },
+    "!rats": {
+      "clone": "!rat"
+    },
+    "!think": {
+      "clone": "!thought"
+    },
+    "!eggs": {
+      "clone": "!egg"
+    },
+    "!tongues": {
+      "clone": "!tongue"
+    },
+    "!stag": {
+      "clone": "!deer"
+    },
+    "!dresses": {
+      "clone": "!dress"
+    },
+    "!cow": {
+      "clone": "!cattle"
+    },
+    "!wishes": {
+      "clone": "!wish"
+    },
+    "!shoes": {
+      "clone": "!shoe"
+    },
+    "!teeth": {
+      "clone": "!tooth"
+    },
+    "!writing": {
+      "clone": "!write"
+    },
+    "!grandpa": {
+      "clone": "!grandfather"
+    },
+    "!regrets": {
+      "clone": "!regret"
+    },
+    "!geese": {
+      "clone": "!goose"
+    },
+    "!marbles": {
+      "clone": "!marble"
+    },
+    "!bees": {
+      "clone": "!honey"
+    },
+    "!bug": {
+      "clone": "!insect"
+    },
+    "!masks": {
+      "clone": "!mask"
+    },
+    "!guidance": {
+      "clone": "!guide"
+    },
+    "!noises": {
+      "clone": "!noise"
+    },
+    "!hay": {
+      "clone": "!straw"
+    },
+    "!berries": {
+      "clone": "berry"
+    },
+    "!rabbits": {
+      "clone": "!rabbit"
+    },
+    "!volcanoes": {
+      "clone": "!volcano"
+    },
+    "!stars": {
+      "clone": "star"
+    },
+    "!parents": {
+      "clone": "!parent"
+    },
+    "!turtles": {
+      "clone": "!turtle"
+    },
+    "!horses": {
+      "clone": "!horse"
+    },
+    "!seafood": {
+      "clone": "!fish"
+    },
+    "!crabs": {
+      "clone": "!crab"
+    },
+    "!clouds": {
+      "clone": "!cloud"
+    },
+    "!homes": {
+      "clone": "!home"
+    },
+    "!wave": {
+      "clone": "!waves"
+    },
+    "!buttons": {
+      "clone": "!button"
+    },
+    "!surprises": {
+      "clone": "!surprise"
+    },
+    "!opinions": {
+      "clone": "!opinion"
+    },
+    "!crows": {
+      "clone": "!crow"
+    },
+    "!quills": {
+      "clone": "!quill"
+    },
+    "!pears": {
+      "clone": "!pear"
+    },
+    "!payment": {
+      "clone": "!income"
+    },
+    "!thinking": {
+      "clone": "!thought"
+    },
+    "!cows": {
+      "clone": "!cattle"
+    },
+    "!writer": {
+      "clone": "!write"
+    },
+    "!bugs": {
+      "clone": "!insect"
     }
   }
 }
