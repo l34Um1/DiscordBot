@@ -1186,7 +1186,7 @@
       "text": "The opposite of order, and life's charge for destruction."
     },
     "!order": {
-      "text": "Everything in its proper place, sorted, harmonious."
+      "text": ["Everything in its proper place, sorted, harmonious.", "An important part of life, order. If there was no order, there would be no life. Order is of great importance."]
     },
     "!declamation": {
       "text": "Comparable to the Congregation's orations, declamations are the Stewards' regularly scheduled gatherings with a focus on understanding Jaekka, the dragons, and morality."
@@ -1352,6 +1352,294 @@
     },
     "!pillow": {
       "text": "I've got this beautiful purple pillow here. It was a gift from a passing Devoted monk, on his way to visit a contemplative a few miles north of here. Always so pleasant, those monks."
+    },
+    "!beetles": {
+      "text": "Quite cute little things, I always flip them onto their backs if I see them struggling!"
+    },
+    "!dog": {
+      "text": "Quite nice animals, but a bit too loud and require a bit too much exercise for my taste..."
+    },
+    "!respect": {
+      "text": "Everyone should be treated with respect, except crabs. "
+    },
+    "!banana": {
+      "text": "I can't say I'm a fan... They're a bit too mushy for my taste. "
+    },
+    "!jewel": {
+      "text": "Beautiful things, but other than my badge, I don't wear jewelry! It doesn't tend to fit well. Imagine trying to get a ring onto one of these claws!"
+    },
+    "!disease": {
+      "text": "A sad fact of life, illness. Thankfully we have magic healers, but they can't fix everything, sadly..."
+    },
+    "!dad": {
+      "text": "My dad was wonderful to my sister and I, and I miss him very much."
+    },
+    "!gold": {
+      "text": "A lovely color, one of my favourites I must say! How I love to see things glint and glimmer in Jaekka's light..."
+    },
+    "!notebook": {
+      "text": "I usually write down my findings in these notebooks, yes. I've accumulated several closet's worth in my time, although usually they'll be published into books and printed, but I always keep the originals!"
+    },
+    "!steam": {
+      "text": "Don't get too near it, you might burn yourself!"
+    },
+    "!stream": {
+      "text": "Lovely things, and an excellent way to find the bottom of a mountain!"
+    },
+    "!sleep": {
+      "text": "Yes, yes... I could definitely see myself taking a nap soon... Zzzz... Oh, you're still here?"
+    },
+    "!creator": {
+      "text": "Jaekka is our mother, our creator, our infinitely kind and patient god-beast. "
+    },
+    "!stranger": {
+      "text": "I recently stumbled upon a very odd stranger in the back streets of Varr... He had such strange eyes. They glinted in the light, almost like a cat's... it made me feel odd."
+    },
+    "!harmony": {
+      "text": "I do so admire it when people are able to sing in tune! I myself am... well... Tone-deaf, to be honest. "
+    },
+    "!tail": {
+      "text": "I can tell you that if you can possibly avoid it, do not grow a tail. They are of great annoyance, and the entire reason I can no longer wear trousers. "
+    },
+    "!friends": {
+      "text": "Well, I've always been rather solitary, life of a drake, you know, but recently I have made friends with one of the librarians here... She's... er... Very special. My special friend? That sounds silly. "
+    },
+    "!mint": {
+      "text": "A pleasant taste, yes. It's like the cold version of spice. I somewhat enjoy it, but I much prefer other flavours if they're on offer."
+    },
+    "!knowledge": {
+      "text": "My whole purpose, yes, my reason for being. To gather knowledge. I somewhat admire Novask, and his pursuit of knowledge, but find him to be... Cold. Well, I suppose he is, seeing that he lives at the bottom of the ocean!"
+    },
+    "!news": {
+      "text": "Hm, news, news... I've heard that recently a new species of mushroom was discovered, a kind that only grows on snowy logs. It's fascinating, really!"
+    },
+    "!society": {
+      "text": "Society is a wonderful and strange beast. Humans behave like water when we're in a crowd, and in many other aspects of life, I believe."
+    },
+    "!sneeze": {
+      "text": "May Jaekka bless you, dear."
+    },
+    "!worm": {
+      "text": "I'm impartial to them, although I always do feel a pang of sadness when I see one that has been caught in the sun and has dried up..."
+    },
+    "!birthday": {
+      "text": "Oh, happy birthday!! Wait, it's not your birthday? Oh... I was hoping you had brought cake. Never mind. Happy unbirthday, then, I suppose!"
+    },
+    "!vegetable": {
+      "text": "I enjoy them smothered in butter, but I've never really been one for \"healthy eating\"."
+    },
+    "!page": {
+      "text": "I'm currently on page 54 of my new book - It's about the things that youngsters these days are interested in. I'm planning on presenting it to Iganash and the other drakes at our next convergence!"
+    },
+    "!bean": {
+      "text": "The cutest of all vegetables, apart from the sweet pea."
+    },
+    "!experience": {
+      "text": "I hope you have many experiences, dear. They can never be taken from you, and you'll have them forever."
+    },
+    "!leaf": {
+      "text": "I was once caught in a sudden rainstorm in Baingrove, and I watched a giant rock golem lumber by, with a small leaf on its head, to protect it from the rain, I suppose."
+    },
+    "!zoo": {
+      "text": "We don't really have them any more - Someone once put dragon beetles in an exhibit, and when they got hungry, well... You can imagine how that would have gone."
+    },
+    "!cabbage": {
+      "text": "Good, like most vegetables, when slathered in butter. But otherwise wholly tasteless."
+    },
+    "!hobbies": {
+      "text": "My hobbies? I've never really had one, although recently Madeleine has pushed me to take up painting with her. It's a joyful thing, to create something that looks beautiful."
+    },
+    "!laugh": {
+      "text": "One of the most beautiful sounds is someone laughing, in my opinion. A pure expression of joy... In most cases, anyway."
+    },
+    "!reason": {
+      "text": "My reason is to serve Iganash, to gain knowledge, and to be kind, like Jaekka would have wanted."
+    },
+    "!garden": {
+      "text": "I've always had somewhat of a black thumb, or a black claw, I suppose. I do so love gardens, though, but I'm afraid I'd kill everything before it even sprouted!"
+    },
+    "!joke": {
+      "text": ["What kind of shorts do clouds wear? Thunderwear!", "What do you call a pig that does karate? A pork chop!", "What do you call a horse that eats spaghetti? Greg.", "Why did the banana go to the doctor? Because he wasn't peeling well!", "How do you organise a space party? You planet!!", "What do you call your second hamster? The squeak-wel!"]
+    },
+    "!swim": {
+      "text": "Ooh, yes, I love a good dip. I used to be able to swim for miles when I was younger, but now I'd rather just splash around."
+    },
+    "!lamp": {
+      "text": "This one here is very good - It's powered by Bloom magic, so while it's not the brightest, it is very consistent with it's light, which I appreciate. We chose not to use candles or lanterns because, well, the library contains mostly paper... "
+    },
+    "!squirrel": {
+      "text": "I love to watch them play in the trees. They're just adorable."
+    },
+    "!snake": {
+      "text": "I've never really been afraid of snakes, although I know many people who are terrified. Their little faces seem almost... puzzled, by what is going on around them."
+    },
+    "!memory": {
+      "text": "My memory is jam-packed full of things, as I've lived a very long time! Ask me anything you'd like to know, and I'll try my best to provide an answer for you!"
+    },
+    "!bat": {
+      "text": "I'm not a fan of how their wings look like long, spindly, creepy fingers, but I love watching them flutter around at dusk."
+    },
+    "!tomatoes": {
+      "text": "Horrible vegetable. The worst. Anything that slimy and with that many seeds deserves to be used as feed for livestock and nothing else!"
+    },
+    "!cobweb": {
+      "text": "One of the less pleasant things to stumble into at night."
+    },
+    "!window": {
+      "text": "From this window next to me, I can see out onto the small city we're in, and the mountains in the distance. I often stare out of it when I'm stuck on a certain sentence!"
+    },
+    "!love": {
+      "text": "What exactly it is, we'll never know, although I know that we wouldn't be human without it."
+    },
+    "!goat": {
+      "text": "Our family ranched goats when I was younger! They'll eat almost anything. I'll never forget the day they broke through the fence and ate all my mother's unmentionables off of our washing line!"
+    },
+    "!change": {
+      "text": "Some people have a hard time accepting it, although nobody has a harder time accepting change than cats. I once turned the food bowl Sophie eats from by around 45 degrees when I set it down for her, and she refused to eat from it until I turned it back."
+    },
+    "!library": {
+      "text": "This is the library, yes! There are a lot of interesting manuscripts here, but it's also a fantastic place to fall asleep on a sofa in."
+    },
+    "!pancake": {
+      "text": "The most wonderful thing to eat for breakfast, especially sprinkled with sugar and lemon, or smeared with starfruit jam!"
+    },
+    "!mitten": {
+      "text": "I have to wear them, as these claws don't fit into gloves!"
+    },
+    "!stretch": {
+      "text": "It's a good thing to do once in a while, make sure your body is still limber, so you don't get backaches!"
+    },
+    "!flower": {
+      "text": "One of Jaekka's gifts to us, flowers! They are things of such beauty, and have such short lives. Rather sad, don't you think?"
+    },
+    "!vase": {
+      "text": "I have one in my bedroom to hold the flowers that I'm given! Oh, who gives me the flowers? Well... That's a secret!"
+    },
+    "!horn": {
+      "text": "I have two of them. They're very convenient to use as bag-holders when my hands are full!"
+    },
+    "!comfort": {
+      "text": "One of the most important things to me! I can't stand being cold, or hungry, or thirsty. Uncomfortable chairs are also just the worst!"
+    },
+    "!family": {
+      "text": "I miss mine, very much. I hope you treasure yours."
+    },
+    "!cheese": {
+      "text": "Delicious, yes, amazing on pasta. I have a special penchant for goat cheese, as we made it fresh when I was a youngster!"
+    },
+    "!brothers": {
+      "text": "I don't have any brothers, only one older sister!"
+    },
+    "!sister": {
+      "text": "My sister's name was Meidra, and she was such a lovely, lovely person. She had a few children, and I see their children whenever I visit Drachoria! "
+    },
+    "!mountain": {
+      "text": "I always feel a sense of longing when I gaze at the mountains. I suppose it's the part of Iganash I have within me, that craves the solitude."
+    },
+    "!values": {
+      "text": "Quite a personal thing, ones values. What are yours?"
+    },
+    "!good-bye": {
+      "text": "Oh, you're leaving so soon? Why not stay a little longer? I'll pop the kettle on for some tea..."
+    },
+    "!market": {
+      "text": "We have a market here in Varr every Thuro! Farmers come from far and wide and sell eggs, fresh produce, and baked goods. It's wonderful."
+    },
+    "!balance": {
+      "text": "Important in all things, except for the amount of baked goods one consumes. You can never eat too much cake!"
+    },
+    "!pain": {
+      "text": "We must all experience it, although some more than others. I imagine that without it, we wouldn't be human."
+    },
+    "!comparison": {
+      "text": "The thief of joy! You must never compare yourself to others, as their circumstances are different to yours, and therefore you cannot truly judge. Compare yourself only to your past self."
+    },
+    "!heart": {
+      "text": "It's important to put your heart into everything you do!"
+    },
+    "!cherry": {
+      "text": "Lovely taste, but a bit too stony for me - I'd rather just have them as jam and save the bother of spitting out all the pits!"
+    },
+    "!theory": {
+      "text": "One must develop a theory, but without testing, the theory stays as that, just a theory."
+    },
+    "!observation": {
+      "text": "The first step in a scientific discovery! Keep your eyes and mind open, young one! You might notice something nobody else has."
+    },
+    "!morning": {
+      "text": "I'm always far more productive in the morning than at night, it seems. I suspect it may have something to do with the coffee."
+    },
+    "!spring": {
+      "text": "What a lovely season, although my hayfever acts up. I once accidentally sneezed and lit my manuscript on fire, so now I am sure to sneeze into non-flammable things!"
+    },
+    "!soup": {
+      "text": "Such a nice thing to eat when you're sick, or cold, or sad. The ultimate comfort food!"
+    },
+    "!bed": {
+      "text": "Where I'd like to be right about now..."
+    },
+    "!island": {
+      "text": "The island of Valstov sounds nice, but in reality it's a glassy wasteland surrounded by freezing ocean. That's where Thua has her Refuge. A miserable place, if you ask me."
+    },
+    "!party": {
+      "text": "I've never really been one for parties, to be honest! A bit loud. I'd rather have a bath and a glass of wine!"
+    },
+    "!tiger": {
+      "text": "They're very hard to see in the jungle, so watch out!"
+    },
+    "!shame": {
+      "text": "One of the worst things you can feel. Shame can sneak down your throat and choke you from the inside out, burn your heart and harden it. Sometimes it's a good teacher, sometimes an unnecessary cruelty."
+    },
+    "!breakfast": {
+      "text": "The most important meal of the day, or so they say."
+    },
+    "!paint": {
+      "text": "I've recently been learning how to paint, although I'm not very good..."
+    },
+    "!queen": {
+      "text": "The queens of Varr, you mean? I thought as a child that they were married and ruled together as wives, but it turns out they don't."
+    },
+    "!reward": {
+      "text": "One of the best feelings, to be rewarded!"
+    },
+    "!feast": {
+      "text": "I can't wait for the next one! When my fellow Drakes and I converge to report to Iganash, there is always a mighty feast. I usually fast for a day in preparation, it's that good!"
+    },
+    "!bettle": {
+      "clone": "!bettles"
+    },
+    "!dogs": {
+      "clone": "!dog"
+    },
+    "!hound": {
+      "clone": "!dog"
+    },
+    "!bananas": {
+      "clone": "!banana"
+    },
+    "!jewels": {
+      "clone": "!jewel"
+    },
+    "!diseases": {
+      "clone": "!disease"
+    },
+    "!sickness": {
+      "clone": "!disease"
+    },
+    "!father": {
+      "clone": "!dad"
+    },
+    "!golden": {
+      "clone": "!gold"
+    },
+    "!notebooks": {
+      "clone": "!notebook"
+    },
+    "!bye": {
+      "clone": "!good-bye"
+    },
+    "!goodbye": {
+      "clone": "!good-bye"
     },
     "!animals": {
       "clone": "!animal"
