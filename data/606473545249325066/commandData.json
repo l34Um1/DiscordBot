@@ -1824,6 +1824,9 @@
     "!crabs": {
       "clone": "!crab"
     },
+    "!:crab:": {
+      "clone": "!crab"
+    },
     "!clouds": {
       "clone": "!cloud"
     },
