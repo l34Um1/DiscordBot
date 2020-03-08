@@ -197,9 +197,9 @@ export default class EverythingHandler {
                   add.concat(d.guild.finishRoles)
 
                   const res = this.editRoles(msg.member, remove, add)
-                  msg.channel.send(`You already did the quest.${res ? ' Roles reassigned.' : ''}`)
+                  msg.channel.send(`You already did the quiz.${res ? ' Roles reassigned.' : ''}`)
                 } else {
-                  msg.channel.send('You already did the quest.')
+                  msg.channel.send('You already did the quiz.')
                 }
               } else if (last.question === d.guild.quest.startQuestion) {
                 this.start(msg.member)
