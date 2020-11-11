@@ -4,7 +4,8 @@
   "description": "Faction bot for discord",
   "main": "bin\\main\\index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "node scripts/pre-build.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

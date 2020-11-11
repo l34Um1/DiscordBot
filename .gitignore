@@ -1,5 +1,6 @@
 node_modules
 .vscode/
+.idea
 cfg/
 data/*
 !data/606473545249325066/
