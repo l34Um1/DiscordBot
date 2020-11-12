@@ -360,7 +360,7 @@ export default class EverythingHandler {
   }
 
   /**
-   * **If T is an array itself don't use this method!!**  
+   * **If T is an array itself don't use this method!!**
    * @returns If `randomizable` is an array, a random element in that array, otherwise, `randomizable` is returned
    */
   private getRngVal<T>(randomizable: Randomizable<T>): T extends any[] ? T[number] : T {
