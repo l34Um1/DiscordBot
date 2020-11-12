@@ -1,12 +1,30 @@
-node_modules
-.vscode/
-.idea
-cfg/
-data/*
-!data/606473545249325066/
-bin/
-tempCodeRunnerFile.js
+# dependencies
+/node_modules
+
+# production
+/bin
+
+# misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# webstorm
+.idea/*
+
+# project related
+/cfg/*
+/data/*
+/!data/606473545249325066/
+/data/606473545249325066/factionData.json
+/data/606473545249325066/guildDynamicData.json
+/data/606473545249325066/guildUserData.json
 tsconfig.tsbuildinfo
-data/606473545249325066/factionData.json
-data/606473545249325066/guildDynamicData.json
-data/606473545249325066/guildUserData.json
+tempCodeRunnerFile.js

@@ -1,7 +1,5 @@
 {
-  "botChannels": [
-    "661225689407684624"
-  ],
+  "botChannels": ["661225689407684624"],
   "ready": true,
   "factions": {
     "jd": {

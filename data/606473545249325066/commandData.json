@@ -826,7 +826,10 @@
       "text": "Goodness me, no! I've not had a vacation in forty years. When you're tasked with research for one of the Great Dragons, you don't really think much about vacations. Besides, I've never felt as though I needed to get away from my work - It's always been a pleasure."
     },
     "!tea": {
-      "text": ["One of the greatest pleasures in life, in my opinion. There's nothing quite like sitting down by a fire with a book, and sipping a big mug of tea. I like to think that's what awaits us on the other side - Just a fireplace, a good book, and some tea.", "I'm currently drinking a cup of Whitethistle tea. It's quite sweet, and it goes well with plain biscuits. If one were to have chocolate biscuits with Whitethistle tea, I'd imagine it would be a bit too cloying."]
+      "text": [
+        "One of the greatest pleasures in life, in my opinion. There's nothing quite like sitting down by a fire with a book, and sipping a big mug of tea. I like to think that's what awaits us on the other side - Just a fireplace, a good book, and some tea.",
+        "I'm currently drinking a cup of Whitethistle tea. It's quite sweet, and it goes well with plain biscuits. If one were to have chocolate biscuits with Whitethistle tea, I'd imagine it would be a bit too cloying."
+      ]
     },
     "!sand": {
       "text": "I did some research in the northern part of Garanain once, which is a desert, and for months after I returned to Varr, I was still finding sand in amongst my belongings - in the pages of books, inside my pockets... a nightmare, really."
@@ -835,7 +838,10 @@
       "text": "Yes please! Oh, you don't have any? A shame. I'm quite partial to a Starlight Swirl, or any other kind, really. You can't really be picky with biscuits, because even a bad biscuit is still a biscuit, and therefore good."
     },
     "!cake": {
-      "text": ["Ooh, anything with plenty of cream will do nicely. I'm not big on those newfangled cakes with their mountains of sugar and rainbow colors - Give me a good old sponge cake with some jam and I'm a happy old bean.", "Oh! Do you have some on you? No? What a disappointment... You'll have to give me a minute to get over this."]
+      "text": [
+        "Ooh, anything with plenty of cream will do nicely. I'm not big on those newfangled cakes with their mountains of sugar and rainbow colors - Give me a good old sponge cake with some jam and I'm a happy old bean.",
+        "Oh! Do you have some on you? No? What a disappointment... You'll have to give me a minute to get over this."
+      ]
     },
     "!know": {
       "text": "How do I know things? Well, I've spent my life trying to figure things out, talking to people, poring over old tomes for their knowledge - A life that's not for everyone, I'm well aware, but it suits me just fine."
@@ -853,7 +859,10 @@
       "text": "I suppose I could once have been called an adventurer! I travelled about and researched different happenings in the world on behalf of the Conqueror. Now I prefer this library; it's very comfortable."
     },
     "!art": {
-      "text": ["I don't consider myself an arty person at all, no. But ask the Congregation; they worship Sulhanna the Artist. I'm sure they know much more about it than I do!", "The Congregation are very fond of it, yes. They make some beautiful things, like the huge piece of stained glass within the Boundless Spire. It's truly a sight to behold."]
+      "text": [
+        "I don't consider myself an arty person at all, no. But ask the Congregation; they worship Sulhanna the Artist. I'm sure they know much more about it than I do!",
+        "The Congregation are very fond of it, yes. They make some beautiful things, like the huge piece of stained glass within the Boundless Spire. It's truly a sight to behold."
+      ]
     },
     "!artifact": {
       "text": "I used to receive artifacts to look at all the time. Most of them were fine, but sometimes someone would bring in something cursed, and I could sense it from the next room. Powerful energy, curses."
@@ -1138,7 +1147,16 @@
       "text": "Tasty, although you'll never catch me eating crab. I have many opinions on crabs, and none of them good."
     },
     "!crab": {
-      "text": ["Spies, criminals, and barbarians, all of them. There's a piece of ancient knowledge, passed down through my family for generations: never trust a creature that walks sideways.", "Unscrupulous, cruel, treacherous sea-fiends, emergent from the depths to rob society of its riches and drag us back beneath the shadowed waves!", "Their crime is against nature, against society, against decency, and against the dragons themselves.", "Jaekka's one and only mistake in this world.", "Evil made chitinous, sin that walks on spined legs.", "Unholy beings, cruel and barbaric. They lurk in muddied depths, unreached by even Jaekka's pure light.", "Alright, you want to talk about crabs? Let’s talk about crabs. Problem one: the legs. That’s too many legs. You don’t deserve that many legs. You’ve got that many legs and you walk SIDEWAYS? Disgraceful. Offensive. Problem two: the breathing. Alright, so not all crabs offend on this front, but this is especially targeted at intertidal crabs. Breathing in water is fine. Breathing on land is fine. Being able to breathe both in water AND on land AT YOUR WHIMSY is not fine. That is unnatural, it’s offensive, it’s horrifying, it’s unfair, and I hate it. I hate you, intertidal crabs. Get off of my shorelines and off of my world. Problem three: The eyes. Just look at their beady little traitor eyes and tell me that you do not look into the face of iniquity. Problem four: The claws. So clearly, crabs are the superior species. Right? I mean, I had to get set on fire to receive my natural armour, but Mr. Crab over here is born with a free set of plate armour! They travel freely between land and sea. They’ve got more legs than us, even if they don’t know how to use them. Their expressionless face has allowed them to play the fool, even as they obviously plot our humanity’s demise through aggressive invasion of the land. But then, BUT THEN they have the audacity to grow claws instead of hands? What is this, crabs? Is this a game to you? A mockery? A joke? Clearly, you have the upper hand, so why not develop upper hands? You can barely hold a weapon, you can’t scratch your face without poking your abyssal marble of an eye out; you can’t even snap—so what’s the big idea? You are an abomination, crab. You are Jaekka’s only mistake. You are a fiend, a monster, and a wretch, and mark my words: the glint of my blade will be the last light to grace the black caverns of your mind.", "I've never met a crab that I didn't immediately despise with every fibre of my mortal being."]
+      "text": [
+        "Spies, criminals, and barbarians, all of them. There's a piece of ancient knowledge, passed down through my family for generations: never trust a creature that walks sideways.",
+        "Unscrupulous, cruel, treacherous sea-fiends, emergent from the depths to rob society of its riches and drag us back beneath the shadowed waves!",
+        "Their crime is against nature, against society, against decency, and against the dragons themselves.",
+        "Jaekka's one and only mistake in this world.",
+        "Evil made chitinous, sin that walks on spined legs.",
+        "Unholy beings, cruel and barbaric. They lurk in muddied depths, unreached by even Jaekka's pure light.",
+        "Alright, you want to talk about crabs? Let’s talk about crabs. Problem one: the legs. That’s too many legs. You don’t deserve that many legs. You’ve got that many legs and you walk SIDEWAYS? Disgraceful. Offensive. Problem two: the breathing. Alright, so not all crabs offend on this front, but this is especially targeted at intertidal crabs. Breathing in water is fine. Breathing on land is fine. Being able to breathe both in water AND on land AT YOUR WHIMSY is not fine. That is unnatural, it’s offensive, it’s horrifying, it’s unfair, and I hate it. I hate you, intertidal crabs. Get off of my shorelines and off of my world. Problem three: The eyes. Just look at their beady little traitor eyes and tell me that you do not look into the face of iniquity. Problem four: The claws. So clearly, crabs are the superior species. Right? I mean, I had to get set on fire to receive my natural armour, but Mr. Crab over here is born with a free set of plate armour! They travel freely between land and sea. They’ve got more legs than us, even if they don’t know how to use them. Their expressionless face has allowed them to play the fool, even as they obviously plot our humanity’s demise through aggressive invasion of the land. But then, BUT THEN they have the audacity to grow claws instead of hands? What is this, crabs? Is this a game to you? A mockery? A joke? Clearly, you have the upper hand, so why not develop upper hands? You can barely hold a weapon, you can’t scratch your face without poking your abyssal marble of an eye out; you can’t even snap—so what’s the big idea? You are an abomination, crab. You are Jaekka’s only mistake. You are a fiend, a monster, and a wretch, and mark my words: the glint of my blade will be the last light to grace the black caverns of your mind.",
+        "I've never met a crab that I didn't immediately despise with every fibre of my mortal being."
+      ]
     },
     "!cloud": {
       "text": "I love to cloud-watch. My most memorable experience was a cloud that looked like a cat, and then a dog, and then a hamster, and then a lemon. Yes, that was exciting."
@@ -1186,7 +1204,10 @@
       "text": "The opposite of order, and life's charge for destruction."
     },
     "!order": {
-      "text": ["Everything in its proper place, sorted, harmonious.", "An important part of life, order. If there was no order, there would be no life. Order is of great importance."]
+      "text": [
+        "Everything in its proper place, sorted, harmonious.",
+        "An important part of life, order. If there was no order, there would be no life. Order is of great importance."
+      ]
     },
     "!declamation": {
       "text": "Comparable to the Congregation's orations, declamations are the Stewards' regularly scheduled gatherings with a focus on understanding Jaekka, the dragons, and morality."
@@ -1459,7 +1480,14 @@
       "text": "I've always had somewhat of a black thumb, or a black claw, I suppose. I do so love gardens, though, but I'm afraid I'd kill everything before it even sprouted!"
     },
     "!joke": {
-      "text": ["What kind of shorts do clouds wear? Thunderwear!", "What do you call a pig that does karate? A pork chop!", "What do you call a horse that eats spaghetti? Greg.", "Why did the banana go to the doctor? Because he wasn't peeling well!", "How do you organise a space party? You planet!!", "What do you call your second hamster? The squeak-wel!"]
+      "text": [
+        "What kind of shorts do clouds wear? Thunderwear!",
+        "What do you call a pig that does karate? A pork chop!",
+        "What do you call a horse that eats spaghetti? Greg.",
+        "Why did the banana go to the doctor? Because he wasn't peeling well!",
+        "How do you organise a space party? You planet!!",
+        "What do you call your second hamster? The squeak-wel!"
+      ]
     },
     "!swim": {
       "text": "Ooh, yes, I love a good dip. I used to be able to swim for miles when I was younger, but now I'd rather just splash around."
