@@ -87,7 +87,7 @@
     "!jd": {
       "clone": "!jaekkas devoted"
     },
-    "jaekka's devoted": {
+    "!jaekka's devoted": {
       "clone": "!jaekkas devoted"
     },
     "!mystic vanguard": {
@@ -357,7 +357,7 @@
     "!jaekka": {
       "text": "Our Mother. I hope she comes back."
     },
-    "!jatuum": {
+    "jatuum": {
       "text": "?"
     },
     "!arholt": {
@@ -1329,7 +1329,7 @@
     "!eriet stiras": {
       "text": "Queen Stiras is the older of the Varrish queens and the one with the most military knowledge, having served as the chief of Lomstre's guard prior to her appointment as queen. She mostly tends to Varr's executive matters, and though some see her refusal to quell Tolopea's disorder with marshal law as weak, others appreciate her patience and acknowledgement of how complicated the political climate is."
     },
-    "lomstre": {
+    "!lomstre": {
       "text": "Lomstre is a mid-sized valley town only a week's walk from Mt. Kungstarn. Few had heard of it and even fewer cared until the current generation of queens was appointed, with both of them hailing from Lomstre."
     },
     "!varr queen appointment": {
